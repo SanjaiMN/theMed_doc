@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Profile"
+        android:id="@+id/profilemenu"
+        android:enabled="true"
+        android:visible="true"
+        />
+    <item
+        android:checkable="false"
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:title="Logout"
+        android:visible="true" />
+</menu>

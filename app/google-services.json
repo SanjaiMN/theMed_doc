@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "10437282729",
+    "firebase_url": "https://ehospital-e892b.firebaseio.com",
+    "project_id": "ehospital-e892b",
+    "storage_bucket": "ehospital-e892b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10437282729:android:9a3714fa83640280b692b8",
+        "android_client_info": {
+          "package_name": "com.example.ehospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4bDBo_V0wci9pQRyd_S7uAI2ScwJDMeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10437282729:android:7e70fc581512e599b692b8",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10437282729-e5mrbjbsdrqahoafbi2991npr60r561f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "e8e324fa60255ca593f1c79d243edb7d4a5385ba"
+          }
+        },
+        {
+          "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4bDBo_V0wci9pQRyd_S7uAI2ScwJDMeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
