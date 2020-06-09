@@ -39,14 +39,14 @@ public class LabRegistration extends AppCompatActivity
 {
     de.hdodenhof.circleimageview.CircleImageView Profile,dp;
     public Uri imageuri;
-    EditText labname,location,propreitorname,isonumber;
+    EditText labname,location,propreitorname,isonumber,address,workinghours,phonenumber;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private UploadTask uploadtask;
     SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
-    String labname1,location1,propreitorname1,isonumber1;
+    String labname1,location1,propreitorname1,isonumber1,address1,workinghours1,phonenumber1;
     ImageButton labnext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,9 @@ public class LabRegistration extends AppCompatActivity
         propreitorname=findViewById(R.id.proprietornamereg);
         isonumber=findViewById(R.id.isonumberreg);
         labnext=findViewById(R.id.labnextbt);
+        address=findViewById(R.id.addressreg);
+        workinghours=findViewById(R.id.workinghoursreg);
+        phonenumber=findViewById(R.id.phonereg);
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
         imageref= FirebaseStorage.getInstance().getReference("doctors_profile");
@@ -104,7 +107,7 @@ public class LabRegistration extends AppCompatActivity
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("uid",uid);
                                 editor1.commit();
-                                LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,location1,propreitorname1,isonumber1,"lab",profile_pic);
+                                LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,location1,propreitorname1,isonumber1,"lab",profile_pic,address1,phonenumber1,workinghours1);
                                 databaseReference.child(uid).setValue(laboratoryRegistrationDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();
                                 editor2.putString("labname",labname1);
@@ -142,7 +145,10 @@ public class LabRegistration extends AppCompatActivity
         location1=location.getText().toString();
         propreitorname1=propreitorname.getText().toString();
         isonumber1=isonumber.getText().toString();
-        if(labname1.isEmpty() || location1.isEmpty() || propreitorname1.isEmpty() || isonumber1.isEmpty())
+        address1=address.getText().toString();
+        workinghours1=workinghours.getText().toString();
+        phonenumber1=phonenumber.getText().toString();
+        if(labname1.isEmpty() || location1.isEmpty() || propreitorname1.isEmpty() || isonumber1.isEmpty() || address1.isEmpty() || workinghours1.isEmpty() || phonenumber1.isEmpty())
         {
             if(labname1.isEmpty())
                 labname.setError("Can't be empty");
@@ -152,6 +158,12 @@ public class LabRegistration extends AppCompatActivity
                 propreitorname.setError("Can't be empty");
             if(isonumber1.isEmpty())
                 isonumber.setError("Can't be empty");
+            if(address1.isEmpty())
+                address.setError("Can't be empty");
+            if(workinghours1.isEmpty())
+                workinghours.setError("Can't be empty");
+            if(phonenumber1.isEmpty())
+                phonenumber.setError("Can't be empty");
         }
         else
             i=true;

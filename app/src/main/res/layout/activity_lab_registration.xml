@@ -7,15 +7,20 @@
     app:showPaths="true"
     tools:context=".doctor_registration">
 
+
     <LinearLayout
-        android:layout_width="288dp"
-        android:layout_height="200dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="257dp"
+        android:layout_height="341dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.701">
+
 
         <EditText
             android:id="@+id/labnamereg"
@@ -31,7 +36,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <EditText
             android:id="@+id/locationreg"
@@ -83,8 +87,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.526" />
-    </LinearLayout>
 
+        <EditText
+            android:id="@+id/addressreg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Address"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/phonereg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxEms="10"
+            android:gravity="center"
+            android:hint="Phone number"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/workinghoursreg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Working hours"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
@@ -97,9 +131,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilelab"
@@ -113,7 +148,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
+        app:layout_constraintVertical_bias="0.166" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dplab"
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
@@ -127,7 +163,8 @@
         app:layout_constraintHorizontal_bias="0.655"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.281" />
+
     <ImageButton
         android:id="@+id/labnextbt"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -138,7 +175,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873"
+        app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@drawable/next" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
