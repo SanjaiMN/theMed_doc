@@ -30,12 +30,12 @@ public class DoctorProfile extends AppCompatActivity
         progressDialog=new ProgressDialog(DoctorProfile.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        profilepic=findViewById(R.id.profilepic);
+        profilepic=findViewById(R.id.profilepiclab);
         namee=findViewById(R.id.namee);
         agee=findViewById(R.id.agee);
         working_inn=findViewById(R.id.working_inn);
         specalizationn=findViewById(R.id.specalizationn);
-        profilepic=findViewById(R.id.profilepic);
+        profilepic=findViewById(R.id.profilepiclab);
         firebaseDatabase=FirebaseDatabase.getInstance();
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference=firebaseDatabase.getReference().child("Doctor database").child(uid);

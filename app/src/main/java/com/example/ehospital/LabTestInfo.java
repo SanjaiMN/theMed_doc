@@ -44,9 +44,10 @@ public class LabTestInfo extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         upload.setOnClickListener(v -> {
-            if(isValid()){
+            if(isValid())
+            {
                 LabDetails labDetails = new LabDetails(labtestname1, labname1, nooftest1, subtestname1, money1, city1);
-                databaseReference.child("Labtest").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
+                databaseReference.child("Lablistwithtests").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
                 Toast.makeText(LabTestInfo.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
             }
@@ -96,6 +97,9 @@ public class LabTestInfo extends AppCompatActivity
                         }).create().show();
                 break;
             }
+            case R.id.profilemenu:
+                startActivity(new Intent(LabTestInfo.this,LabProfile.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

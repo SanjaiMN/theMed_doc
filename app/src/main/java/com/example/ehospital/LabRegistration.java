@@ -107,7 +107,7 @@ public class LabRegistration extends AppCompatActivity
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("uid",uid);
                                 editor1.commit();
-                                LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,location1,propreitorname1,isonumber1,"lab",profile_pic,address1,phonenumber1,workinghours1);
+                                LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,location1,propreitorname1,isonumber1,"lab",profile_pic,address1,phonenumber1,workinghours1,uid);
                                 databaseReference.child(uid).setValue(laboratoryRegistrationDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();
                                 editor2.putString("labname",labname1);

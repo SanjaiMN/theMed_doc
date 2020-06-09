@@ -41,7 +41,8 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
     @NonNull
     @Override
 
-    public recyclerAdapter_slot.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public recyclerAdapter_slot.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
        View view= LayoutInflater.from(parent.getContext())
                .inflate(R.layout.item_slot,parent,false);
         return new  ViewHolder(view);

@@ -1,8 +1,8 @@
 package com.example.ehospital;
 public class LaboratoryRegistrationDetails
 {
-    public String Laboratoryname,location,proprietorname,isonumber,doctororlab,profile_pic,address,phonenumber,workinghours;
-    public LaboratoryRegistrationDetails(String laboratoryname, String location, String proprietorname, String isonumber,String doctororlab,String profile_pic,String address,String phonenumber,String workinghours) {
+    public String Laboratoryname,location,proprietorname,isonumber,doctororlab,profile_pic,address,phonenumber,workinghours,uidlabreg;
+    public LaboratoryRegistrationDetails(String laboratoryname, String location, String proprietorname, String isonumber,String doctororlab,String profile_pic,String address,String phonenumber,String workinghours,String uidlabreg) {
         Laboratoryname = laboratoryname;
         this.location = location;
         this.proprietorname = proprietorname;
@@ -12,6 +12,7 @@ public class LaboratoryRegistrationDetails
         this.address=address;
         this.phonenumber=phonenumber;
         this.workinghours=workinghours;
+        this.uidlabreg=uidlabreg;
     }
     public LaboratoryRegistrationDetails() {
     }

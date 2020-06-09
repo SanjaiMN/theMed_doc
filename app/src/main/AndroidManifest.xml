@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DoctorProfile"></activity>
+        <activity android:name=".LabProfile"></activity>
+        <activity android:name=".DoctorProfile" />
 
         <service android:name=".MyService">
             <intent-filter>
