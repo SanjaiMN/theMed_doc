@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LabTestInfo extends AppCompatActivity
 {
     EditText labtestname, nooftest, subtestname, money;
-    String labtestname1, nooftest1, subtestname1, labname1, money1, city1;
+    String labtestname1, nooftest1, subtestname1, labname1, money1, city1,uidtest;
     Button upload;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
@@ -43,11 +43,13 @@ public class LabTestInfo extends AppCompatActivity
         upload = findViewById(R.id.upload);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        uidtest=FirebaseAuth.getInstance().getCurrentUser().getUid();
         upload.setOnClickListener(v -> {
             if(isValid())
             {
-                LabDetails labDetails = new LabDetails(labtestname1, labname1, nooftest1, subtestname1, money1, city1);
-                databaseReference.child("Lablistwithtests").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
+                LabDetails labDetails = new LabDetails(labtestname1, labname1, nooftest1, subtestname1, money1, city1,uidtest);
+                databaseReference.child("Labtests").child(city1.toLowerCase()).child(labtestname1.toLowerCase()).child(uidtest).setValue(labDetails);
+                //databaseReference.child("Lablistwithtests").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
                 Toast.makeText(LabTestInfo.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
             }

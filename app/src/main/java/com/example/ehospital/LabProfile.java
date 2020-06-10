@@ -23,7 +23,8 @@ public class LabProfile extends AppCompatActivity
     de.hdodenhof.circleimageview.CircleImageView profilepic;
     ProgressDialog progressDialog;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_profile);
         labname=findViewById(R.id.namelab);
