@@ -96,8 +96,7 @@ public class PharmacyInside extends AppCompatActivity
                 break;
             }
             case R.id.profilemenu:
-                //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                startActivity(new Intent(PharmacyInside.this,LabProfile.class));
+                startActivity(new Intent(PharmacyInside.this,PharmacyProfile.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

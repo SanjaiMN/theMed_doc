@@ -58,7 +58,6 @@ public class LabProfile extends AppCompatActivity
                         .into(profilepic);
                 progressDialog.dismiss();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
