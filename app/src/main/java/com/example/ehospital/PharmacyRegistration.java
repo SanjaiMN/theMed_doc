@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,7 @@ public class PharmacyRegistration extends AppCompatActivity
     SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
+    ProgressDialog pd;
     String pharmname1,mail1,location1,propreitorname1,licnumber1,address1,phonenumber1;
     ImageButton pharmnext;
     @Override
@@ -59,6 +61,7 @@ public class PharmacyRegistration extends AppCompatActivity
         dppharm=findViewById(R.id.smallpharmcam);
         pharmnext=findViewById(R.id.pharmnextbt);
         mail=findViewById(R.id.mailmed);
+        pd=new ProgressDialog(PharmacyRegistration.this);
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
         imageref= FirebaseStorage.getInstance().getReference("Pharmacy_profile");
@@ -79,6 +82,8 @@ public class PharmacyRegistration extends AppCompatActivity
         pharmnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pd.setMessage("Loading...");
+                pd.show();
                 final String androiid= Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
                 if(isValid())
                 {
@@ -121,8 +126,10 @@ public class PharmacyRegistration extends AppCompatActivity
 
                     });
                 }
-                else
-                    Toast.makeText(PharmacyRegistration.this,"No null values!!!",Toast.LENGTH_SHORT).show();
+                else {
+                    pd.dismiss();
+                    Toast.makeText(PharmacyRegistration.this, "No null values!!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

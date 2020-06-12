@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             progressdialog = new ProgressDialog(MainActivity.this);
             progressdialog.setMessage("Please Wait....");
-            progressdialog.show();
             setUpVerificatonCallbacks();
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     number,        // Phone number to verify
@@ -131,8 +130,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCodeSent(String verificationId,PhoneAuthProvider.ForceResendingToken token) {
-
+                    public void onCodeSent(String verificationId,PhoneAuthProvider.ForceResendingToken token)
+                    {
+                        progressdialog.show();
                         phoneVerificationId = verificationId;
                         resendToken = token;
 

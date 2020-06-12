@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,7 @@ public class LabRegistration extends AppCompatActivity
     SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
+    ProgressDialog pd;
     String labname1,mail,location1,propreitorname1,isonumber1,address1,workinghours1,phonenumber1;
     ImageButton labnext;
     @Override
@@ -50,6 +52,7 @@ public class LabRegistration extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_registration);
         Profile=findViewById(R.id.profilelab);
+        pd=new ProgressDialog(LabRegistration.this);
         dp=findViewById(R.id.dplab);
         labname=findViewById(R.id.doctorname);
         location=findViewById(R.id.workingindoctor);
@@ -80,6 +83,8 @@ public class LabRegistration extends AppCompatActivity
         labnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pd.setMessage("Loading...");
+                pd.show();
                 final String androiid= Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
                 if(isValid())
                 {
@@ -116,6 +121,7 @@ public class LabRegistration extends AppCompatActivity
                                 //editor.putString("prefs","");
                                 editor.putString("prefs","lab");
                                 editor.commit();
+                                pd.dismiss();
                                 startActivity(new Intent(LabRegistration.this,LabTestInfo.class));
                             }
                         });
@@ -123,7 +129,10 @@ public class LabRegistration extends AppCompatActivity
                     });
                 }
                 else
-                    Toast.makeText(LabRegistration.this,"No null values!!!",Toast.LENGTH_SHORT).show();
+                    {
+                    pd.dismiss();
+                    Toast.makeText(LabRegistration.this, "No null values!!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
