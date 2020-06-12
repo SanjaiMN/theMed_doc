@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-public class GridViewSelection extends AppCompatActivity {
+public class GridViewSelection extends AppCompatActivity
+{
     GridView gridView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_view_selection);
         String[] category_prob={"General Medicine","Family Medicine","Consultant Physician","Cardiology","Diabetology","Pediatrics","ENT","Eye care"
@@ -24,18 +26,12 @@ public class GridViewSelection extends AppCompatActivity {
         Grid_base_adapter grid_base_adapter=new Grid_base_adapter(GridViewSelection.this,category_prob,image);
         gridView=(GridView)findViewById(R.id.grid);
         gridView.setAdapter(grid_base_adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString("category_selected",category_prob[position]);
-                editor.apply();
-                startActivity(new Intent(GridViewSelection.this,doctor_registration.class));
-
-
-            }
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putString("category_selected",category_prob[position]);
+            editor.apply();
+            startActivity(new Intent(GridViewSelection.this,doctor_registration.class));
         });
     }
 }

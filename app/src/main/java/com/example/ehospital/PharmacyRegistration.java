@@ -32,52 +32,51 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class LabRegistration extends AppCompatActivity
+public class PharmacyRegistration extends AppCompatActivity
 {
-    de.hdodenhof.circleimageview.CircleImageView Profile,dp;
+    de.hdodenhof.circleimageview.CircleImageView pharmprofile,dppharm;
     public Uri imageuri;
-    EditText labname,email,location,propreitorname,isonumber,address,workinghours,phonenumber;
+    EditText pharmname,mail,location,propreitorname,licnumber,address,phonenumber;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private UploadTask uploadtask;
     SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
-    String labname1,mail,location1,propreitorname1,isonumber1,address1,workinghours1,phonenumber1;
-    ImageButton labnext;
+    String pharmname1,mail1,location1,propreitorname1,licnumber1,address1,phonenumber1;
+    ImageButton pharmnext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab_registration);
-        Profile=findViewById(R.id.profilelab);
-        dp=findViewById(R.id.dplab);
-        labname=findViewById(R.id.doctorname);
-        location=findViewById(R.id.workingindoctor);
-        propreitorname=findViewById(R.id.agedoctor);
-        isonumber=findViewById(R.id.isonumberreg);
-        labnext=findViewById(R.id.labnextbt);
-        address=findViewById(R.id.addressreg);
-        workinghours=findViewById(R.id.workinghoursreg);
-        phonenumber=findViewById(R.id.phonereg);
-        email=findViewById(R.id.maillab);
+        setContentView(R.layout.activity_pharmacy_registration);
+        pharmname=findViewById(R.id.labnameregpharm);
+        location=findViewById(R.id.locationregpharm);
+        propreitorname=findViewById(R.id.proprietornameregpharm);
+        licnumber=findViewById(R.id.licensenumberreg);
+        address=findViewById(R.id.addressregpharm);
+        phonenumber=findViewById(R.id.phoneregpharm);
+        pharmprofile=findViewById(R.id.profilepharm);
+        dppharm=findViewById(R.id.smallpharmcam);
+        pharmnext=findViewById(R.id.pharmnextbt);
+        mail=findViewById(R.id.mailmed);
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
-        imageref= FirebaseStorage.getInstance().getReference("lab_profile");
+        imageref= FirebaseStorage.getInstance().getReference("Pharmacy_profile");
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("LaboratoryRegistrations");
+        databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations");
         /*SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);
         String checker = sharedPreferences1.getString("prefs","");*/
         /*if(user!=null)
         {
             startActivity(new Intent(LabRegistration.this,LabTestInfo.class));
         }*/
-        dp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectimage();
-            }
-        });
-        labnext.setOnClickListener(new View.OnClickListener() {
+       dppharm.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               selectimage();
+           }
+       });
+        pharmnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String androiid= Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
@@ -92,11 +91,11 @@ public class LabRegistration extends AppCompatActivity
                     uploadtask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(LabRegistration.this,"failed",Toast.LENGTH_LONG).show();
+                            Toast.makeText(PharmacyRegistration.this,"failed",Toast.LENGTH_LONG).show();
 
                         }
                     }).addOnSuccessListener(taskSnapshot -> {
-                        Toast.makeText(LabRegistration.this,"success" ,Toast.LENGTH_LONG).show();
+                        Toast.makeText(PharmacyRegistration.this,"success" ,Toast.LENGTH_LONG).show();
                         imageref.child(androiid).child(getextension(imageuri)+"#").getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
@@ -105,25 +104,25 @@ public class LabRegistration extends AppCompatActivity
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("uid",uid);
                                 editor1.commit();
-                                LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,mail,location1,propreitorname1,isonumber1,"lab",profile_pic,address1,phonenumber1,workinghours1,uid);
-                                databaseReference.child(uid).setValue(laboratoryRegistrationDetails);
+                                PharmacyDetails pharmacyDetails = new PharmacyDetails(pharmname1,mail1,location1,propreitorname1,licnumber1,"pharmacy",profile_pic,address1,phonenumber1,uid);
+                                databaseReference.child(uid).setValue(pharmacyDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();
-                                editor2.putString("labname",labname1);
+                                editor2.putString("labname",pharmname1);
                                 editor2.putString("location",location1);
                                 editor2.commit();
                                 sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
                                 //editor.putString("prefs","");
-                                editor.putString("prefs","lab");
+                                editor.putString("prefs","pharmacy");
                                 editor.commit();
-                                startActivity(new Intent(LabRegistration.this,LabTestInfo.class));
+                                startActivity(new Intent(PharmacyRegistration.this,PharmacyInside.class));
                             }
                         });
 
                     });
                 }
                 else
-                    Toast.makeText(LabRegistration.this,"No null values!!!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PharmacyRegistration.this,"No null values!!!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -139,30 +138,27 @@ public class LabRegistration extends AppCompatActivity
     boolean isValid()
     {
         boolean i=false;
-        labname1=labname.getText().toString();
-        mail=email.getText().toString();
+        pharmname1=pharmname.getText().toString();
+        mail1=mail.getText().toString();
         location1=location.getText().toString();
         propreitorname1=propreitorname.getText().toString();
-        isonumber1=isonumber.getText().toString();
+        licnumber1=licnumber.getText().toString();
         address1=address.getText().toString();
-        workinghours1=workinghours.getText().toString();
         phonenumber1=phonenumber.getText().toString();
-        if(labname1.isEmpty() ||mail.isEmpty()|| location1.isEmpty() || propreitorname1.isEmpty() || isonumber1.isEmpty() || address1.isEmpty() || workinghours1.isEmpty() || phonenumber1.isEmpty())
+        if(pharmname1.isEmpty() ||mail1.isEmpty()|| location1.isEmpty() || propreitorname1.isEmpty() || licnumber1.isEmpty() || address1.isEmpty() || phonenumber1.isEmpty())
         {
-            if(labname1.isEmpty())
-                labname.setError("Can't be empty");
-            if(mail.isEmpty())
-                email.setError("Can't be empty");
+            if(pharmname1.isEmpty())
+                pharmname.setError("Can't be empty");
+            if(mail1.isEmpty())
+                mail.setError("Can't be empty");
             if(location1.isEmpty())
                 location.setError("Can't be empty");
             if(propreitorname1.isEmpty())
                 propreitorname.setError("Can't be empty");
-            if(isonumber1.isEmpty())
-                isonumber.setError("Can't be empty");
+            if(licnumber1.isEmpty())
+                licnumber.setError("Can't be empty");
             if(address1.isEmpty())
                 address.setError("Can't be empty");
-            if(workinghours1.isEmpty())
-                workinghours.setError("Can't be empty");
             if(phonenumber1.isEmpty())
                 phonenumber.setError("Can't be empty");
         }
@@ -200,7 +196,7 @@ public class LabRegistration extends AppCompatActivity
                         .getBitmap(
                                 getContentResolver(),
                                 imageuri);
-                Profile.setImageBitmap(bitmap);
+                pharmprofile.setImageBitmap(bitmap);
             }
 
             catch (IOException e) {
@@ -210,7 +206,7 @@ public class LabRegistration extends AppCompatActivity
         }
         else
         {
-            Toast.makeText(LabRegistration.this,"no media selected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(PharmacyRegistration.this,"no media selected",Toast.LENGTH_SHORT).show();
         }
     }
 }

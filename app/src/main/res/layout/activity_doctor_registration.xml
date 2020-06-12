@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="281dp"
-        android:layout_height="153dp"
+        android:layout_width="295dp"
+        android:layout_height="201dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,12 +20,11 @@
 
 
         <EditText
-            android:id="@+id/labnamereg"
+            android:id="@+id/doctorname"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:ems="10"
-
             android:gravity="center"
             android:hint="Name"
             android:inputType="textPersonName"
@@ -36,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/locationreg"
+            android:id="@+id/workingindoctor"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -53,7 +52,7 @@
             app:layout_constraintVertical_bias="0.561" />
 
         <EditText
-            android:id="@+id/proprietornamereg"
+            android:id="@+id/agedoctor"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -68,6 +67,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.526" />
+
+        <EditText
+            android:id="@+id/emaildoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:hint="Email"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
 

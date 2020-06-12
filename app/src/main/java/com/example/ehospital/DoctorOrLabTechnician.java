@@ -27,7 +27,7 @@ public class DoctorOrLabTechnician extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference,databaseReference1;
     String uid="",uidcheck="";
-    CardView doctorlogin,lablogin;
+    CardView doctorlogin,lablogin,pharmacylogin;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
@@ -48,6 +48,8 @@ public class DoctorOrLabTechnician extends AppCompatActivity
             {
                 startActivity(new Intent(DoctorOrLabTechnician.this,profile.class));
             }
+            else if(checker.equals("pharmacy"))
+                startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyInside.class));
         }
         else
         {
@@ -62,8 +64,11 @@ public class DoctorOrLabTechnician extends AppCompatActivity
         }
         doctorlogin=findViewById(R.id.doctorlogin);
         lablogin=findViewById(R.id.lablogin);
+        pharmacylogin=findViewById(R.id.pharmacylogin);
         doctorlogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,GridViewSelection.class)));
         lablogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,LabRegistration.class)));
+        pharmacylogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyRegistration.class)));
+
     }
 
     @Override

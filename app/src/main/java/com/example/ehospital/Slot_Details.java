@@ -68,7 +68,6 @@ public class Slot_Details extends AppCompatActivity implements RecyclerInterface
                 recycleradapter.notifyDataSetChanged();
                 progressdialog.dismiss();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

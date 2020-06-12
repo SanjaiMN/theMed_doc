@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/doctorlogin"
-        android:layout_width="330dp"
-        android:layout_height="191dp"
+        android:layout_width="255dp"
+        android:layout_height="149dp"
         android:background="@color/colorPrimary"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,23 +17,23 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242">
+        app:layout_constraintVertical_bias="0.18">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="@color/colorPrimary"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#ffff"
                 android:fontFamily="@font/lilita_one"
+                android:gravity="center"
                 android:text="Doctor"
+                android:textColor="#ffff"
                 android:textSize="25sp" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -50,39 +50,42 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/lablogin"
-        android:layout_width="330dp"
-        android:layout_height="191dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="149dp"
         android:background="@color/colorPrimary"
         app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744" >
+        app:layout_constraintVertical_bias="0.52">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffff"
                 android:fontFamily="@font/lilita_one"
                 android:gravity="center"
                 android:text="Lab Technician"
+                android:textColor="#ffff"
                 android:textSize="25sp" />
+
             <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+                android:id="@+id/animationView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-            app:lottie_rawRes="@raw/bluemicroscope"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/bluemicroscope" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -100,4 +103,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pharmacylogin"
+        android:layout_width="250dp"
+        android:layout_height="149dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lablogin"
+        app:layout_constraintVertical_bias="0.423">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lilita_one"
+            android:gravity="center"
+            android:text="Pharmacy"
+            android:textColor="#ffff"
+            android:textSize="25sp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/pharmacy" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

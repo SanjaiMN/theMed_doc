@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="272dp"
-        android:layout_height="388dp"
+        android:layout_width="262dp"
+        android:layout_height="343dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,17 +19,17 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71000004">
+        app:layout_constraintVertical_bias="0.69">
 
 
         <EditText
-            android:id="@+id/doctorname"
+            android:id="@+id/labnameregpharm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
-            android:hint="Laboratory Name"
+            android:hint="Pharmacy Name"
             android:inputType="textPersonName"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,17 +38,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/maillab"
+            android:id="@+id/mailmed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
             android:ems="10"
             android:hint="Email"
-            android:textSize="20sp"
             android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/workingindoctor"
+            android:id="@+id/locationregpharm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -65,7 +70,7 @@
             app:layout_constraintVertical_bias="0.561" />
 
         <EditText
-            android:id="@+id/agedoctor"
+            android:id="@+id/proprietornameregpharm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -82,13 +87,13 @@
             app:layout_constraintVertical_bias="0.526" />
 
         <EditText
-            android:id="@+id/isonumberreg"
+            android:id="@+id/licensenumberreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
-            android:hint="NABL ISO number"
+            android:hint="License number"
             android:inputType="textPersonName"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -99,7 +104,7 @@
             app:layout_constraintVertical_bias="0.526" />
 
         <EditText
-            android:id="@+id/addressreg"
+            android:id="@+id/addressregpharm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -109,7 +114,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/phonereg"
+            android:id="@+id/phoneregpharm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -119,19 +124,10 @@
             android:maxEms="10"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/workinghoursreg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Working hours"
-            android:inputType="textPersonName"
-            android:textSize="20sp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewpharm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lilita_one"
@@ -147,12 +143,12 @@
         app:layout_constraintVertical_bias="0.04" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilelab"
+        android:id="@+id/profilepharm"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="122dp"
-        android:layout_height="117dp"
+        android:layout_width="129dp"
+        android:layout_height="114dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/labtechlogo"
+        android:src="@drawable/pharmacydp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -161,7 +157,7 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/dplab"
+        android:id="@+id/smallpharmcam"
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
         android:layout_width="51dp"
         android:layout_height="38dp"
@@ -176,7 +172,7 @@
         app:layout_constraintVertical_bias="0.281" />
 
     <ImageButton
-        android:id="@+id/labnextbt"
+        android:id="@+id/pharmnextbt"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,7 +181,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98"
+        app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@drawable/next" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

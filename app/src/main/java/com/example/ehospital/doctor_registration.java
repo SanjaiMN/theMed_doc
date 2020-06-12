@@ -16,18 +16,14 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,10 +45,10 @@ public class doctor_registration extends AppCompatActivity{
     RadioButton gender;
     EditText nameet;
     EditText ageet;
-    EditText workinget;
+    EditText workinget,email;
     String gender1,specalization;
     int id;
-    String name,age,working_in;
+    String name,age,working_in,mail;
     ImageButton nextbt;
     ProgressDialog pd;
     StorageReference imageref;
@@ -69,9 +65,10 @@ public class doctor_registration extends AppCompatActivity{
         setContentView(R.layout.activity_doctor_registration);
         Profile=findViewById(R.id.profile);
         dp=findViewById(R.id.dp);
-        nameet=findViewById(R.id.labnamereg);
-        ageet=findViewById(R.id.proprietornamereg);
-        workinget=findViewById(R.id.locationreg);
+        nameet=findViewById(R.id.doctorname);
+        email=findViewById(R.id.emaildoctor);
+        ageet=findViewById(R.id.agedoctor);
+        workinget=findViewById(R.id.workingindoctor);
         nextbt=findViewById(R.id.labnextbt);
         rg=findViewById(R.id.radiogroup);
         name=nameet.getText().toString();
@@ -124,15 +121,11 @@ public class doctor_registration extends AppCompatActivity{
     }
     public void sendtodatabase()
     {
+        id=rg.getCheckedRadioButtonId();
+        gender=findViewById(id);
         final String androiid= Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
-        if(true)
+        if(valid())
         {
-            name=nameet.getText().toString();
-            age=ageet.getText().toString();
-            working_in=workinget.getText().toString();
-            id=rg.getCheckedRadioButtonId();
-            gender=findViewById(id);
-            gender1=gender.getText().toString();
             if(name.length()>1&&Integer.parseInt(age)>22&&working_in.length()>1)
             {
                 StorageReference ref = imageref.child(androiid).child(getextension(imageuri)+"#");
@@ -178,7 +171,7 @@ public class doctor_registration extends AppCompatActivity{
                             editor1.putString("prefs","");
                             editor1.putString("prefs","doctor");
                             editor1.commit();
-                            doctor_details doctor_details=new doctor_details(name,gender1,specalization,working_in,age,profile_pic,sessionId,tokenid,uid,Request,"doctor");
+                            doctor_details doctor_details=new doctor_details(name,mail,gender1,specalization,working_in,age,profile_pic,sessionId,tokenid,uid,Request,"doctor");
                             databaseReference.child(uid).setValue(doctor_details);
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));
@@ -192,6 +185,11 @@ public class doctor_registration extends AppCompatActivity{
                 pd.dismiss();
                 Toast.makeText(getApplicationContext(),"Enter the details correctly",Toast.LENGTH_SHORT).show();
             }
+        }
+        else
+        {
+            pd.dismiss();
+            Toast.makeText(getApplicationContext(),"Empty values!!!",Toast.LENGTH_SHORT).show();
         }
     }
     private String getextension(Uri uri)
@@ -237,5 +235,33 @@ public class doctor_registration extends AppCompatActivity{
         {
             Toast.makeText(doctor_registration.this,"no media selected",Toast.LENGTH_SHORT).show();
         }
+    }
+    boolean valid()
+    {
+        boolean i=false;
+        try {
+            name = nameet.getText().toString();
+            age = ageet.getText().toString();
+            working_in = workinget.getText().toString();
+            mail = email.getText().toString();
+            gender1 = gender.getText().toString();
+        }
+        catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Empty values!!!", Toast.LENGTH_SHORT).show();
+        }
+        if(name.isEmpty() || age.isEmpty() || working_in.isEmpty() || mail.isEmpty())
+        {
+            if(name.isEmpty())
+                nameet.setError("Can't be empty");
+            if(age.isEmpty())
+                ageet.setError("Can't be empty");
+            if(working_in.isEmpty())
+                workinget.setError("Can't be empty");
+            if(mail.isEmpty())
+                email.setError("Can't be empty");
+        }
+        else
+            i=true;
+        return i;
     }
 }

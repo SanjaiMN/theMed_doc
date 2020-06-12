@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LabProfile"></activity>
+        <activity android:name=".PharmacyInside"></activity>
+        <activity android:name=".PharmacyRegistration" />
+        <activity android:name=".LabProfile" />
         <activity android:name=".DoctorProfile" />
 
         <service android:name=".MyService">
