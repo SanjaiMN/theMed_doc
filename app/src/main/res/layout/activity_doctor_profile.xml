@@ -89,6 +89,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.676" />
 
+        <TextView
+            android:id="@+id/ratingsdoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lilita_one"
+            android:textColor="@color/colorPrimary"
+            android:foregroundGravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center|top"
+            android:text="Ratings:" />
+
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView

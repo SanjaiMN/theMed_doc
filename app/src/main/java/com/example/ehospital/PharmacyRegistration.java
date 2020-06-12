@@ -104,7 +104,7 @@ public class PharmacyRegistration extends AppCompatActivity
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("uid",uid);
                                 editor1.commit();
-                                PharmacyDetails pharmacyDetails = new PharmacyDetails(pharmname1,mail1,location1,propreitorname1,licnumber1,"pharmacy",profile_pic,address1,phonenumber1,uid);
+                                PharmacyDetails pharmacyDetails = new PharmacyDetails(pharmname1,mail1,location1,propreitorname1,licnumber1,"pharmacy",profile_pic,address1,phonenumber1,uid,1f);
                                 databaseReference.child(uid).setValue(pharmacyDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();
                                 editor2.putString("labname",pharmname1);

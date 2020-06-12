@@ -171,7 +171,7 @@ public class doctor_registration extends AppCompatActivity{
                             editor1.putString("prefs","");
                             editor1.putString("prefs","doctor");
                             editor1.commit();
-                            doctor_details doctor_details=new doctor_details(name,mail,gender1,specalization,working_in,age,profile_pic,sessionId,tokenid,uid,Request,"doctor");
+                            doctor_details doctor_details=new doctor_details(name,mail,gender1,specalization,working_in,age,profile_pic,sessionId,tokenid,uid,Request,"doctor",1f);
                             databaseReference.child(uid).setValue(doctor_details);
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));

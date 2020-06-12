@@ -15,7 +15,8 @@ public class doctor_details {
     public String uid;
     public String Request;
     public String doctororlab;
-    public doctor_details(String name,String mail, String gender, String specalization, String working_in, String age, String profile_pic, String SessionId, String TokenId,String uid,String Request,String doctororlab) {
+    public float ratings;
+    public doctor_details(String name,String mail, String gender, String specalization, String working_in, String age, String profile_pic, String SessionId, String TokenId,String uid,String Request,String doctororlab,float ratings) {
         this.name = name;
         this.mail=mail;
         this.gender = gender;
@@ -28,6 +29,7 @@ public class doctor_details {
         this.uid=uid;
         this.Request=Request;
         this.doctororlab=doctororlab;
+        this.ratings=ratings;
     }
 
     public doctor_details() {

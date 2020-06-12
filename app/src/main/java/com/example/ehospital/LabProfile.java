@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LabProfile extends AppCompatActivity
 {
-    TextView labname,location,propertiername,isonumber,address,phone,workinghours;
+    TextView labname,location,propertiername,isonumber,address,phone,workinghours,ratings;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     de.hdodenhof.circleimageview.CircleImageView profilepic;
@@ -38,6 +38,7 @@ public class LabProfile extends AppCompatActivity
         phone=findViewById(R.id.phonelab);
         profilepic=findViewById(R.id.profilepiclab);
         workinghours=findViewById(R.id.workinghourslab);
+        ratings=findViewById(R.id.ratingslab);
         String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("LaboratoryRegistrations").child(uid);
@@ -53,6 +54,7 @@ public class LabProfile extends AppCompatActivity
                 address.append(laboratoryRegistrationDetails.address);
                 phone.append(laboratoryRegistrationDetails.phonenumber);
                 workinghours.append(laboratoryRegistrationDetails.workinghours);
+                ratings.append(laboratoryRegistrationDetails.ratings+"");
                 Glide.with(LabProfile.this)
                         .load(""+laboratoryRegistrationDetails.profile_pic)
                         .into(profilepic);

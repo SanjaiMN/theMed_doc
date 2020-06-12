@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PharmacyProfile extends AppCompatActivity
 {
-    TextView pharmacyname,location,propertiername,licnumber,address,phone,mail;
+    TextView pharmacyname,location,propertiername,licnumber,address,phone,mail,ratings;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     de.hdodenhof.circleimageview.CircleImageView profilepic;
@@ -37,6 +37,7 @@ public class PharmacyProfile extends AppCompatActivity
         phone=findViewById(R.id.phonepharm);
         profilepic=findViewById(R.id.profilepicpharm);
         mail=findViewById(R.id.mailpharm);
+        ratings=findViewById(R.id.ratingspharm);
         String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations").child(uid);
@@ -52,6 +53,7 @@ public class PharmacyProfile extends AppCompatActivity
                 address.append(pharmacyDetails.address);
                 phone.append(pharmacyDetails.phonenumber);
                 mail.append(pharmacyDetails.mail);
+                ratings.append(pharmacyDetails.ratings+"");
                 Glide.with(PharmacyProfile.this)
                         .load(""+pharmacyDetails.profile_pic)
                         .into(profilepic);

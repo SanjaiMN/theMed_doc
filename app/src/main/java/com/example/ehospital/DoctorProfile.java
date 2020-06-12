@@ -18,7 +18,7 @@ public class DoctorProfile extends AppCompatActivity
 {
     String uid,profile_pic;
     de.hdodenhof.circleimageview.CircleImageView profilepic;
-    TextView namee,agee,working_inn,specalizationn;
+    TextView namee,agee,working_inn,specalizationn,ratings;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
@@ -36,6 +36,7 @@ public class DoctorProfile extends AppCompatActivity
         working_inn=findViewById(R.id.working_inn);
         specalizationn=findViewById(R.id.specalizationn);
         profilepic=findViewById(R.id.profilepiclab);
+        ratings=findViewById(R.id.ratingsdoc);
         firebaseDatabase=FirebaseDatabase.getInstance();
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference=firebaseDatabase.getReference().child("Doctor database").child(uid);
@@ -48,6 +49,7 @@ public class DoctorProfile extends AppCompatActivity
                 agee.append(doctor_details.age);
                 working_inn.append(doctor_details.working_in);
                 specalizationn.append(doctor_details.specalization);
+                ratings.append(String.valueOf(doctor_details.ratings));
                 profile_pic=doctor_details.profile_pic;
                 Glide.with(DoctorProfile.this)
                         .load(""+profile_pic)
