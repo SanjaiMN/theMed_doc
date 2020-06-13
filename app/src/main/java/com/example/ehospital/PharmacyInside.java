@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class PharmacyInside extends AppCompatActivity
 {
     EditText medicinename,category,medicinecategory,money;
     String medicinename1,category1,medicinecategory1,pharmacyname, money1, city1,uidmed;
-    Button upload;
+    Button upload,yourmedicines;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -38,6 +39,7 @@ public class PharmacyInside extends AppCompatActivity
         medicinecategory = findViewById(R.id.medicinecat);
         money = findViewById(R.id.amountmed);
         upload = findViewById(R.id.submitmed);
+        yourmedicines=findViewById(R.id.yourmedicines);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         uidmed=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -45,13 +47,19 @@ public class PharmacyInside extends AppCompatActivity
             if(isValid())
             {
                 MedicineDetails medicineDetails=new MedicineDetails(medicinename1,category1,medicinecategory1,pharmacyname,city1,money1,uidmed);
-                databaseReference.child("MedicineDetails").child(city1.toLowerCase()).child(medicinename1.toLowerCase()).child(uidmed).child(category1.toLowerCase()).child(medicinecategory1.toLowerCase()).setValue(medicineDetails);
+                databaseReference.child("MedicineDetails").child(city1.toLowerCase()).child(medicinename1.toLowerCase()).child(uidmed).setValue(medicineDetails);
                // databaseReference.child("Lablistwithtests").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
                 Toast.makeText(PharmacyInside.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
             }
             else
                 Toast.makeText(PharmacyInside.this, "No null values!!!", Toast.LENGTH_SHORT).show();
+        });
+        yourmedicines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),MedicineLists.class));
+            }
         });
     }
     void clearedtext()

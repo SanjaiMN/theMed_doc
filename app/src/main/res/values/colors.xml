@@ -5,4 +5,5 @@
     <color name="colorAccent">#448AFF</color>
     <item name="gradient" type="color">
     </item>
+    <color name="semiTransparentColor">#20ffffff</color>
 </resources>

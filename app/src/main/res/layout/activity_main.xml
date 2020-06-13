@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/v"
     tools:context=".MainActivity">
 
 
@@ -14,7 +15,7 @@
         android:fontFamily="@font/lilita_one"
         android:gravity="center"
         android:text="Login"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#2CB8BE"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,14 +26,14 @@
 
     <RelativeLayout
         android:id="@+id/phoneAuth"
-        android:layout_width="371dp"
-        android:layout_height="98dp"
+        android:layout_width="337dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:background="@drawable/rounded_edit_txt"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.301">
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lilita_one"
                 android:text="Phone number"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#2CB8BE"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -59,6 +60,7 @@
                     android:id="@+id/ccp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:ccp_contentColor="#ffffff"
                     app:ccp_defaultNameCode="IN" />
 
                 <EditText
@@ -67,7 +69,9 @@
                     android:layout_height="wrap_content"
                     android:hint="phone"
                     android:inputType="phone"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textColorHint="#ffffff" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -95,9 +99,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/rounded_edit_txt"
         android:ems="10"
         android:hint="Code"
+        android:textColor="#fff"
         android:inputType="number"
+        android:textColorHint="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

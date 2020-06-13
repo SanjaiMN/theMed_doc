@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#dddddd"
     android:layout_height="match_parent"
     tools:context=".DoctorOrLabTechnician">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/doctorlogin"
-        android:layout_width="250dp"
+        android:layout_width="255dp"
         android:layout_height="149dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/semiTransparentColor"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +34,7 @@
                 android:fontFamily="@font/lilita_one"
                 android:gravity="center"
                 android:text="Doctor"
-                android:textColor="#ffff"
+                android:textColor="#dddddd"
                 android:textSize="25sp" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -75,7 +76,7 @@
                 android:fontFamily="@font/lilita_one"
                 android:gravity="center"
                 android:text="Lab Technician"
-                android:textColor="#ffff"
+                android:textColor="#ddd"
                 android:textSize="25sp" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -122,15 +123,15 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lilita_one"
-            android:gravity="center"
-            android:text="Pharmacy"
-            android:textColor="#ffff"
-            android:textSize="25sp" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lilita_one"
+                android:gravity="center"
+                android:text="Pharmacy"
+                android:textColor="#ddd"
+                android:textSize="25sp" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView3"

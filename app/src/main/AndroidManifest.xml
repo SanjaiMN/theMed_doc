@@ -16,19 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PharmacyProfile"></activity>
+        <activity android:name=".MedicineLists"></activity>
+        <activity android:name=".LabTests" />
+        <activity android:name=".PharmacyProfile"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".PharmacyInside" />
-        <activity android:name=".PharmacyRegistration" />
-        <activity android:name=".LabProfile" />
-        <activity android:name=".DoctorProfile" />
-
-        <service android:name=".MyService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity android:name=".GridViewSelection" />
+        <activity android:name=".PharmacyRegistration"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".LabProfile"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DoctorProfile"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".GridViewSelection"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SlotFullDetails" />
         <activity
             android:name=".SplashScreen"
@@ -39,14 +39,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LabRegistration" />
-        <activity android:name=".DoctorOrLabTechnician" />
+        <activity android:name=".LabRegistration"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".DoctorOrLabTechnician"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LabTestInfo" />
         <activity android:name=".Slot_Details" />
         <activity android:name=".videocall" />
         <activity android:name=".profile" />
-        <activity android:name=".doctor_registration" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".doctor_registration"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

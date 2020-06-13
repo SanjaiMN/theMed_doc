@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ddd"
     tools:context=".GridViewSelection">
 
     <TextView
@@ -27,6 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="6dp"
+        app:cardBackgroundColor="#ddd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.72">
@@ -36,6 +38,7 @@
             android:layout_width="360dp"
             android:layout_height="560dp"
             android:columnWidth="100dp"
+            android:background="#ddd"
             android:gravity="center"
             android:horizontalSpacing="2dp"
             android:numColumns="auto_fit"

@@ -16,5 +16,13 @@
         <item name="cornerRadius">7dp</item>
         <item name="android:shape">rectangle</item>
     </style>
-
+    <style name="AppTheme.NoActionBar." parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

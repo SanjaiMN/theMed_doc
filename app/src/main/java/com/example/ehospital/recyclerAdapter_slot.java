@@ -26,7 +26,7 @@ import java.util.Queue;
 public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_slot.ViewHolder>{
 
     private static final String Tag="RecyclerView";
-    private Context context;
+    Context context;
     String uid;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -53,7 +53,6 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("slot_Booked").child(uid);
-        //System.out.println(databaseReference+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         holder.name.append(list.get(position).name+"\t");
         holder.date.append(list.get(position).date+"\t");
         holder.time.append(list.get(position).time+"\t");
@@ -78,22 +77,6 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
                 @Override
                 public void onClick(View view)
                 {
-                   /*databaseReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                        {
-                            for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                            {
-                                SlotDetails slotDetails= dataSnapshot1.getValue(SlotDetails.class);
-                                slotDetails.confirmation=true;
-                                databaseReference.child(dataSnapshot1.getKey()).setValue(slotDetails);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });*/
                     recyclerInterface.OnButtonClick(getAdapterPosition());
                 }
 

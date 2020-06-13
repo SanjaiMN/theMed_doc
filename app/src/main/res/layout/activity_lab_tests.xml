@@ -2,20 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cont"
-    android:background="#ddd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Slot_Details">
+    android:background="#ddd"
+    tools:context=".LabTests">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/storerecycler"
+        android:id="@+id/recyclerviewlabtests"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

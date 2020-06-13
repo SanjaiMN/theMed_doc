@@ -26,7 +26,7 @@ public class LabTestInfo extends AppCompatActivity
 {
     EditText labtestname, nooftest, subtestname, money;
     String labtestname1, nooftest1, subtestname1, labname1, money1, city1,uidtest;
-    Button upload;
+    Button upload,yourtests;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -41,6 +41,7 @@ public class LabTestInfo extends AppCompatActivity
         subtestname = findViewById(R.id.subtestname);
         money = findViewById(R.id.amount);
         upload = findViewById(R.id.upload);
+        yourtests=findViewById(R.id.yourtests);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         uidtest=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -49,12 +50,18 @@ public class LabTestInfo extends AppCompatActivity
             {
                 LabDetails labDetails = new LabDetails(labtestname1, labname1, nooftest1, subtestname1, money1, city1,uidtest);
                 databaseReference.child("Labtests").child(city1.toLowerCase()).child(labtestname1.toLowerCase()).child(uidtest).setValue(labDetails);
-                //databaseReference.child("Lablistwithtests").child(city1.toLowerCase()).child(labname1).child(labtestname1).setValue(labDetails);
                 Toast.makeText(LabTestInfo.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
             }
             else
                 Toast.makeText(LabTestInfo.this, "No null values!!!", Toast.LENGTH_SHORT).show();
+        });
+        yourtests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(getApplicationContext(),LabTests.class));
+            }
         });
     }
     void clearedtext()
