@@ -1,11 +1,21 @@
 package com.example.ehospital;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +32,7 @@ public class DoctorProfile extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,5 +73,38 @@ public class DoctorProfile extends AppCompatActivity
 
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                new AlertDialog.Builder(this)
+                        .setTitle("Really logout?")
+                        .setMessage("Are you sure you want to logout?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+                                sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor1=sharedPreferences.edit();
+                                editor1.putString("prefs","");
+                                FirebaseAuth.getInstance().signOut();
+                                finish();
+                                Toast.makeText(DoctorProfile.this,"Logout successful",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(DoctorProfile.this,MainActivity.class));
+                            }
+                        }).create().show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

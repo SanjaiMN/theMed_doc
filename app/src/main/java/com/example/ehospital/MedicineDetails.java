@@ -5,8 +5,10 @@ import java.io.Serializable;
 public class MedicineDetails implements Serializable
 {
     public String medicinename,category,medicinecategory,pharmacyname,location,money,uidmed;
+    public int serialno;
 
-    public MedicineDetails(String medicinename, String category, String medicinecategory, String pharmacyname, String location, String money,String uidmed) {
+    public MedicineDetails(int serialno,String medicinename, String category, String medicinecategory, String pharmacyname, String location, String money,String uidmed) {
+        this.serialno=serialno;
         this.medicinename = medicinename;
         this.category = category;
         this.medicinecategory = medicinecategory;

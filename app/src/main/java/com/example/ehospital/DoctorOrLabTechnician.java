@@ -10,22 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.QuickContactBadge;
-import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class DoctorOrLabTechnician extends AppCompatActivity
 {
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference,databaseReference1;
     String uid="",uidcheck="";
     CardView doctorlogin,lablogin,pharmacylogin;
     SharedPreferences sharedPreferences;
@@ -34,7 +21,6 @@ public class DoctorOrLabTechnician extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_or_lab_technician);
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        firebaseDatabase=FirebaseDatabase.getInstance();
         SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);
         String checker = sharedPreferences1.getString("prefs","");
         sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
@@ -42,14 +28,14 @@ public class DoctorOrLabTechnician extends AppCompatActivity
         if(uid.equals(checkeruid))
         {
             if(checker.equals("lab")){
-                  startActivity(new Intent(DoctorOrLabTechnician.this,LabTestInfo.class));
+                  startActivity(new Intent(DoctorOrLabTechnician.this,LabDashboard.class));
             }
             else if(checker.equals("doctor"))
             {
                 startActivity(new Intent(DoctorOrLabTechnician.this,profile.class));
             }
             else if(checker.equals("pharmacy"))
-                startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyInside.class));
+                startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyDashboard.class));
         }
         else
         {

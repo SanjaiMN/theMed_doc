@@ -123,7 +123,7 @@ public class LabRegistration extends AppCompatActivity
                                 editor.putString("prefs","lab");
                                 editor.commit();
                                 pd.dismiss();
-                                startActivity(new Intent(LabRegistration.this,LabTestInfo.class));
+                                startActivity(new Intent(LabRegistration.this,LabDashboard.class));
                             }
                         });
 

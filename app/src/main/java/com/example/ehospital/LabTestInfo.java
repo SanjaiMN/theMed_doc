@@ -24,44 +24,35 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LabTestInfo extends AppCompatActivity
 {
-    EditText labtestname, nooftest, subtestname, money;
-    String labtestname1, nooftest1, subtestname1, labname1, money1, city1,uidtest;
-    Button upload,yourtests;
+    EditText labtestname, nooftest, subtestname, money,serialno;
+    String labtestname1, nooftest1, subtestname1, labname1, money1, city1,uidtest,serialno1;
+    Button upload;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    FirebaseAuth firebaseAuth;
-    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_test_info);
         labtestname = findViewById(R.id.labtestname);
+        serialno=findViewById(R.id.serialnumberlab);
         nooftest = findViewById(R.id.nooftest);
         subtestname = findViewById(R.id.subtestname);
         money = findViewById(R.id.amount);
         upload = findViewById(R.id.upload);
-        yourtests=findViewById(R.id.yourtests);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         uidtest=FirebaseAuth.getInstance().getCurrentUser().getUid();
         upload.setOnClickListener(v -> {
             if(isValid())
             {
-                LabDetails labDetails = new LabDetails(labtestname1, labname1, nooftest1, subtestname1, money1, city1,uidtest);
-                databaseReference.child("Labtests").child(city1.toLowerCase()).child(labtestname1.toLowerCase()).child(uidtest).setValue(labDetails);
+                LabDetails labDetails = new LabDetails(Integer.parseInt(serialno1),labtestname1, labname1, nooftest1, subtestname1, money1, city1,uidtest);
+                databaseReference.child("Labtests").child(city1.toLowerCase()).child(uidtest).child(serialno1).setValue(labDetails);
                 Toast.makeText(LabTestInfo.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
             }
             else
                 Toast.makeText(LabTestInfo.this, "No null values!!!", Toast.LENGTH_SHORT).show();
-        });
-        yourtests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(getApplicationContext(),LabTests.class));
-            }
         });
     }
     void clearedtext()
@@ -70,63 +61,7 @@ public class LabTestInfo extends AppCompatActivity
         nooftest.setText("");
         subtestname.setText("");
         money.setText("");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.logout:
-            {
-                new AlertDialog.Builder(this)
-                        .setTitle("Really logout?")
-                        .setMessage("Are you sure you want to logout?")
-                        .setNegativeButton(android.R.string.no, null)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface arg0, int arg1)
-                            {
-                                sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor1=sharedPreferences.edit();
-                                editor1.putString("prefs","");
-                                firebaseAuth= FirebaseAuth.getInstance();
-                                firebaseAuth.signOut();
-                                finish();
-                                Toast.makeText(LabTestInfo.this,"Logout successful",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LabTestInfo.this,MainActivity.class));
-                            }
-                        }).create().show();
-                break;
-            }
-            case R.id.profilemenu:
-                startActivity(new Intent(LabTestInfo.this,LabProfile.class));
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface arg0, int arg1)
-                    {
-                        moveTaskToBack(true);
-                    }
-                }).create().show();
+        serialno.setText("");
     }
     boolean  isValid()
     {
@@ -135,10 +70,11 @@ public class LabTestInfo extends AppCompatActivity
             subtestname1 = subtestname.getText().toString();
             nooftest1 = nooftest.getText().toString();
             money1 = money.getText().toString();
+            serialno1=serialno.getText().toString();
             SharedPreferences sharedPreferences5=getSharedPreferences("MyPrefs",MODE_PRIVATE);
             labname1=sharedPreferences5.getString("labname","");
             city1=sharedPreferences5.getString("location","");
-            if(labtestname1.isEmpty() || subtestname1.isEmpty()  || nooftest1.isEmpty() || money1.isEmpty())
+            if(labtestname1.isEmpty() || subtestname1.isEmpty()  || nooftest1.isEmpty() || money1.isEmpty() || serialno1.isEmpty())
             {
                 if(labtestname1.isEmpty())
                     labtestname.setError("Can't be empty");
@@ -148,6 +84,8 @@ public class LabTestInfo extends AppCompatActivity
                     nooftest.setError("Can't be empty");
                 if(money1.isEmpty())
                     money.setError("Can't be empty");
+                if(serialno1.isEmpty())
+                    serialno.setError("Can't be empty");
             }
             else
                 i=true;

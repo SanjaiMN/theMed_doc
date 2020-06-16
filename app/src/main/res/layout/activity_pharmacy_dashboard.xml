@@ -4,20 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DoctorOrLabTechnician">
+    tools:context=".PharmacyDashboard">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/doctorlogin"
-        android:layout_width="255dp"
-        android:layout_height="149dp"
-        android:background="@color/semiTransparentColor"
-        app:cardCornerRadius="5dp"
+        android:id="@+id/manualpharmacy"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18">
+        app:layout_constraintVertical_bias="0.26">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,39 +25,33 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lilita_one"
                 android:gravity="center"
-                android:text="Doctor"
+                android:text="Enter Manually"
                 android:textColor="#fff"
                 android:textSize="25sp" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/doctorlogin" />
+                android:src="@drawable/ic_baseline_keyboard_24" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/lablogin"
-        android:layout_width="250dp"
-        android:layout_height="149dp"
-        android:background="@color/colorPrimary"
-        app:cardCornerRadius="5dp"
+        android:id="@+id/uploadascsv"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintVertical_bias="0.26">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,77 +61,106 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lilita_one"
                 android:gravity="center"
-                android:text="Lab Technician"
+                android:text="Upload csv file"
                 android:textColor="#fff"
                 android:textSize="25sp" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView1"
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/bluemicroscope" />
+                android:src="@drawable/uploadcsv" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profilecardpharm"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lilita_one"
+                android:gravity="center"
+                android:text="Profile"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_baseline_account_box_24" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/yourmedicines"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lilita_one"
+                android:gravity="center"
+                android:text="Your Medicines"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_baseline_account_box_24" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose your login"
-        android:textSize="30sp"
-        android:textColor="@color/colorPrimary"
         android:fontFamily="@font/lilita_one"
+        android:gravity="center"
+        android:text="TheMed Pharmacy"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/pharmacylogin"
-        android:layout_width="250dp"
-        android:layout_height="149dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lablogin"
-        app:layout_constraintVertical_bias="0.423">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
-                android:gravity="center"
-                android:text="Pharmacy"
-                android:textColor="#fff"
-                android:textSize="25sp" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/pharmacy" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintVertical_bias="0.06" />
 </androidx.constraintlayout.widget.ConstraintLayout>

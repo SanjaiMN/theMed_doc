@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#ddd"
     android:layout_height="match_parent"
-    tools:context=".PharmacyInside">
+    tools:context=".LabUploadCsv">
 
     <Button
-        android:id="@+id/submitmed"
+        android:id="@+id/submitlab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_custom"
@@ -23,7 +22,7 @@
         app:layout_constraintVertical_bias="0.51" />
 
     <ImageButton
-        android:id="@+id/attachfiles"
+        android:id="@+id/attachfileslab"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="69dp"
         android:layout_height="33dp"
@@ -36,7 +35,7 @@
         app:srcCompat="@drawable/ic_baseline_attach_file_24" />
 
     <TextView
-        android:id="@+id/filename"
+        android:id="@+id/filenamelab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +44,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.372" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

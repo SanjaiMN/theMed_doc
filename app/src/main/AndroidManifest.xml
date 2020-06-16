@@ -16,19 +16,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedicineLists"></activity>
+        <activity android:name=".LabUploadCsv"/>
+        <activity android:name=".LabDashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PharamacyManual" />
+        <activity
+            android:name=".PharmacyDashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MedicineLists" />
         <activity android:name=".LabTests" />
-        <activity android:name=".PharmacyProfile"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PharmacyProfile" />
         <activity android:name=".PharmacyInside" />
-        <activity android:name=".PharmacyRegistration"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LabProfile"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DoctorProfile"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".GridViewSelection"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".PharmacyRegistration"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LabProfile" />
+        <activity android:name=".DoctorProfile" />
+        <activity
+            android:name=".GridViewSelection"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SlotFullDetails" />
         <activity
             android:name=".SplashScreen"
@@ -39,17 +46,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LabRegistration"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".LabRegistration"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DoctorOrLabTechnician"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LabTestInfo" />
         <activity android:name=".Slot_Details" />
         <activity android:name=".videocall" />
-        <activity android:name=".profile" />
-        <activity android:name=".doctor_registration"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".doctor_registration"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
