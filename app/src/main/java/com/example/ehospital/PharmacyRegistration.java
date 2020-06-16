@@ -120,7 +120,7 @@ public class PharmacyRegistration extends AppCompatActivity
                                 //editor.putString("prefs","");
                                 editor.putString("prefs","pharmacy");
                                 editor.commit();
-                                startActivity(new Intent(PharmacyRegistration.this,PharmacyInside.class));
+                                startActivity(new Intent(PharmacyRegistration.this,PharmacyDashboard.class));
                             }
                         });
 

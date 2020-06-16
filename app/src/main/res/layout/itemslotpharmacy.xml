@@ -4,14 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_slot"
-    android:layout_width="380dp"
-    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
     android:layout_marginTop="0dp"
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="5dp"
-    android:layout_gravity="center|top"
-    android:padding="5dp"
     app:cardCornerRadius="10dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +18,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="204dp"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
@@ -30,14 +28,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lilita_one"
             android:text="Medicine Name:"
-            android:textColor="#ddd"
+            android:textColor="#fff"
             android:textSize="20sp"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintHorizontal_bias="0.155"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.142" />
+            app:layout_constraintVertical_bias="0.143" />
 
         <TextView
             android:id="@+id/categoryitem"
@@ -45,14 +44,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lilita_one"
             android:text="Category:"
-            android:textColor="#ddd"
+            android:textColor="#fff"
             android:textSize="20dp"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintHorizontal_bias="0.128"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.694" />
+            app:layout_constraintVertical_bias="0.701" />
 
         <TextView
             android:id="@+id/medicinecategoryitem"
@@ -60,14 +60,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lilita_one"
             android:text="Medicine Category:"
-            android:textColor="#ddd"
+            android:textColor="#fff"
             android:textSize="20dp"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.412" />
+            app:layout_constraintVertical_bias="0.414" />
 
         <TextView
             android:id="@+id/amountmedicinelist"
@@ -75,8 +76,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lilita_one"
             android:text="Amount:"
-            android:textColor="#ddd"
+            android:textColor="#fff"
             android:textSize="20dp"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

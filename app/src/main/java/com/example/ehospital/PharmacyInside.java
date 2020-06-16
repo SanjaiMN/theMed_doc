@@ -109,7 +109,7 @@ public class PharmacyInside extends AppCompatActivity
         BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
         String line="";
         firebaseDatabase1=FirebaseDatabase.getInstance();
-        databaseReference1=firebaseDatabase1.getReference().child("MedicineDetails").child(city1).child(uidmed);
+        databaseReference1=firebaseDatabase1.getReference().child("MedicineDetails").child(city1.toLowerCase()).child(uidmed);
         try {
             bufferedReader.readLine();
             while ((line=bufferedReader.readLine()) != null) {
