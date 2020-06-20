@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +28,7 @@ public class LabTests extends AppCompatActivity
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     RecyclerView recyclerView;
-    ProgressDialog progressdialog;
+    ProgressBar progressBar;
     List<LabDetails> list;
     String uid;
     private RecyclerAdaptorLabTests recycleradapter;
@@ -35,9 +37,7 @@ public class LabTests extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_tests);
-        progressdialog = new ProgressDialog(LabTests.this);
-        progressdialog.setMessage("Please Wait....");
-        progressdialog.show();
+        progressBar=findViewById(R.id.progressBarlab);
         recyclerView=findViewById(R.id.recyclerviewlabtests);
         list=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
@@ -45,6 +45,7 @@ public class LabTests extends AppCompatActivity
     }
     public void getfromdatabase()
     {
+        progressBar.setVisibility(View.VISIBLE);
         uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("Labtests").child("salem").child(uid);
@@ -60,6 +61,7 @@ public class LabTests extends AppCompatActivity
                    list.add(labDetails);
                    System.out.println(labDetails.labname);
                 }
+                progressBar.setVisibility(View.INVISIBLE);
                 recycleradapter.notifyDataSetChanged();
             }
             @Override
@@ -67,7 +69,6 @@ public class LabTests extends AppCompatActivity
 
             }
         });
-        progressdialog.dismiss();
         recycleradapter=recycleradapter = new RecyclerAdaptorLabTests(this,list);
         recyclerView.setAdapter(recycleradapter);
     }

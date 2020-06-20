@@ -2,14 +2,25 @@ package com.example.ehospital;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,12 +43,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class PharmacyRegistration extends AppCompatActivity
 {
     de.hdodenhof.circleimageview.CircleImageView pharmprofile,dppharm;
     public Uri imageuri;
-    EditText pharmname,mail,location,propreitorname,licnumber,address,phonenumber;
+    EditText pharmname,mail,propreitorname,licnumber,phonenumber;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private UploadTask uploadtask;
@@ -45,34 +58,69 @@ public class PharmacyRegistration extends AppCompatActivity
     StorageReference imageref;
     String uid;
     ProgressDialog pd;
-    String pharmname1,mail1,location1,propreitorname1,licnumber1,address1,phonenumber1;
-    ImageButton pharmnext;
+    double lats,longs;
+    String pharmname1,mail1,propreitorname1,licnumber1,phonenumber1;
+    ImageButton pharmnext,addlocationpharm,infopharm;
+    LocationManager locationManager;
+    LocationListener locationListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_registration);
         pharmname=findViewById(R.id.labnameregpharm);
-        location=findViewById(R.id.locationregpharm);
         propreitorname=findViewById(R.id.proprietornameregpharm);
         licnumber=findViewById(R.id.licensenumberreg);
-        address=findViewById(R.id.addressregpharm);
         phonenumber=findViewById(R.id.phoneregpharm);
         pharmprofile=findViewById(R.id.profilepharm);
         dppharm=findViewById(R.id.smallpharmcam);
         pharmnext=findViewById(R.id.pharmnextbt);
         mail=findViewById(R.id.mailmed);
+        addlocationpharm=findViewById(R.id.addlocationpharm);
+        infopharm=findViewById(R.id.ibinfopharm);
         pd=new ProgressDialog(PharmacyRegistration.this);
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
         imageref= FirebaseStorage.getInstance().getReference("Pharmacy_profile");
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations");
-        /*SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);
-        String checker = sharedPreferences1.getString("prefs","");*/
-        /*if(user!=null)
-        {
-            startActivity(new Intent(LabRegistration.this,LabTestInfo.class));
-        }*/
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location)
+            {
+
+                lats=location.getLatitude();
+                longs=location.getLongitude();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            requestPermissions(new String[]{
+                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+            }, 10);
+            return;
+        } else {
+            configurationbutton();
+        }
+
        dppharm.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -109,11 +157,24 @@ public class PharmacyRegistration extends AppCompatActivity
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("uid",uid);
                                 editor1.commit();
-                                PharmacyDetails pharmacyDetails = new PharmacyDetails(pharmname1,mail1,location1,propreitorname1,licnumber1,"pharmacy",profile_pic,address1,phonenumber1,uid,1f);
+                                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+                                List<Address> addresses  = null;
+                                try {
+                                    addresses = geocoder.getFromLocation(lats,longs, 1);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                String address = addresses.get(0).getAddressLine(0);
+                                String city = addresses.get(0).getLocality();
+//                                String state = addresses.get(0).getAdminArea();
+//                                String zip = addresses.get(0).getPostalCode();
+//                                String country = addresses.get(0).getCountryName();
+                                PharmacyDetails pharmacyDetails = new PharmacyDetails(pharmname1,mail1,city.toLowerCase(),propreitorname1,licnumber1,"pharmacy",profile_pic,address,phonenumber1,uid,1f,lats,longs);
                                 databaseReference.child(uid).setValue(pharmacyDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();
                                 editor2.putString("labname",pharmname1);
-                                editor2.putString("location",location1);
+                                editor2.putString("location",city.toLowerCase());
                                 editor2.commit();
                                 sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -132,6 +193,23 @@ public class PharmacyRegistration extends AppCompatActivity
                 }
             }
         });
+        infopharm.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new AlertDialog.Builder(PharmacyRegistration.this)
+                        .setTitle("Important")
+                        .setMessage("You must be in your Pharmacy location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+                                arg0.cancel();
+                            }
+                        }).create().show();
+            }
+        });
 
     }
     public void selectimage()
@@ -147,27 +225,23 @@ public class PharmacyRegistration extends AppCompatActivity
         boolean i=false;
         pharmname1=pharmname.getText().toString();
         mail1=mail.getText().toString();
-        location1=location.getText().toString();
         propreitorname1=propreitorname.getText().toString();
         licnumber1=licnumber.getText().toString();
-        address1=address.getText().toString();
         phonenumber1=phonenumber.getText().toString();
-        if(pharmname1.isEmpty() ||mail1.isEmpty()|| location1.isEmpty() || propreitorname1.isEmpty() || licnumber1.isEmpty() || address1.isEmpty() || phonenumber1.isEmpty())
+        if(pharmname1.isEmpty() ||mail1.isEmpty()|| propreitorname1.isEmpty() || licnumber1.isEmpty() || phonenumber1.isEmpty() || lats==0.0 && longs==0.0)
         {
             if(pharmname1.isEmpty())
                 pharmname.setError("Can't be empty");
             if(mail1.isEmpty())
                 mail.setError("Can't be empty");
-            if(location1.isEmpty())
-                location.setError("Can't be empty");
             if(propreitorname1.isEmpty())
                 propreitorname.setError("Can't be empty");
             if(licnumber1.isEmpty())
                 licnumber.setError("Can't be empty");
-            if(address1.isEmpty())
-                address.setError("Can't be empty");
             if(phonenumber1.isEmpty())
                 phonenumber.setError("Can't be empty");
+            if(lats==0.0 && longs==0.0)
+                addlocationpharm.setBackgroundColor(Color.RED);
         }
         else
             i=true;
@@ -215,5 +289,32 @@ public class PharmacyRegistration extends AppCompatActivity
         {
             Toast.makeText(PharmacyRegistration.this,"no media selected",Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    configurationbutton();
+        }
+    }
+
+    void configurationbutton() {
+        addlocationpharm.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                addlocationpharm.setBackgroundColor(Color.GREEN);
+                if (ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    return;
+                }
+                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }

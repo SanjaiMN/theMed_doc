@@ -11,8 +11,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="272dp"
-        android:layout_height="388dp"
+        android:layout_width="269dp"
+        android:layout_height="293dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,17 +20,17 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75">
+        app:layout_constraintVertical_bias="0.52">
 
 
         <EditText
-            android:id="@+id/doctorname"
+            android:id="@+id/labnamereg"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
             android:hint="Laboratory Name"
             android:inputType="textPersonName"
             android:textSize="20sp"
@@ -51,29 +51,11 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/workingindoctor"
+            android:id="@+id/proprietornamereg"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.561" />
-
-        <EditText
-            android:id="@+id/agedoctor"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_edit_txt"
-            android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
             android:hint="Proprietor Name"
@@ -91,11 +73,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
             android:hint="NABL ISO number"
             android:inputType="textPersonName"
-            android:background="@drawable/rounded_edit_txt"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,23 +87,12 @@
             app:layout_constraintVertical_bias="0.526" />
 
         <EditText
-            android:id="@+id/addressreg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edit_txt"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Address"
-            android:inputType="textPersonName"
-            android:textSize="20sp" />
-
-        <EditText
             android:id="@+id/phonereg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
             android:hint="Phone number"
             android:inputType="textPersonName"
             android:maxEms="10"
@@ -131,8 +102,8 @@
             android:id="@+id/workinghoursreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:background="@drawable/rounded_edit_txt"
+            android:ems="10"
             android:gravity="center"
             android:hint="Working hours"
             android:inputType="textPersonName"
@@ -185,6 +156,19 @@
         app:layout_constraintVertical_bias="0.249" />
 
     <ImageButton
+        android:id="@+id/ibinfolab"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786"
+        app:srcCompat="@drawable/ic_baseline_info_24" />
+
+    <ImageButton
         android:id="@+id/labnextbt"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
@@ -196,5 +180,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.98"
         app:srcCompat="@drawable/next" />
+
+    <ImageButton
+        android:id="@+id/addlocationlab"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="57dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84"
+        app:srcCompat="@drawable/ic_baseline_add_location_24" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add your current Location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

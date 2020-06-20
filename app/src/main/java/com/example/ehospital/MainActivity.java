@@ -2,10 +2,19 @@ package com.example.ehospital;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser user;
     SharedPreferences sharedPreferences;
     String ch;
+    LocationManager locationManager;
+    LocationListener locationListener;
 
 
     @Override
@@ -67,24 +78,67 @@ public class MainActivity extends AppCompatActivity {
         ccp.registerCarrierNumberEditText(phoneText);
         fbAuth = FirebaseAuth.getInstance();
         user= fbAuth.getCurrentUser();
-        /*firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("Doctor database");
-        databaseReference1=firebaseDatabase.getReference().child("LaboratoryRegistrations");
-        SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);*/
-        //String checker = sharedPreferences1.getString("prefs","");
-        /*if(user!=null && checker.equals("doctor"))
-        {
-            startActivity(new Intent(MainActivity.this,doctor_registration.class));
-        }
-        else if(user!=null && checker.equals("lab"))
-            startActivity(new Intent(MainActivity.this,LabRegistration.class));*/
         if(user!=null)
         {
             startActivity(new Intent(MainActivity.this,DoctorOrLabTechnician.class));
         }
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location)
+            {
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            requestPermissions(new String[]{
+                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+            }, 10);
+            return;
+        } else {
+            configurationbutton();
+        }
+
         sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    configurationbutton();
+        }
+    }
+
+    void configurationbutton() {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    return;
+                }
+                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+    }
+
     public void sendCode(View view) {
         number = ccp.getFullNumberWithPlus();
         if(number.length()<=3) {

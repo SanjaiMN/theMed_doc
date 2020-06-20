@@ -2,14 +2,23 @@ package com.example.ehospital;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,22 +43,22 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 
-
 import java.io.IOException;
 
-
-public class doctor_registration extends AppCompatActivity{
-    de.hdodenhof.circleimageview.CircleImageView Profile,dp;
+public class doctor_registration extends AppCompatActivity {
+    de.hdodenhof.circleimageview.CircleImageView Profile, dp;
     public Uri imageuri;
     RadioGroup rg;
     RadioButton gender;
     EditText nameet;
     EditText ageet;
-    EditText workinget,email;
-    String gender1,specalization;
+    EditText workinget, email;
+    String gender1, specalization;
+    ImageButton addlocation;
     int id;
-    String name,age,working_in,mail;
-    ImageButton nextbt;
+    double lats,longs;
+    String name, age, working_in, mail;
+    ImageButton nextbt,info;
     ProgressDialog pd;
     StorageReference imageref;
     private UploadTask uploadtask;
@@ -57,105 +66,147 @@ public class doctor_registration extends AppCompatActivity{
     FirebaseAuth fbAuth;
     String uid;
     SharedPreferences sharedPreferences;
-
+    LocationManager locationManager;
+    LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_registration);
-        Profile=findViewById(R.id.profile);
-        dp=findViewById(R.id.dp);
-        nameet=findViewById(R.id.doctorname);
-        email=findViewById(R.id.emaildoctor);
-        ageet=findViewById(R.id.agedoctor);
-        workinget=findViewById(R.id.workingindoctor);
-        nextbt=findViewById(R.id.labnextbt);
-        rg=findViewById(R.id.radiogroup);
-        name=nameet.getText().toString();
-        age=ageet.getText().toString();
-        working_in=workinget.getText().toString();
+        Profile = findViewById(R.id.profile);
+        dp = findViewById(R.id.dp);
+        nameet = findViewById(R.id.labnamereg);
+        email = findViewById(R.id.emaildoctor);
+        ageet = findViewById(R.id.proprietornamereg);
+        workinget = findViewById(R.id.workingindoctor);
+        nextbt = findViewById(R.id.labnextbt);
+        rg = findViewById(R.id.radiogroup);
+        addlocation = findViewById(R.id.addlocationlab);
+        info=findViewById(R.id.ibinfolab);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location)
+            {
+
+                lats=location.getLatitude();
+                longs=location.getLongitude();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            requestPermissions(new String[]{
+                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+            }, 10);
+            return;
+        } else {
+            configurationbutton();
+        }
+        name = nameet.getText().toString();
+        age = ageet.getText().toString();
+        working_in = workinget.getText().toString();
         fbAuth = FirebaseAuth.getInstance();
         pd = new ProgressDialog(this);
-        uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
-        imageref= FirebaseStorage.getInstance().getReference("doctors_profile");
-        SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString("uid",uid);
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        imageref = FirebaseStorage.getInstance().getReference("doctors_profile");
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("uid", uid);
         editor.apply();
-       // assert session != null;
-      //  String sessionId = session.getSessionId();
-
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectimage();
             }
         });
-        nextbt.setOnClickListener(new View.OnClickListener() {
+        nextbt.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                    pd.setMessage("Loading...");
-                    pd.show();
-                    sendtodatabase();
+                pd.setMessage("Loading...");
+                pd.show();
+                sendtodatabase();
             }
         });
-        user= fbAuth.getCurrentUser();
-       // DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-        /*SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);
-        String checker = sharedPreferences1.getString("prefs","");
-        SharedPreferences sharedPreferences2 = getSharedPreferences("MyPrefs",MODE_PRIVATE);
-        String checkeruid = sharedPreferences2.getString("uid","");*/
-        /*if(user!=null )
+        user = fbAuth.getCurrentUser();
+        info.setOnClickListener(new View.OnClickListener()
         {
-            startActivity(new Intent(getApplicationContext(),profile.class));
-        }*/
-
+            @Override
+            public void onClick(View v)
+            {
+                new AlertDialog.Builder(doctor_registration.this)
+                        .setTitle("Important")
+                        .setMessage("You must be in your hospital location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+                                arg0.cancel();
+                            }
+                        }).create().show();
+            }
+        });
     }
-    public void selectimage()
-    {
-        Intent intent=new Intent();
-       // ivc.setVisibility(View.VISIBLE);
+
+    public void selectimage() {
+        Intent intent = new Intent();
+        // ivc.setVisibility(View.VISIBLE);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,1);
+        startActivityForResult(intent, 1);
     }
-    public void sendtodatabase()
-    {
-        id=rg.getCheckedRadioButtonId();
-        gender=findViewById(id);
-        final String androiid= Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
-        if(valid())
-        {
-            if(name.length()>1&&Integer.parseInt(age)>22&&working_in.length()>1)
-            {
-                StorageReference ref = imageref.child(androiid).child(getextension(imageuri)+"#");
-                if(imageuri==null)
-                {
-                    imageuri= Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
+
+    public void sendtodatabase() {
+        id = rg.getCheckedRadioButtonId();
+        gender = findViewById(id);
+        final String androiid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        if (valid()) {
+            if (name.length() > 1 && Integer.parseInt(age) > 22 && working_in.length() > 1) {
+                StorageReference ref = imageref.child(androiid).child(getextension(imageuri) + "#");
+                if (imageuri == null) {
+                    imageuri = Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
                 }
                 uploadtask = ref.putFile(imageuri);
                 uploadtask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(doctor_registration.this,"failed",Toast.LENGTH_LONG).show();
+                        Toast.makeText(doctor_registration.this, "failed", Toast.LENGTH_LONG).show();
 
                     }
                 }).addOnSuccessListener(taskSnapshot -> {
-                    Toast.makeText(doctor_registration.this,"success" ,Toast.LENGTH_LONG).show();
-                    imageref.child(androiid).child(getextension(imageuri)+"#").getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    Toast.makeText(doctor_registration.this, "success", Toast.LENGTH_LONG).show();
+                    imageref.child(androiid).child(getextension(imageuri) + "#").getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-                            String profile_pic=task.getResult().toString();
-                            FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference=firebaseDatabase.getReference("Doctor database");
-                            name=nameet.getText().toString();
-                            age=ageet.getText().toString();
-                            working_in=workinget.getText().toString();
-                            uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
-                            String uid=sharedPreferences.getString("uid","");
-                            SharedPreferences sharedPreferences5=getSharedPreferences("MyPrefs",MODE_PRIVATE);
-                            specalization=sharedPreferences5.getString("category_selected","");
+                            String profile_pic = task.getResult().toString();
+                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                            DatabaseReference databaseReference = firebaseDatabase.getReference("Doctor database");
+                            name = nameet.getText().toString();
+                            age = ageet.getText().toString();
+                            working_in = workinget.getText().toString();
+                            uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                            String uid = sharedPreferences.getString("uid", "");
+                            SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                            specalization = sharedPreferences5.getString("category_selected", "");
                             /*
                             String status=sharedPreferences.getString("App_state","");
                             SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -163,15 +214,15 @@ public class doctor_registration extends AppCompatActivity{
                             editor.putString("specalization",specalization);
                             editor.putString("Request",Request);
                             editor.apply();*/
-                            String sessionId="no";
-                            String tokenid="no";
-                            String Request="no";
-                            sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor1=sharedPreferences.edit();
-                            editor1.putString("prefs","");
-                            editor1.putString("prefs","doctor");
+                            String sessionId = "no";
+                            String tokenid = "no";
+                            String Request = "no";
+                            sharedPreferences = getSharedPreferences("labordoc", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor1 = sharedPreferences.edit();
+                            editor1.putString("prefs", "");
+                            editor1.putString("prefs", "doctor");
                             editor1.commit();
-                            doctor_details doctor_details=new doctor_details(name,mail,gender1,specalization,working_in,age,profile_pic,sessionId,tokenid,uid,Request,"doctor",1f);
+                            doctor_details doctor_details = new doctor_details(name, mail, gender1, specalization, working_in, age, profile_pic, sessionId, tokenid, uid, Request, "doctor", 1f,lats,longs);
                             databaseReference.child(uid).setValue(doctor_details);
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));
@@ -179,30 +230,23 @@ public class doctor_registration extends AppCompatActivity{
                     });
 
                 });
-            }
-            else
-            {
+            } else {
                 pd.dismiss();
-                Toast.makeText(getApplicationContext(),"Enter the details correctly",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Enter the details correctly", Toast.LENGTH_SHORT).show();
             }
-        }
-        else
-        {
+        } else {
             pd.dismiss();
-            Toast.makeText(getApplicationContext(),"Empty values!!!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Empty values!!!", Toast.LENGTH_SHORT).show();
         }
     }
-    private String getextension(Uri uri)
-    {
-        ContentResolver cr=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-        if(uri==null)
-        {
-            uri= Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
+
+    private String getextension(Uri uri) {
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        if (uri == null) {
+            uri = Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
             return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
-        }
-        else
-        {
+        } else {
             return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
         }
 
@@ -211,8 +255,8 @@ public class doctor_registration extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1 && resultCode==RESULT_OK  && data.getData()!=null)
-        {imageuri=data.getData();
+        if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
+            imageuri = data.getData();
 
             try {
 
@@ -224,44 +268,65 @@ public class doctor_registration extends AppCompatActivity{
                                 getContentResolver(),
                                 imageuri);
                 dp.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
             }
-        }
-        else
-        {
-            Toast.makeText(doctor_registration.this,"no media selected",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(doctor_registration.this, "no media selected", Toast.LENGTH_SHORT).show();
         }
     }
-    boolean valid()
-    {
-        boolean i=false;
+
+    boolean valid() {
+        boolean i = false;
         try {
             name = nameet.getText().toString();
             age = ageet.getText().toString();
             working_in = workinget.getText().toString();
             mail = email.getText().toString();
             gender1 = gender.getText().toString();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Empty values!!!", Toast.LENGTH_SHORT).show();
         }
-        if(name.isEmpty() || age.isEmpty() || working_in.isEmpty() || mail.isEmpty())
-        {
-            if(name.isEmpty())
+        if (name.isEmpty() || age.isEmpty() || working_in.isEmpty() || mail.isEmpty() || lats==0.0 && longs==0.0) {
+            if (name.isEmpty())
                 nameet.setError("Can't be empty");
-            if(age.isEmpty())
+            if (age.isEmpty())
                 ageet.setError("Can't be empty");
-            if(working_in.isEmpty())
+            if (working_in.isEmpty())
                 workinget.setError("Can't be empty");
-            if(mail.isEmpty())
+            if (mail.isEmpty())
                 email.setError("Can't be empty");
-        }
-        else
-            i=true;
+            if(lats==0.0 && longs==0.0)
+                addlocation.setBackgroundColor(Color.RED);
+        } else
+            i = true;
         return i;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    configurationbutton();
+        }
+    }
+
+    void configurationbutton() {
+        addlocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                    if (ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        return;
+                    }
+                    locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                    Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                }
+        });
+
     }
 }

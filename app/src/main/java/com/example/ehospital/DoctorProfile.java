@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +25,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class DoctorProfile extends AppCompatActivity
 {
@@ -60,6 +66,20 @@ public class DoctorProfile extends AppCompatActivity
                 agee.append(doctor_details.age);
                 working_inn.append(doctor_details.working_in);
                 specalizationn.append(doctor_details.specalization);
+                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+                List<Address> addresses  = null;
+                try {
+                    addresses = geocoder.getFromLocation(doctor_details.lats,doctor_details.longs, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String address = addresses.get(0).getAddressLine(0);
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String zip = addresses.get(0).getPostalCode();
+                String country = addresses.get(0).getCountryName();
+                Toast.makeText(DoctorProfile.this,address,Toast.LENGTH_LONG).show();
                 ratings.append(String.valueOf(doctor_details.ratings));
                 profile_pic=doctor_details.profile_pic;
                 Glide.with(DoctorProfile.this)

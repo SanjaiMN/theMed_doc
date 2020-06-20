@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,7 @@ import java.util.List;
 public class Slot_Details extends AppCompatActivity implements RecyclerInterface{
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
-    ProgressDialog progressdialog;
+    ProgressBar progressBar;
     List<SlotDetails> list;
     private recyclerAdapter_slot recycleradapter;
 
@@ -34,10 +36,7 @@ public class Slot_Details extends AppCompatActivity implements RecyclerInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slot__details);
-        progressdialog = new ProgressDialog(Slot_Details.this);
-        progressdialog.setMessage("Please Wait....");
-        progressdialog.show();
-        progressdialog.setCancelable(false);
+        progressBar=findViewById(R.id.progressBardoctor);
         recyclerView=findViewById(R.id.storerecycler);
         list=new ArrayList<>();
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
@@ -48,6 +47,7 @@ public class Slot_Details extends AppCompatActivity implements RecyclerInterface
     }
     public void getfromdatabase()
     {
+        progressBar.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
         String uid=sharedPreferences.getString("uid","");
         recycleradapter = new recyclerAdapter_slot(getApplicationContext(),this,list);
@@ -65,8 +65,8 @@ public class Slot_Details extends AppCompatActivity implements RecyclerInterface
                     list.add(slotDetails);
                 }
                 recyclerView.setAdapter(recycleradapter);
+                progressBar.setVisibility(View.INVISIBLE);
                 recycleradapter.notifyDataSetChanged();
-                progressdialog.dismiss();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

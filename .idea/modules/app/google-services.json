@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "10437282729-4g720qojucdngvdt92iodo04hmdemkji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ehospital",
+            "certificate_hash": "9b244fadb4e41230d96c438dc6b22f1332af988f"
+          }
+        },
+        {
           "client_id": "10437282729-1926jfueurotfe02llh0q7tpf38v0phe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

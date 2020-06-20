@@ -11,8 +11,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="262dp"
-        android:layout_height="343dp"
+        android:layout_width="260dp"
+        android:layout_height="247dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69">
+        app:layout_constraintVertical_bias="0.51">
 
 
         <EditText
@@ -28,13 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
             android:hint="Pharmacy Name"
             android:inputType="textPersonName"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
             android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,51 +46,31 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
+            android:gravity="center"
             android:hint="Email"
-            android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
+            android:inputType="textEmailAddress"
             android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/locationregpharm"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.561" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/proprietornameregpharm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
             android:hint="Proprietor Name"
             android:inputType="textPersonName"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,13 +84,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
             android:hint="License number"
             android:inputType="textPersonName"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,30 +100,17 @@
             app:layout_constraintVertical_bias="0.526" />
 
         <EditText
-            android:id="@+id/addressregpharm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:hint="Address"
-            android:inputType="textPersonName"
-            android:textSize="20sp" />
-
-        <EditText
             android:id="@+id/phoneregpharm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:background="@drawable/rounded_edit_txt"
-            android:textColorHint="#fff"
-            android:textColor="#fff"
+            android:ems="10"
             android:gravity="center"
             android:hint="Phone number"
             android:inputType="textPersonName"
             android:maxEms="10"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -205,5 +172,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@drawable/next" />
+    <ImageButton
+        android:id="@+id/ibinfopharm"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786"
+        app:srcCompat="@drawable/ic_baseline_info_24" />
+    <ImageButton
+        android:id="@+id/addlocationpharm"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="57dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84"
+        app:srcCompat="@drawable/ic_baseline_add_location_24" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add your current Location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
