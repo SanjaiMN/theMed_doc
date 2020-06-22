@@ -2,10 +2,13 @@ package com.example.ehospital;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -23,15 +26,15 @@ import java.util.List;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class MedicineLists extends AppCompatActivity
+public class MedicineLists extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
-    DatabaseReference databaseReference,testreference;
+    DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-    List<MedicineDetails> list;
+    List<MedicineDetails> list,refreshlist;
     String uid;
-    private RecyclerAdaptorPharmacy recycleradapter;
+    RecyclerAdaptorPharmacy recycleradapter;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,9 +43,20 @@ public class MedicineLists extends AppCompatActivity
         progressBar=findViewById(R.id.progressBar2);
         recyclerView=findViewById(R.id.recyclerviewpharmacy);
         list=new ArrayList<>();
+        refreshlist=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         getfromdatabase();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.searchmenu,menu);
+        MenuItem item=menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
     public void getfromdatabase()
     {
         progressBar.setVisibility(VISIBLE);
@@ -55,9 +69,11 @@ public class MedicineLists extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 list.clear();
+                refreshlist.clear();
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
                     MedicineDetails medicineDetails = dataSnapshot1.getValue(MedicineDetails.class);
                     list.add(medicineDetails);
+                    refreshlist.add(medicineDetails);
                 }
                 progressBar.setVisibility(INVISIBLE);
                 recycleradapter.notifyDataSetChanged();
@@ -71,4 +87,31 @@ public class MedicineLists extends AppCompatActivity
         recycleradapter = new RecyclerAdaptorPharmacy(this,list);
         recyclerView.setAdapter(recycleradapter);
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText)
+    {
+        if(newText==null)
+            recycleradapter.updatelist(list);
+        else {
+            String userinput = newText.toLowerCase().trim();
+            List<MedicineDetails> newList = new ArrayList<>();
+            for (MedicineDetails string : list) {
+                if (string.medicinename.toLowerCase().contains(userinput)|| string.category.toLowerCase().contains(userinput) || String.valueOf(string.serialno).contains(userinput) || string.medicinecategory.toLowerCase().contains(userinput) || string.money.contains(userinput))
+                {
+                    newList.add(string);
+                }
+            }
+            recycleradapter.updatelist(newList);
+            refreshlist.clear();
+            refreshlist.addAll(newList);
+        }
+        return false;
+    }
+
 }

@@ -37,7 +37,6 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
         this.list = list;
         this.recyclerInterface=recyclerInterface;
     }
-
     @NonNull
     @Override
 
@@ -82,5 +81,11 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
 
             });
         }
+    }
+    public void updatelist(List<SlotDetails> newlist)
+    {
+        list=new ArrayList<>();
+        list.addAll(newlist);
+        notifyDataSetChanged();
     }
 }

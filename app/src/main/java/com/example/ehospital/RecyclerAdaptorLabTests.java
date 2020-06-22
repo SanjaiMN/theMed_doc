@@ -57,4 +57,10 @@ public class RecyclerAdaptorLabTests  extends RecyclerView.Adapter<RecyclerAdapt
             amount=itemView.findViewById(R.id.amountlabtest);
         }
     }
+    public void updatelist(List<LabDetails> newlist)
+    {
+        list=new ArrayList<>();
+        list.addAll(newlist);
+        notifyDataSetChanged();
+    }
 }

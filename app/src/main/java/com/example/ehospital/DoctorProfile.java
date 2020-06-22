@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class DoctorProfile extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
+    ProgressBar progressBar;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +57,7 @@ public class DoctorProfile extends AppCompatActivity
         specalizationn=findViewById(R.id.specalizationn);
         profilepic=findViewById(R.id.profilepiclab);
         ratings=findViewById(R.id.ratingsdoc);
+        progressBar=findViewById(R.id.doctorprofilepb);
         firebaseDatabase=FirebaseDatabase.getInstance();
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference=firebaseDatabase.getReference().child("Doctor database").child(uid);
@@ -61,31 +65,19 @@ public class DoctorProfile extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                progressBar.setVisibility(View.VISIBLE);
                 doctor_details doctor_details=dataSnapshot.getValue(doctor_details.class);
                 namee.append(doctor_details.name);
                 agee.append(doctor_details.age);
                 working_inn.append(doctor_details.working_in);
                 specalizationn.append(doctor_details.specalization);
-                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-
-                List<Address> addresses  = null;
-                try {
-                    addresses = geocoder.getFromLocation(doctor_details.lats,doctor_details.longs, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                String address = addresses.get(0).getAddressLine(0);
-                String city = addresses.get(0).getLocality();
-                String state = addresses.get(0).getAdminArea();
-                String zip = addresses.get(0).getPostalCode();
-                String country = addresses.get(0).getCountryName();
-                Toast.makeText(DoctorProfile.this,address,Toast.LENGTH_LONG).show();
                 ratings.append(String.valueOf(doctor_details.ratings));
                 profile_pic=doctor_details.profile_pic;
                 Glide.with(DoctorProfile.this)
                         .load(""+profile_pic)
                         .into(profilepic);
                 progressDialog.dismiss();
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

@@ -41,7 +41,8 @@ import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
     private static final String TAG = "PhoneAuth";
     private String phoneVerificationId;
     private FirebaseAuth fbAuth;
@@ -53,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             verificationCallbacks;
     private Button verifyButton;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference,databaseReference1;
     private Button sendButton;
     private Button resendButton;
     FirebaseUser user;
@@ -62,47 +61,37 @@ public class MainActivity extends AppCompatActivity {
     String ch;
     LocationManager locationManager;
     LocationListener locationListener;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         phoneText=findViewById(R.id.phoneText);
-        verifyButton = (Button) findViewById(R.id.verifyButton);
-        sendButton = (Button) findViewById(R.id.sendButton);
-        resendButton = (Button) findViewById(R.id.resendButton);
-        codeText = (EditText) findViewById(R.id.codeText);
+        verifyButton = findViewById(R.id.verifyButton);
+        sendButton = findViewById(R.id.sendButton);
+        resendButton = findViewById(R.id.resendButton);
+        codeText = findViewById(R.id.codeText);
         ch=phoneText.getText().toString();
-        ccp = (CountryCodePicker)findViewById(R.id.ccp);
+        ccp = findViewById(R.id.ccp);
         ccp.registerCarrierNumberEditText(phoneText);
         fbAuth = FirebaseAuth.getInstance();
         user= fbAuth.getCurrentUser();
-        if(user!=null)
-        {
-            startActivity(new Intent(MainActivity.this,DoctorOrLabTechnician.class));
-        }
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationListener = new LocationListener() {
+        locationListener = new LocationListener()
+        {
             @Override
-            public void onLocationChanged(Location location)
-            {
+            public void onLocationChanged(Location location) {
 
             }
-
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
 
             }
-
             @Override
             public void onProviderEnabled(String provider) {
 
             }
-
             @Override
             public void onProviderDisabled(String provider) {
-
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
@@ -134,9 +123,17 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
+                    requestPermissions(new String[]{
+                            Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+                    }, 10);
                     return;
                 }
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                else
+                    locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+        if(user!=null)
+        {
+            startActivity(new Intent(MainActivity.this,DoctorOrLabTechnician.class));
+        }
     }
 
     public void sendCode(View view) {

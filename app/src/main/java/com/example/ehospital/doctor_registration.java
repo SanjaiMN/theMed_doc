@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -207,13 +208,6 @@ public class doctor_registration extends AppCompatActivity {
                             String uid = sharedPreferences.getString("uid", "");
                             SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             specalization = sharedPreferences5.getString("category_selected", "");
-                            /*
-                            String status=sharedPreferences.getString("App_state","");
-                            SharedPreferences.Editor editor=sharedPreferences.edit();
-                            editor.putString("name",name);
-                            editor.putString("specalization",specalization);
-                            editor.putString("Request",Request);
-                            editor.apply();*/
                             String sessionId = "no";
                             String tokenid = "no";
                             String Request = "no";
@@ -315,17 +309,13 @@ public class doctor_registration extends AppCompatActivity {
 
     void configurationbutton() {
         addlocation.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View v)
             {
-                    if (ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        return;
-                    }
-                    locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
                     Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
-                }
+            }
         });
 
     }

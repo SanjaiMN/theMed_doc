@@ -31,10 +31,10 @@ public class RecyclerAdaptorPharmacy  extends RecyclerView.Adapter<RecyclerAdapt
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdaptorPharmacy.ViewHolder holder, int position)
     {
-        holder.medcinename.append(list.get(position).medicinename);
-        holder.category.append(list.get(position).category);
-        holder.medicinecategory.append(list.get(position).medicinecategory);
-        holder.amount.append("₹"+list.get(position).money);
+        holder.medcinename.setText("Medicine Name:"+list.get(position).medicinename);
+        holder.category.setText("Category:"+list.get(position).category);
+        holder.medicinecategory.setText("Medicine Category:"+list.get(position).medicinecategory);
+        holder.amount.setText("₹"+list.get(position).money);
     }
 
     @Override
@@ -55,5 +55,11 @@ public class RecyclerAdaptorPharmacy  extends RecyclerView.Adapter<RecyclerAdapt
             medicinecategory = itemView.findViewById(R.id.medicinecategoryitem);
             amount=itemView.findViewById(R.id.amountmedicinelist);
         }
+    }
+    public void updatelist(List<MedicineDetails> newlist)
+    {
+        list=new ArrayList<>();
+        list.addAll(newlist);
+        notifyDataSetChanged();
     }
 }

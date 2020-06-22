@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ public class PharmacyProfile extends AppCompatActivity
     DatabaseReference databaseReference;
     de.hdodenhof.circleimageview.CircleImageView profilepic;
     ProgressDialog progressDialog;
+    ProgressBar progressBar;
     SharedPreferences sharedPreferences;
     FirebaseAuth firebaseAuth;
     @Override
@@ -50,6 +53,7 @@ public class PharmacyProfile extends AppCompatActivity
         profilepic=findViewById(R.id.profilepicpharm);
         mail=findViewById(R.id.mailpharm);
         ratings=findViewById(R.id.ratingspharm);
+        progressBar=findViewById(R.id.progressBarpharmprofile);
         String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations").child(uid);
@@ -57,6 +61,7 @@ public class PharmacyProfile extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                progressBar.setVisibility(View.VISIBLE);
                 PharmacyDetails pharmacyDetails=dataSnapshot.getValue(PharmacyDetails.class);
                 pharmacyname.append(pharmacyDetails.pharmname);
                 location.append(pharmacyDetails.location);
@@ -70,6 +75,7 @@ public class PharmacyProfile extends AppCompatActivity
                         .load(""+pharmacyDetails.profile_pic)
                         .into(profilepic);
                 progressDialog.dismiss();
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
