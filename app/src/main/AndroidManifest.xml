@@ -18,8 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LabUploadCsv"/>
-        <activity android:name=".LabDashboard"
+        <activity android:name=".HealthReports"></activity>
+        <activity android:name=".LabUploadCsv" />
+        <activity
+            android:name=".LabDashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PharamacyManual" />
         <activity
@@ -32,8 +34,7 @@
         <activity
             android:name=".PharmacyRegistration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LabProfile" />
+        <activity android:name=".LabProfile" />
         <activity android:name=".DoctorProfile" />
         <activity
             android:name=".GridViewSelection"

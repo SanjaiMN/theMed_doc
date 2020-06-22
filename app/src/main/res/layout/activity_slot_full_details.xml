@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.068" />
 
     <TextView
         android:id="@+id/datefd"
@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <TextView
         android:id="@+id/timefd"
@@ -46,10 +46,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintVertical_bias="0.311" />
 
     <Button
         android:id="@+id/confirmbuttonfd"
@@ -87,17 +87,32 @@
         android:layout_height="211dp"
         android:ems="10"
         android:fontFamily="@font/lilita_one"
+        android:gravity="center|top"
         android:maxEms="50"
         android:selectAllOnFocus="false"
         android:singleLine="false"
         android:text="Short Details: "
         android:textColor="@color/colorPrimary"
         android:textSize="20dp"
-        android:gravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.734" />
+
+    <Button
+        android:id="@+id/healthreports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/lilita_one"
+        android:text="HealthReports"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.439" />
 </androidx.constraintlayout.widget.ConstraintLayout>

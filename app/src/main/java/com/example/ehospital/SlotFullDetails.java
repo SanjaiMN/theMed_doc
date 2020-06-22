@@ -16,10 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SlotFullDetails extends AppCompatActivity
 {
     TextView name,date,time,shortdesc;
-    Button confirmation,cancel;
+    Button confirmation,cancel,reports;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String uid,uidcheck;
+    String uid,patientuid,uidcheck;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,11 +31,13 @@ public class SlotFullDetails extends AppCompatActivity
         shortdesc=findViewById(R.id.shortdescription);
         confirmation=findViewById(R.id.confirmbuttonfd);
         cancel=findViewById(R.id.cancelbutton);
+        reports=findViewById(R.id.healthreports);
         Intent intent=getIntent();
         SlotDetails slotDetails = intent.getParcelableExtra("slotconfirm");
         name.append(slotDetails.name);
         date.append(slotDetails.date);
         time.append(slotDetails.time);
+        patientuid=slotDetails.puid;
         shortdesc.append(slotDetails.shortdescription);
         if(slotDetails.confirmation) {
             confirmation.setEnabled(false);
@@ -65,17 +67,25 @@ public class SlotFullDetails extends AppCompatActivity
                     confirmation.setBackgroundColor(Color.GREEN);
             }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
-                //databaseReference.child(uidcheck).removeValue();
                 slotDetails.cancelled=true;
                 cancel.setBackgroundColor(Color.RED);
                 confirmation.setEnabled(false);
                 confirmation.setBackgroundColor(Color.GRAY);
                 databaseReference.child(uidcheck).setValue(slotDetails);
-                //startActivity(new Intent(SlotFullDetails.this,Slot_Details.class));
+            }
+        });
+        reports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent1 = new Intent(SlotFullDetails.this,HealthReports.class);
+                intent1.putExtra("healthreport",patientuid);
+                startActivity(intent1);
             }
         });
     }

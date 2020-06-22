@@ -73,6 +73,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:0.4.0'
     implementation 'com.opentok.android:opentok-android-sdk:2.16.5'
     implementation 'com.airbnb.android:lottie:3.4.0'
+    compile 'com.github.barteksc:android-pdf-viewer:2.0.3'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation group: 'com.tokbox', name: 'opentok-server-sdk', version: '4.3.2'
 }
