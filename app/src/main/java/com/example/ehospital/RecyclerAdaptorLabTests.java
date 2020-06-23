@@ -32,12 +32,11 @@ public class RecyclerAdaptorLabTests  extends RecyclerView.Adapter<RecyclerAdapt
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        holder.testname.append(list.get(position).testname);
-        holder.nooftest.append(list.get(position).nooftest);
-        holder.testincludes.append(list.get(position).includestestname);
-        holder.amount.append("₹"+list.get(position).money);
+        holder.testname.setText("TestName:"+list.get(position).testname);
+        holder.nooftest.setText("NofTest:"+list.get(position).nooftest);
+        holder.testincludes.setText("Test Includes:"+list.get(position).includestestname);
+        holder.amount.setText("₹"+list.get(position).money);
     }
-
     @Override
     public int getItemCount()
     {

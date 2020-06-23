@@ -245,8 +245,6 @@ public class LabRegistration extends AppCompatActivity
                 workinghours.setError("Can't be empty");
             if(phonenumber1.isEmpty())
                 phonenumber.setError("Can't be empty");
-            if(lats==0.0 && longs==0.0)
-                addlocationlab.setBackgroundColor(Color.RED);
         }
         else
             i=true;
@@ -314,9 +312,9 @@ public class LabRegistration extends AppCompatActivity
                     return;
                 }
                 locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                addlocationlab.setBackgroundColor(Color.GREEN);
                 Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }
