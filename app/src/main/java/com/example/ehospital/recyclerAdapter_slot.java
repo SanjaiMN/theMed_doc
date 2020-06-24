@@ -67,7 +67,6 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
         Context context;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             context = itemView.getContext();
             name = itemView.findViewById(R.id.name);
             date = itemView.findViewById(R.id.date);
@@ -78,7 +77,6 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
                 {
                     recyclerInterface.OnButtonClick(getAdapterPosition());
                 }
-
             });
         }
     }

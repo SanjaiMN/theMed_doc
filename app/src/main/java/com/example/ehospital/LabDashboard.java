@@ -11,7 +11,7 @@ import android.view.View;
 
 public class LabDashboard extends AppCompatActivity
 {
-    CardView yourtests,profile,entermanually,uploadascsvlab;
+    CardView yourtests,profile,entermanually,uploadascsvlab,yourbookings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,13 @@ public class LabDashboard extends AppCompatActivity
         profile=findViewById(R.id.profilecardlab);
         entermanually=findViewById(R.id.manuallab);
         uploadascsvlab=findViewById(R.id.uploadascsvlab);
+        yourbookings=findViewById(R.id.yourbookings);
+        yourbookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),LabBookings.class));
+            }
+        });
         uploadascsvlab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
