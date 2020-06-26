@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +49,7 @@ public class LabPaymentFullDetails extends AppCompatActivity
             {
                 System.out.println(dataSnapshot1.getKey());
                 String labname = dataSnapshot1.child("labname").getValue().toString();
-                testname.setText(labname);
+                testname.setText("LabName"+labname);
             }
 
             @Override
@@ -63,15 +62,13 @@ public class LabPaymentFullDetails extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 PatientDetails patientDetails = dataSnapshot.getValue(PatientDetails.class);
-                customername.setText(patientDetails.name);
-                //Toast.makeText(getApplicationContext(),customername1,Toast.LENGTH_LONG).show();
+                customername.setText("CustomerName"+patientDetails.name);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        walkinorhome.setText(walkinorhome1);
+        walkinorhome.setText("Walk in/home"+walkinorhome1);
     }
 }
