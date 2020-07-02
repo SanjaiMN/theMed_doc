@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,12 +26,15 @@ public class LabBookings extends AppCompatActivity implements RecyclerInterface
     List<LabPaymentDetails> list;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    ProgressBar progressBar;
     String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_bookings);
         recyclerView=findViewById(R.id.labbookingsrecyclerview);
+        progressBar=findViewById(R.id.progressBarlabbookings);
+        progressBar.setVisibility(View.VISIBLE);
         list=new ArrayList<>();
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         getfromdatabase();
@@ -48,6 +53,7 @@ public class LabBookings extends AppCompatActivity implements RecyclerInterface
                     LabPaymentDetails labPaymentDetails = dataSnapshot1.getValue(LabPaymentDetails.class);
                     list.add(labPaymentDetails);
                 }
+                progressBar.setVisibility(View.INVISIBLE);
                 labBookingAdapter.notifyDataSetChanged();
             }
             @Override

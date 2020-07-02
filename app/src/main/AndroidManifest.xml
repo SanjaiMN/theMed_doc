@@ -18,7 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LabPaymentFullDetails"></activity>
+        <activity android:name=".ChatActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".LabPaymentFullDetails" />
         <activity android:name=".LabBookings" />
         <activity android:name=".HealthReports" />
         <activity android:name=".LabUploadCsv" />

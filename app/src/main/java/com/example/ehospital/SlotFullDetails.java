@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +21,7 @@ public class SlotFullDetails extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     String uid,patientuid,uidcheck;
+    ImageButton letschat;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,6 +30,7 @@ public class SlotFullDetails extends AppCompatActivity
         name=findViewById(R.id.namefd);
         date=findViewById(R.id.datefd);
         time=findViewById(R.id.timefd);
+        letschat=findViewById(R.id.letschat);
         shortdesc=findViewById(R.id.shortdescription);
         confirmation=findViewById(R.id.confirmbuttonfd);
         cancel=findViewById(R.id.cancelbutton);
@@ -65,6 +68,14 @@ public class SlotFullDetails extends AppCompatActivity
                     cancel.setBackgroundColor(Color.GRAY);
                     databaseReference.child(uidcheck).setValue(slotDetails);
                     confirmation.setBackgroundColor(Color.GREEN);
+            }
+        });
+        letschat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(SlotFullDetails.this,ChatActivity.class);
+                intent1.putExtra("patuid",patientuid);
+                startActivity(intent1);
             }
         });
         cancel.setOnClickListener(new View.OnClickListener()

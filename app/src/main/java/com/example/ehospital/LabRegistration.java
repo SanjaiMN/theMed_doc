@@ -93,10 +93,8 @@ public class LabRegistration extends AppCompatActivity
                 lats=location.getLatitude();
                 longs=location.getLongitude();
             }
-
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-
             }
 
             @Override
