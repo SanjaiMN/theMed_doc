@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -40,13 +39,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class ChatActivity extends AppCompatActivity
@@ -142,8 +138,6 @@ public class ChatActivity extends AppCompatActivity
         {
             public void run()
             {
-
-
                 layoutManager=new LinearLayoutManager(ChatActivity.this);
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 layoutManager.setStackFromEnd(true);
@@ -157,12 +151,6 @@ public class ChatActivity extends AppCompatActivity
             }
         };
         handler.postDelayed(r, 1000);
-
-
-
-        ;
-
-
         messagesend.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -185,38 +173,33 @@ public class ChatActivity extends AppCompatActivity
         send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
-                SimpleDateFormat d = new SimpleDateFormat("dd-MM-yyyy");
-                timestamp = s.format(new Date());
-                String date = d.format(new Date());
-                sentby = "doctor";
                 messagetext = messagesend.getText().toString();
-                sendtodatabase(messagetext,"text");
-                messagesend.getText().clear();
-                if (list.size() > 0) {
-                    mAdapter = new MessageAdapter(list, ChatActivity.this);
-                    mRecyclerView.setAdapter(mAdapter);
-                    mRecyclerView.smoothScrollToPosition(list.size() + 1);
-                }
-                else
+                if (!messagetext.isEmpty())
                 {
-                    Toast.makeText(ChatActivity.this,">>>>>>>>>>>>>>>",Toast.LENGTH_SHORT);
+                    SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
+                    SimpleDateFormat d = new SimpleDateFormat("dd-MM-yyyy");
+                    timestamp = s.format(new Date());
+                    String date = d.format(new Date());
+                    sentby = "doctor";
+                    sendtodatabase(messagetext, "text");
+                    messagesend.getText().clear();
+                    if (list.size() > 0) {
+                        mAdapter = new MessageAdapter(list, ChatActivity.this);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mRecyclerView.smoothScrollToPosition(list.size() + 1);
+                    } else {
+                        Toast.makeText(ChatActivity.this, ">>>>>>>>>>>>>>>", Toast.LENGTH_SHORT);
+                    }
                 }
-
-
-
+                else{}
             }
         });
-
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1 && resultCode==RESULT_OK  && data.getData()!=null)
         {imageuri=data.getData();
-            // Setting image on image view using Bitmap
             sendimagetodatabase(imageuri);
         }
         else
@@ -348,23 +331,15 @@ public class ChatActivity extends AppCompatActivity
 
                     });
                     // Save state
-
-
-
                 }
                 mRecyclerView.setHasFixedSize(true);
                 mAdapter=new MessageAdapter(list,ChatActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setItemViewCacheSize(list.size());
                 mAdapter.notifyDataSetChanged();
-
-
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         mRecyclerView.setHasFixedSize(true);

@@ -68,7 +68,6 @@ public class doctor_registration extends AppCompatActivity {
     String uid;
     SharedPreferences sharedPreferences;
     LocationManager locationManager;
-    LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,43 +83,6 @@ public class doctor_registration extends AppCompatActivity {
         rg = findViewById(R.id.radiogroup);
         addlocation = findViewById(R.id.addlocationlab);
         info=findViewById(R.id.ibinfolab);
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location)
-            {
-
-                lats=location.getLatitude();
-                longs=location.getLongitude();
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        };
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            requestPermissions(new String[]{
-                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
-            }, 10);
-            return;
-        } else {
-            configurationbutton();
-        }
         name = nameet.getText().toString();
         age = ageet.getText().toString();
         working_in = workinget.getText().toString();
@@ -132,6 +94,23 @@ public class doctor_registration extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("uid", uid);
         editor.apply();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(doctor_registration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            requestPermissions(new String[]{
+                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+            }, 10);
+            return;
+        } else {
+            configurationbutton();
+        }
+        Location location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location!=null)
+        {
+            lats=location.getLatitude();
+            longs=location.getLongitude();
+        }
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,6 +197,10 @@ public class doctor_registration extends AppCompatActivity {
                             editor1.commit();
                             doctor_details doctor_details = new doctor_details(name, mail, gender1, specalization, working_in, age, profile_pic, sessionId, tokenid, uid, Request, "doctor", 1f,lats,longs);
                             databaseReference.child(uid).setValue(doctor_details);
+                            for(int i=1;i<=16;i++)
+                            {
+                                databaseReference.child(uid).child("Slots").child("slot"+i).setValue(false);
+                            }
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));
                         }
@@ -307,14 +290,26 @@ public class doctor_registration extends AppCompatActivity {
         }
     }
 
-    void configurationbutton() {
+    void configurationbutton()
+    {
         addlocation.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View v)
             {
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                    Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(doctor_registration.this)
+                        .setTitle("Important")
+                        .setMessage("Add your Hospital location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+
+                                addlocation.setBackgroundColor(Color.GREEN);
+                                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                                arg0.cancel();
+                            }
+                        }).create().show();
             }
         });
 

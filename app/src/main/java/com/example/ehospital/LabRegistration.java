@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -54,7 +55,6 @@ public class LabRegistration extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private UploadTask uploadtask;
-    SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
     double lats,longs;
@@ -62,7 +62,6 @@ public class LabRegistration extends AppCompatActivity
     String labname1,mail,location1,propreitorname1,isonumber1,address1,workinghours1,phonenumber1;
     ImageButton labnext,addlocationlab,infolab;
     LocationManager locationManager;
-    LocationListener locationListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,31 +84,7 @@ public class LabRegistration extends AppCompatActivity
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("LaboratoryRegistrations");
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location)
-            {
-
-                lats=location.getLatitude();
-                longs=location.getLongitude();
-            }
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        };
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(LabRegistration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LabRegistration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             requestPermissions(new String[]{
@@ -118,6 +93,12 @@ public class LabRegistration extends AppCompatActivity
             return;
         } else {
             configurationbutton();
+        }
+        Location location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location!=null)
+        {
+            lats=location.getLatitude();
+            longs=location.getLongitude();
         }
         infolab.setOnClickListener(new View.OnClickListener()
         {
@@ -301,17 +282,23 @@ public class LabRegistration extends AppCompatActivity
     void configurationbutton() {
         addlocationlab.setOnClickListener(new View.OnClickListener()
         {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View v)
             {
-                if (ActivityCompat.checkSelfPermission(LabRegistration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LabRegistration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    return;
-                }
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                addlocationlab.setBackgroundColor(Color.GREEN);
-                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(LabRegistration.this)
+                        .setTitle("Important")
+                        .setMessage("Add your Laboratory location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+
+                                addlocationlab.setBackgroundColor(Color.GREEN);
+                                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                                arg0.cancel();
+                            }
+                        }).create().show();
             }
         });
     }

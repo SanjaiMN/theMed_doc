@@ -3,7 +3,8 @@
     <color name="colorPrimary">#40C4FF</color>
     <color name="colorPrimaryDark">#0883BA</color>
     <color name="colorAccent">#448AFF</color>
-    <item name="gradient" type="color">
-    </item>
+    <item name="gradient" type="color"></item>
     <color name="semiTransparentColor">#20ffffff</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

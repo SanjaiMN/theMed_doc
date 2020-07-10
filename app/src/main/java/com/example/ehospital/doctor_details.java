@@ -2,7 +2,8 @@ package com.example.ehospital;
 
 import java.util.StringTokenizer;
 
-public class doctor_details {
+public class doctor_details
+{
     public String name;
     public String mail;
     public String gender;
@@ -17,6 +18,7 @@ public class doctor_details {
     public String doctororlab;
     public float ratings;
     public double lats,longs;
+
     public doctor_details(String name,String mail, String gender, String specalization, String working_in, String age, String profile_pic, String SessionId, String TokenId,String uid,String Request,String doctororlab,float ratings,double lats,double longs) {
         this.name = name;
         this.mail=mail;
@@ -34,9 +36,7 @@ public class doctor_details {
         this.lats=lats;
         this.longs=longs;
     }
-
     public doctor_details() {
 
     }
-
 }

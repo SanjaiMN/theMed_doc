@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -54,7 +55,6 @@ public class PharmacyRegistration extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private UploadTask uploadtask;
-    SharedPreferences sharedPreferences;
     StorageReference imageref;
     String uid;
     ProgressDialog pd;
@@ -84,33 +84,7 @@ public class PharmacyRegistration extends AppCompatActivity
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations");
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location)
-            {
-
-                lats=location.getLatitude();
-                longs=location.getLongitude();
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        };
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             requestPermissions(new String[]{
@@ -120,7 +94,12 @@ public class PharmacyRegistration extends AppCompatActivity
         } else {
             configurationbutton();
         }
-
+        Location location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location!=null)
+        {
+            lats=location.getLatitude();
+            longs=location.getLongitude();
+        }
        dppharm.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -302,17 +281,23 @@ public class PharmacyRegistration extends AppCompatActivity
     void configurationbutton() {
         addlocationpharm.setOnClickListener(new View.OnClickListener()
         {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View v)
             {
-                addlocationpharm.setBackgroundColor(Color.GREEN);
-                if (ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(PharmacyRegistration.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    return;
-                }
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(PharmacyRegistration.this)
+                        .setTitle("Important")
+                        .setMessage("Add your Pharmacy location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+
+                                addlocationpharm.setBackgroundColor(Color.GREEN);
+                                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                                arg0.cancel();
+                            }
+                        }).create().show();
             }
         });
 

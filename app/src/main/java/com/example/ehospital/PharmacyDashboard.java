@@ -11,7 +11,7 @@ import android.view.View;
 
 public class PharmacyDashboard extends AppCompatActivity
 {
-    CardView yourmedicines,profile,entermanually,uploadascsv;
+    CardView yourmedicines,profile,entermanually,uploadascsv,yourbookings;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -21,6 +21,13 @@ public class PharmacyDashboard extends AppCompatActivity
         profile=findViewById(R.id.profilecardpharm);
         entermanually=findViewById(R.id.manualpharmacy);
         uploadascsv=findViewById(R.id.uploadascsv);
+        yourbookings=findViewById(R.id.yourbookingspharm);
+        yourbookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),PharmacyBookings.class));
+            }
+        });
         uploadascsv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -14,8 +14,8 @@ public class SlotDetails implements Parcelable {
     public String shortdescription;
     public boolean cancelled;
     public boolean confirmation;
-
-    public SlotDetails(String date, String time, String name, String duid,String puid,String dname,String specalization,String shortdescription,boolean cancelled,boolean confirmation) {
+    public boolean payment;
+    public SlotDetails(String date, String time, String name, String duid,String puid,String dname,String specalization,String shortdescription,boolean cancelled,boolean confirmation,boolean payment) {
         this.date = date;
         this.time = time;
         this.name = name;
@@ -26,8 +26,8 @@ public class SlotDetails implements Parcelable {
         this.shortdescription=shortdescription;
         this.cancelled=cancelled;
         this.confirmation=confirmation;
+        this.payment=payment;
     }
-
     public SlotDetails() {
     }
 
@@ -42,6 +42,7 @@ public class SlotDetails implements Parcelable {
         shortdescription = in.readString();
         cancelled = in.readByte() != 0;
         confirmation = in.readByte() != 0;
+        payment = in.readByte() != 0;
     }
 
     public static final Creator<SlotDetails> CREATOR = new Creator<SlotDetails>() {
@@ -62,16 +63,17 @@ public class SlotDetails implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(date);
-        parcel.writeString(time);
-        parcel.writeString(name);
-        parcel.writeString(duid);
-        parcel.writeString(puid);
-        parcel.writeString(dname);
-        parcel.writeString(specalization);
-        parcel.writeString(shortdescription);
-        parcel.writeByte((byte) (cancelled ? 1 : 0));
-        parcel.writeByte((byte) (confirmation ? 1 : 0));
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(date);
+        dest.writeString(time);
+        dest.writeString(name);
+        dest.writeString(duid);
+        dest.writeString(puid);
+        dest.writeString(dname);
+        dest.writeString(specalization);
+        dest.writeString(shortdescription);
+        dest.writeByte((byte) (cancelled ? 1 : 0));
+        dest.writeByte((byte) (confirmation ? 1 : 0));
+        dest.writeByte((byte) (payment ? 1 : 0));
     }
 }

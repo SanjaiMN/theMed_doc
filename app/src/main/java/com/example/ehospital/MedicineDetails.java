@@ -17,7 +17,7 @@ public class MedicineDetails implements Serializable
         this.money = money;
         this.uidmed=uidmed;
     }
-
-    public MedicineDetails() {
+    public MedicineDetails()
+    {
     }
 }

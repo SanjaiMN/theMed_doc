@@ -13,11 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -101,15 +98,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             viewHolder.playbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-
                     if(mediaPlayer.isPlaying())
                     {
                         viewHolder.playbutton.setImageResource(R.drawable.play);
                         mediaPlayer.pause();
 
-                    }else {
+                    }
+                    else {
                         viewHolder.playbutton.setImageResource(R.drawable.pause);
                         mediaPlayer.start();
                         mediaPlayer.setScreenOnWhilePlaying(true);
@@ -118,16 +113,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                             public void onCompletion(MediaPlayer mediaPlayer) {
                                 viewHolder.playbutton.setImageResource(R.drawable.play);
                             }
-
                         });
-
-
-
-
                     }
-
                 }
-
             });
         }
         else if (chatMessage.type.equals("photo"))
@@ -170,22 +158,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             tvTime = (TextView) itemView.findViewById(R.id.tv_time);
             chatimage =  itemView.findViewById(R.id.chatimage);
             playbutton=itemView.findViewById(R.id.playbutton);
-
-
         }
     }
     public void showImage(String url) {
         Dialog builder = new Dialog(mContext, android.R.style.Theme_DeviceDefault_Light_NoActionBar);
-//        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        builder.getWindow().setBackgroundDrawable(
-//                new ColorDrawable(android.R.style.Theme_Light));
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 //nothing;
             }
         });
-
         ImageView imageView = new SimpleDraweeView(mContext);
         Glide.with(mContext).load(url).into(imageView);
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(

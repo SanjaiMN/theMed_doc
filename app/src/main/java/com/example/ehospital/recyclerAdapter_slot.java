@@ -52,9 +52,9 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("slot_Booked").child(uid);
-        holder.name.append(list.get(position).name+"\t");
-        holder.date.append(list.get(position).date+"\t");
-        holder.time.append(list.get(position).time+"\t");
+        holder.name.setText("name"+list.get(position).name+"\t");
+        holder.date.setText("date"+list.get(position).date+"\t");
+        holder.time.setText("time"+list.get(position).time+"\t");
     }
 
     @Override

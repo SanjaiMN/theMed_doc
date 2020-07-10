@@ -6,6 +6,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Service;
@@ -23,6 +25,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +70,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LabPaymentFullDetails extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class PharmacyFullDetails extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private GoogleMap mMap;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int GOOGLE_API_CLIENT_ID = 0;
@@ -127,14 +131,22 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference, databaseReference1;
     String puid, uid;
-    String serialno;
+    String serialno,count;
+    Fragment map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_payment_full_details);
-        mGoogleApiClient2 = new GoogleApiClient.Builder(LabPaymentFullDetails.this)
+        Intent intent = getIntent();
+        LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
+        puid = labPaymentDetails.puid;
+        destLat=Double.parseDouble(labPaymentDetails.lats);
+        destLong=Double.parseDouble(labPaymentDetails.longs);
+        walkinorhome1 = labPaymentDetails.walkinorhome;
+        startBT = findViewById(R.id.start_BT);
+        mGoogleApiClient2 = new GoogleApiClient.Builder(PharmacyFullDetails.this)
                 .addApi(Places.GEO_DATA_API)
                 .enableAutoManage(this, GOOGLE_API_CLIENT_ID, this)
                 .addConnectionCallbacks(this)
@@ -152,17 +164,19 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
 //                longitude = mLastLocation.getLongitude();
         }
         View maplab=(View) findViewById( R.id.maplab);
-        startBT = findViewById(R.id.start_BT);
         if (walkinorhome1.equals("walkin"))
         {
             maplab.setEnabled(false);
             startBT.setEnabled(false);
 
         }
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.maplab);
-        mapFragment.getMapAsync(this);
-        init();
+        else {
+            mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.maplab);
+            mapFragment.getMapAsync(this);
+            init();
+        }
+
 
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -173,8 +187,12 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
                     .setMessage("This app needs the Location permission, please accept to use location functionality")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i)
-                        {
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Prompt the user once explanation has been shown
+//                            ActivityCompat.requestPermissions(MapsActivity.this,
+//                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                                    MY_PERMISSIONS_REQUEST_LOCATION);
+
                             showGPSSettingsAlert();
                         }
                     })
@@ -185,32 +203,29 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         customername = findViewById(R.id.customernamepaylabfull);
         testname = findViewById(R.id.testnamepayfulllab);
         walkinorhome = findViewById(R.id.walkinorhome);
-        Intent intent = getIntent();
-        LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
-        puid = labPaymentDetails.puid;
-        destLat=Double.parseDouble(labPaymentDetails.lats);
-        destLong=Double.parseDouble(labPaymentDetails.longs);
-        walkinorhome1 = labPaymentDetails.walkinorhome;
+
+
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String city = sharedPreferences.getString("location", "");
         serialno = labPaymentDetails.serialno;
-        String arr[]=serialno.split(",");
-        testname.setText("Tests:");
-        for(int i=1;i<arr.length;i++)
+        count=labPaymentDetails.count;
+        String countarray[]=count.split(",");
+        String serialarr[]=serialno.split(",");
+        testname.setText("Orders:");
+        for(int i=1;i<serialarr.length;i++)
         {
-            databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city).child(uid).child("" +arr[i]);
+            databaseReference1 = firebaseDatabase.getReference().child("MedicineDetails").child(city).child(uid).child(serialarr[i]);
+            String count =countarray[i];
             System.out.println(databaseReference1);
             databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
             databaseReference1.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                    System.out.println(dataSnapshot1.getKey());
-                    String labname = dataSnapshot1.child("testname").getValue().toString();
-                    testname.append(labname+",");
+                    String testname1 = dataSnapshot1.child("medicinename").getValue().toString();
+                    testname.append(testname1+" x "+count+",");
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -247,9 +262,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
                 System.out.print(mLastLocation.getLatitude());
             }
         };
-
         mRequestingLocationUpdates = false;
-
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
         mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
@@ -283,7 +296,36 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+//        mMap.setMyLocationEnabled(true);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(lats,longs))
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+//                .title("My Location"));
+//        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        LatLng sydney1 = new LatLng(lats, longs);
+//
+//         m = mMap.addMarker(new MarkerOptions().draggable(true).title("I am here ").
+//                position(sydney1).icon(BitmapDescriptorFactory.fromResource(R.drawable.walk)));
+
+//        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+//            @Override
+//            public void onMarkerDragStart(Marker marker) {
+//
+//            }
+//
+//            @Override
+//            public void onMarkerDrag(Marker marker) {
+//
+//            }
+//
+//            @Override
+//            public void onMarkerDragEnd(Marker marker) {
+//                addMarker(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude));
+//            }
+//        });
+
     }
+
     @SuppressLint("RestrictedApi")
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -325,6 +367,32 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>"+location.getLatitude());
         lats=mLastLocation.getLatitude();
         longs=mLastLocation.getLongitude();
+
+//        if (mCurrLocationMarker == null) {
+//            addMarker(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
+//
+//
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+//                    new LatLng(location.getLatitude(), location.getLongitude()), 16));
+//        }
+//        if (mCurrLocationMarker == null) {
+//            LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+////            mCurrLocationMarker =  mMap.addMarker(new MarkerOptions().draggable(true).title("I am here ").
+////                    position(myLocation));
+//
+//            //     icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker_)
+//
+//            mMap.addMarker(new MarkerOptions()
+//                    .position(myLocation)
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+//                    .title("My Location"));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15));
+//            Log.d("location", "Latitude:" + mLastLocation.getLatitude() + "\n" + "Longitude:" + mLastLocation.getLongitude());
+//
+////Log.e("tag" , "points" + points.size());
+//        }
+
+
         if (startTrack) {
 
             previouslatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
@@ -335,6 +403,29 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
             if (origin.latitude != mLastLocation.getLatitude() && origin.longitude != mLastLocation.getLongitude()) {
 
             }
+//            double rota = 0.0;
+//            double startrota = 0.0;
+//            if (previousLocation != null) {
+//
+//                rota = bearingBetweenLocations(previouslatLng, new LatLng(destLat
+//                        ,destLong));
+//            }
+            // rotateMarker(m, (float) rota, (float) startrota);
+//            previousLocation = location;
+//            Log.e(TAG, "Firing onLocationChanged..........................");
+//            Log.e(TAG, "lat :" + location.getLatitude() + "long :" + location.getLongitude());
+//            Log.e(TAG, "bearing :" + location.getBearing());
+//
+//                animateMarker(new LatLng(previouslatLng.latitude, previouslatLng.longitude), false);
+//
+//              Log.e("move", "Iam move");
+//            Toast.makeText(getApplicationContext() , "I am move ", Toast.LENGTH_LONG).show();
+//            MarkerOptions marker = new MarkerOptions().draggable(true).title("I am here ").position(origin).icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker_));
+//            LatLngInterpolator.Spherical spherical = new LatLngInterpolator.Spherical();
+//            MarkerAnimation.animateMarkerToGB(marker, dest, spherical);
+//
+//               Marker asd = mMap.addMarker(new MarkerOptions().draggable(true).title("I am here ").position(origin).icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker_)));
+//               new    MarkerAnimation ().animateLine(points,mMap,asd,getApplication());
         }
     }
 
@@ -365,7 +456,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(LabPaymentFullDetails.this,
+                                ActivityCompat.requestPermissions(PharmacyFullDetails.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }
@@ -467,9 +558,9 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         //  String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters + "&key=" + MY_API_KEY
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-        Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
+        //Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-        Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
+        //Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
 
 
 

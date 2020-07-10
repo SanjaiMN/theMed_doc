@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity
     EditText phoneText,codeText;
     CountryCodePicker ccp;
     String number;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            verificationCallbacks;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationCallbacks;
     private Button verifyButton;
     private Button sendButton;
     private Button resendButton;
@@ -60,9 +59,11 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     String ch;
     LocationManager locationManager;
+    String uid;
     LocationListener locationListener;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         phoneText=findViewById(R.id.phoneText);
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             requestPermissions(new String[]{
-                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO
             }, 10);
             return;
         } else {
@@ -119,12 +120,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    void configurationbutton() {
+    void configurationbutton()
+    {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     requestPermissions(new String[]{
-                            Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+                            Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.RECORD_AUDIO,Manifest.permission.CAMERA
                     }, 10);
                     return;
                 }
@@ -135,7 +137,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this,DoctorOrLabTechnician.class));
         }
     }
-
     public void sendCode(View view) {
         number = ccp.getFullNumberWithPlus();
         if(number.length()<=3) {
@@ -210,7 +211,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential)
+    {
         fbAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -220,23 +222,14 @@ public class MainActivity extends AppCompatActivity
                             verifyButton.setEnabled(false);
                             FirebaseUser user = task.getResult().getUser();
                             String phoneNumber = user.getPhoneNumber();
-                            // try {
-                            //}
-                            //catch (Exception e)
-                            //{
-                            //Toast.makeText(policereg.this,"ces",Toast.LENGTH_LONG).show();
-                            //}
                             progressdialog.dismiss();
                             Intent intent = new Intent(MainActivity.this, DoctorOrLabTechnician.class);
-                            //intent.putExtra("phone", phoneNumber);
                             startActivity(intent);
                             finish();
                         } else {
-                            if (task.getException() instanceof
-                                    FirebaseAuthInvalidCredentialsException) {
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
+                            {
                                 Toast.makeText(MainActivity.this,"The verification code entered was invalid",Toast.LENGTH_SHORT).show();
-
-                                // The verification code entered was invalid
                             }
                         }
                     }

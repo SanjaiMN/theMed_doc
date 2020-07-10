@@ -149,7 +149,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/yourbookings"
+        android:id="@+id/yourbookingspharm"
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -9,10 +9,10 @@ public class LabPaymentDetails implements Parcelable {
     public String puid;
     public String amount;
     public String date;
-    public int serialno;
+    public String serialno,count;
     public String walkinorhome,lats,longs;
 
-    public  LabPaymentDetails(String payid, String duid, String puid, String amount, String date,String lats,String longs,int serialno,String walkinorhome) {
+    public  LabPaymentDetails(String payid, String duid, String puid, String amount, String date,String lats,String longs,String serialno,String count,String walkinorhome) {
         this.payid = payid;
         this.duid = duid;
         this.puid = puid;
@@ -21,9 +21,9 @@ public class LabPaymentDetails implements Parcelable {
         this.lats=lats;
         this.longs=longs;
         this.serialno = serialno;
+        this.count=count;
         this.walkinorhome=walkinorhome;
     }
-
     public  LabPaymentDetails() {
     }
 
@@ -33,7 +33,8 @@ public class LabPaymentDetails implements Parcelable {
         puid = in.readString();
         amount = in.readString();
         date = in.readString();
-        serialno = in.readInt();
+        serialno = in.readString();
+        count = in.readString();
         walkinorhome = in.readString();
         lats = in.readString();
         longs = in.readString();
@@ -63,7 +64,8 @@ public class LabPaymentDetails implements Parcelable {
         dest.writeString(puid);
         dest.writeString(amount);
         dest.writeString(date);
-        dest.writeInt(serialno);
+        dest.writeString(serialno);
+        dest.writeString(count);
         dest.writeString(walkinorhome);
         dest.writeString(lats);
         dest.writeString(longs);

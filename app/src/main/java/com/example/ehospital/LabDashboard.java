@@ -20,7 +20,7 @@ public class LabDashboard extends AppCompatActivity
         profile=findViewById(R.id.profilecardlab);
         entermanually=findViewById(R.id.manuallab);
         uploadascsvlab=findViewById(R.id.uploadascsvlab);
-        yourbookings=findViewById(R.id.yourbookings);
+        yourbookings=findViewById(R.id.yourbookingspharm);
         yourbookings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
