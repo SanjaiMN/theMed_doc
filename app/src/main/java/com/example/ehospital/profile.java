@@ -35,7 +35,7 @@ import java.util.Objects;
 public class profile extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth fbAuth;
-    CardView slots,profile;
+    CardView slots,profile,slotavail;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class profile extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
             slots=findViewById(R.id.slotcard);
             profile=findViewById(R.id.profilecarddoctor);
+            slotavail=findViewById(R.id.slotavail);
             slots.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,6 +58,13 @@ public class profile extends AppCompatActivity {
                     startActivity(new Intent(profile.this,DoctorProfile.class));
                 }
             });
+//            slotavail.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    startActivity(new Intent(profile.this,SlotAvailability.class));
+//                }
+//            });
     }
 
     @Override

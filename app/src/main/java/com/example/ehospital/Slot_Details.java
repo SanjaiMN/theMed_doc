@@ -59,8 +59,6 @@ public class Slot_Details extends AppCompatActivity implements RecyclerInterface
         recycleradapter = new recyclerAdapter_slot(getApplicationContext(),this,list);
         DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
         databaseReference=databaseReference.child("slot_Booked").child(uid);
-       // System.out.println(">>>>>>>>>>>>>"+databaseReference);
-        //Query query=databaseReference.orderByChild("uid").equalTo(uid);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

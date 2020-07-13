@@ -44,7 +44,7 @@ public class Grid_base_adapter extends BaseAdapter {
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.grid_item, null);
             TextView textView = (TextView) grid.findViewById(R.id.textgrid);
-            ImageView imageView = (ImageView)grid.findViewById(R.id.imagegrid);
+            ImageView imageView = (ImageView) grid.findViewById(R.id.imagegrid);
             textView.setText(web[position]);
             imageView.setImageResource(Imageid[position]);
         } else {
@@ -53,5 +53,5 @@ public class Grid_base_adapter extends BaseAdapter {
 
         return grid;
     }
-    }
+}
 

@@ -46,19 +46,20 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class doctor_registration extends AppCompatActivity {
+public class doctor_registration extends AppCompatActivity
+{
     de.hdodenhof.circleimageview.CircleImageView Profile, dp;
     public Uri imageuri;
-    RadioGroup rg;
-    RadioButton gender;
+    RadioGroup rg,rg2;
+    RadioButton gender,slotime;
     EditText nameet;
     EditText ageet;
     EditText workinget, email;
     String gender1, specalization;
     ImageButton addlocation;
-    int id;
+    int id,id2;
     double lats,longs;
-    String name, age, working_in, mail;
+    String name, age, working_in, mail,slotname1;
     ImageButton nextbt,info;
     ProgressDialog pd;
     StorageReference imageref;
@@ -66,7 +67,6 @@ public class doctor_registration extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth fbAuth;
     String uid;
-    SharedPreferences sharedPreferences;
     LocationManager locationManager;
 
     @Override
@@ -83,6 +83,7 @@ public class doctor_registration extends AppCompatActivity {
         rg = findViewById(R.id.radiogroup);
         addlocation = findViewById(R.id.addlocationlab);
         info=findViewById(R.id.ibinfolab);
+        rg2=findViewById(R.id.slotmae);
         name = nameet.getText().toString();
         age = ageet.getText().toString();
         working_in = workinget.getText().toString();
@@ -148,7 +149,6 @@ public class doctor_registration extends AppCompatActivity {
 
     public void selectimage() {
         Intent intent = new Intent();
-        // ivc.setVisibility(View.VISIBLE);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 1);
@@ -157,6 +157,8 @@ public class doctor_registration extends AppCompatActivity {
     public void sendtodatabase() {
         id = rg.getCheckedRadioButtonId();
         gender = findViewById(id);
+        id2=rg2.getCheckedRadioButtonId();
+        slotime=findViewById(id2);
         final String androiid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         if (valid()) {
             if (name.length() > 1 && Integer.parseInt(age) > 22 && working_in.length() > 1) {
@@ -187,20 +189,13 @@ public class doctor_registration extends AppCompatActivity {
                             String uid = sharedPreferences.getString("uid", "");
                             SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             specalization = sharedPreferences5.getString("category_selected", "");
-                            String sessionId = "no";
-                            String tokenid = "no";
-                            String Request = "no";
                             sharedPreferences = getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor1 = sharedPreferences.edit();
                             editor1.putString("prefs", "");
                             editor1.putString("prefs", "doctor");
                             editor1.commit();
-                            doctor_details doctor_details = new doctor_details(name, mail, gender1, specalization, working_in, age, profile_pic, sessionId, tokenid, uid, Request, "doctor", 1f,lats,longs);
+                            doctor_details doctor_details = new doctor_details(name,mail,gender1,specalization,working_in,age,profile_pic,uid,false,"doctor",slotname1,1f,lats,longs);
                             databaseReference.child(uid).setValue(doctor_details);
-                            for(int i=1;i<=16;i++)
-                            {
-                                databaseReference.child(uid).child("Slots").child("slot"+i).setValue(false);
-                            }
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));
                         }
@@ -246,7 +241,6 @@ public class doctor_registration extends AppCompatActivity {
                                 imageuri);
                 dp.setImageBitmap(bitmap);
             } catch (IOException e) {
-                // Log the exception
                 e.printStackTrace();
             }
         } else {
@@ -262,10 +256,11 @@ public class doctor_registration extends AppCompatActivity {
             working_in = workinget.getText().toString();
             mail = email.getText().toString();
             gender1 = gender.getText().toString();
+            slotname1=slotime.getText().toString();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Empty values!!!", Toast.LENGTH_SHORT).show();
         }
-        if (name.isEmpty() || age.isEmpty() || working_in.isEmpty() || mail.isEmpty() || lats==0.0 && longs==0.0) {
+        if (name.isEmpty() || age.isEmpty() || working_in.isEmpty() || mail.isEmpty() || lats==0.0 && longs==0.0 || slotname1.isEmpty()) {
             if (name.isEmpty())
                 nameet.setError("Can't be empty");
             if (age.isEmpty())

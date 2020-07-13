@@ -207,7 +207,8 @@ public class ChatActivity extends AppCompatActivity
             Toast.makeText(ChatActivity.this,"no media selected",Toast.LENGTH_SHORT).show();
         }
     }
-    private void sendimagetodatabase(Uri imageuri) {
+    private void sendimagetodatabase(Uri imageuri)
+    {
         StorageReference storageReference= FirebaseStorage.getInstance().getReference().child("Imagesmessage").child(""+System.currentTimeMillis());
         storageReference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

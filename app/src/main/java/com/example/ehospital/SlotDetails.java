@@ -15,7 +15,8 @@ public class SlotDetails implements Parcelable {
     public boolean cancelled;
     public boolean confirmation;
     public boolean payment;
-    public SlotDetails(String date, String time, String name, String duid,String puid,String dname,String specalization,String shortdescription,boolean cancelled,boolean confirmation,boolean payment) {
+    public String mode;
+    public SlotDetails(String date, String time, String name, String duid,String puid,String dname,String specalization,String shortdescription,boolean cancelled,boolean confirmation,boolean payment,String mode) {
         this.date = date;
         this.time = time;
         this.name = name;
@@ -27,6 +28,7 @@ public class SlotDetails implements Parcelable {
         this.cancelled=cancelled;
         this.confirmation=confirmation;
         this.payment=payment;
+        this.mode=mode;
     }
     public SlotDetails() {
     }
@@ -43,6 +45,7 @@ public class SlotDetails implements Parcelable {
         cancelled = in.readByte() != 0;
         confirmation = in.readByte() != 0;
         payment = in.readByte() != 0;
+        mode = in.readString();
     }
 
     public static final Creator<SlotDetails> CREATOR = new Creator<SlotDetails>() {
@@ -75,5 +78,6 @@ public class SlotDetails implements Parcelable {
         dest.writeByte((byte) (cancelled ? 1 : 0));
         dest.writeByte((byte) (confirmation ? 1 : 0));
         dest.writeByte((byte) (payment ? 1 : 0));
+        dest.writeString(mode);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.ehospital;
 
-import java.util.StringTokenizer;
-
 public class doctor_details
 {
     public String name;
@@ -11,15 +9,14 @@ public class doctor_details
     public String working_in;
     public String age;
     public String profile_pic;
-    public String SessionId;
-    public String TokenId;
     public String uid;
-    public String Request;
+    public boolean isverified;
     public String doctororlab;
+    public String slottime;
     public float ratings;
     public double lats,longs;
 
-    public doctor_details(String name,String mail, String gender, String specalization, String working_in, String age, String profile_pic, String SessionId, String TokenId,String uid,String Request,String doctororlab,float ratings,double lats,double longs) {
+    public doctor_details(String name,String mail, String gender, String specalization, String working_in, String age, String profile_pic,String uid,boolean isverified,String doctororlab,String slottime,float ratings,double lats,double longs) {
         this.name = name;
         this.mail=mail;
         this.gender = gender;
@@ -27,11 +24,10 @@ public class doctor_details
         this.age = age;
         this.working_in = working_in;
         this.profile_pic=profile_pic;
-        this.SessionId=SessionId;
-        this.TokenId=TokenId;
         this.uid=uid;
-        this.Request=Request;
+        this.isverified=isverified;
         this.doctororlab=doctororlab;
+        this.slottime=slottime;
         this.ratings=ratings;
         this.lats=lats;
         this.longs=longs;

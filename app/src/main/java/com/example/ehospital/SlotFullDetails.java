@@ -1,32 +1,58 @@
 package com.example.ehospital;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class SlotFullDetails extends AppCompatActivity
 {
     TextView name,date,time,shortdesc;
-    Button confirmation,cancel,reports;
+    Button confirmation,cancel,reports,prescription;
     FirebaseDatabase firebaseDatabase;
+    Uri imageuri;
     DatabaseReference databaseReference;
-    String uid,patientuid,uidcheck;
+    String uid,patientuid,uidcheck,mode;
     ImageButton letschat,videocall;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slot_full_details);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         name=findViewById(R.id.namefd);
         date=findViewById(R.id.datefd);
         time=findViewById(R.id.timefd);
@@ -36,12 +62,14 @@ public class SlotFullDetails extends AppCompatActivity
         cancel=findViewById(R.id.cancelbutton);
         reports=findViewById(R.id.healthreports);
         videocall=findViewById(R.id.videocall);
+        prescription=findViewById(R.id.prescription);
         Intent intent=getIntent();
         SlotDetails slotDetails = intent.getParcelableExtra("slotconfirm");
         name.append(slotDetails.name);
         date.append(slotDetails.date);
         time.append(slotDetails.time);
         patientuid=slotDetails.puid;
+        mode=slotDetails.mode;
         if(!slotDetails.payment)
         {
             videocall.setVisibility(View.INVISIBLE);
@@ -49,8 +77,16 @@ public class SlotFullDetails extends AppCompatActivity
         }
         else
         {
-            videocall.setVisibility(View.VISIBLE);
-            letschat.setVisibility(View.VISIBLE);
+            if(mode.equals("Video call"))
+            {
+                videocall.setVisibility(View.VISIBLE);
+                letschat.setVisibility(View.INVISIBLE);
+            }
+            if(mode.equals("Chat"))
+            {
+                letschat.setVisibility(View.VISIBLE);
+                videocall.setVisibility(View.INVISIBLE);
+            }
         }
         shortdesc.append(slotDetails.shortdescription);
         if(slotDetails.confirmation) {
@@ -103,7 +139,8 @@ public class SlotFullDetails extends AppCompatActivity
                 finish();
             }
         });
-        reports.setOnClickListener(new View.OnClickListener() {
+        reports.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -112,11 +149,87 @@ public class SlotFullDetails extends AppCompatActivity
                 startActivity(intent1);
             }
         });
+        prescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                imageuri = Uri.fromFile(new File(new File(getExternalCacheDir().getAbsolutePath()) + ("/" + time + ".jpg")));
+                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageuri);
+                startActivityForResult(intent, 1);
+            }
+        });
         videocall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(SlotFullDetails.this,Gitsivideocall.class));
+                String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                try {
+                    JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                            .setServerURL(new URL("https://meet.jit.si"))
+                            .setRoom(uid)
+                            .setAudioMuted(false)
+                            .setVideoMuted(false)
+                            .setAudioOnly(false)
+                            .setWelcomePageEnabled(false)
+                            .setFeatureFlag("add-people.enabled" ,false)
+                            .setFeatureFlag("live-streaming.enabled" ,false)
+                            .setFeatureFlag("invite.enabled",false )
+                            .setFeatureFlag("meeting-name.enabled",false )
+                            .setFeatureFlag("meeting-password.enabled",false )
+                            .setFeatureFlag("raise-hand.enabled",false )
+                            .setFeatureFlag("recording.enabled",false )
+                            .setFeatureFlag("tile-view.enabled",false )
+                            .build();
+                    JitsiMeetActivity.launch(SlotFullDetails.this, options);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+
+                //use imageUri here to access the image
+
+//                Bundle extras = data.getExtras();
+
+                Log.e("URI",imageuri.toString());
+                sendaudiotodatabase();
+//                Bitmap bmp = (Bitmap) extras.get("data.toString());
+
+                // here you will get the image as bitmap
+
+
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Picture was not taken", Toast.LENGTH_SHORT);
+            }
+        }
+    }
+    private void sendaudiotodatabase() {
+        StorageReference storageReference= FirebaseStorage.getInstance().getReference().child("Audios").child(""+System.currentTimeMillis());
+        storageReference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        String url=task.getResult().toString();
+                        System.out.println(url);
+                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Prescription").child(uidcheck).push();
+                        databaseReference.setValue(url);
+                    }
+                });
             }
         });
     }
