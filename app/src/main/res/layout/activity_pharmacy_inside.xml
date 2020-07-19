@@ -3,24 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#ddd"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".PharmacyInside">
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/submitmed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_custom"
-        android:fontFamily="@font/lilita_one"
-        android:text="Submit"
-        android:textColor="#fff"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintVertical_bias="0.917"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Upload"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp" />
 
     <ImageButton
         android:id="@+id/attachfiles"
@@ -29,22 +33,98 @@
         android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521"
+        app:layout_constraintVertical_bias="0.919"
         app:srcCompat="@drawable/ic_baseline_attach_file_24" />
 
     <TextView
         android:id="@+id/filename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/josefin_sans_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintVertical_bias="0.977" />
 
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:fontFamily="@font/josefin_sans"
+        android:text="CSV file:A CSV (comma-separated values) file is a text file that has a specific format which allows data to be saved in a table structured format."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:clickable="true"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:textColor="@color/colorAccent"
+        android:text="Online excel to csv converter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:text="Inside Excel Go to File -> Save As -> Change the extension to csv and upload it by attaching the files"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="348dp"
+        android:layout_height="207dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304"
+        fancy:srcCompat="@drawable/pharmacydemocsv" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:fontFamily="@font/josefin_sans_semibold"
+        android:text="Note : Don't use comma inside medicine category column use slashes(/),The above image is the right way of creating the excel file otherwise it wont work"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.573" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

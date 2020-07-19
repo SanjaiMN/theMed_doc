@@ -8,26 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:10437282729:android:9a3714fa83640280b692b8",
+        "mobilesdk_app_id": "1:10437282729:android:13bbf637cbbed94bb692b8",
         "android_client_info": {
-          "package_name": "com.example.ehospital"
+          "package_name": "com.example.themed_admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "10437282729-1926jfueurotfe02llh0q7tpf38v0phe.apps.googleusercontent.com",
+          "client_id": "10437282729-lgtinf2r1b4n0cdgeiduj6879b4do742.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ehospital",
-            "certificate_hash": "77b54e5824fe24b8295a61f20404d65333563a7d"
-          }
-        },
-        {
-          "client_id": "10437282729-35bt4ok2ae972kqi5adqqec5d9stndbs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.ehospital",
-            "certificate_hash": "e8e324fa60255ca593f1c79d243edb7d4a5385ba"
+            "package_name": "com.example.themed_admin",
+            "certificate_hash": "9b244fadb4e41230d96c438dc6b22f1332af988f"
           }
         },
         {
@@ -53,34 +45,55 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:10437282729:android:7e70fc581512e599b692b8",
+        "mobilesdk_app_id": "1:10437282729:android:92e22d46e55ef191b692b8",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.i18nsolutions.themed"
         }
       },
       "oauth_client": [
         {
-          "client_id": "10437282729-m8emglc052spfh0ae2tbt0a00lhet3a3.apps.googleusercontent.com",
+          "client_id": "10437282729-6qg6omfg74ddb6p2fl1sl1tq9jptrkbg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.myapplication",
-            "certificate_hash": "f4f4402a80fee191cdf3bfbe46b1c590c2507bdc"
+            "package_name": "com.i18nsolutions.themed",
+            "certificate_hash": "27a6043716a23b817b60d7a102cc01e2ed1f9c27"
           }
         },
         {
-          "client_id": "10437282729-jqk8e6i1r8m3oo6hu21akp1nmqv6ggl9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.myapplication",
-            "certificate_hash": "77b54e5824fe24b8295a61f20404d65333563a7d"
-          }
-        },
+          "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
         {
-          "client_id": "10437282729-e5mrbjbsdrqahoafbi2991npr60r561f.apps.googleusercontent.com",
+          "current_key": "AIzaSyC4bDBo_V0wci9pQRyd_S7uAI2ScwJDMeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10437282729-4jls062u27ccioglu6qv009lad5m2ag0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10437282729:android:13e86809ed009262b692b8",
+        "android_client_info": {
+          "package_name": "com.i18nsolutions.themeddoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10437282729-7mkctpr2oqlpgo27v9vai1eb2kt9bbvv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.myapplication",
-            "certificate_hash": "e8e324fa60255ca593f1c79d243edb7d4a5385ba"
+            "package_name": "com.i18nsolutions.themeddoc",
+            "certificate_hash": "1afd50a94d94604923c8d45aee23bf61d2d1259b"
           }
         },
         {

@@ -31,7 +31,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="5dp"
         android:textColor="#fff"
-        android:fontFamily="@font/lilita_one"
+        android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"

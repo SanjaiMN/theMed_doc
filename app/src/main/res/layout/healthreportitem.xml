@@ -23,6 +23,7 @@
         <TextView
             android:id="@+id/pdfname"
             android:gravity="center"
+            android:fontFamily="@font/josefin_sans_bold"
             android:layout_gravity="center"
             android:layout_width="100dp"
             android:layout_height="50dp"/>

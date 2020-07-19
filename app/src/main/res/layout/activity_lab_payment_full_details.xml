@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".LabPaymentFullDetails">
 
@@ -11,81 +12,146 @@
         android:id="@+id/customernamepaylabfull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
-        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:textColor="#000"
         android:textSize="20sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <TextView
         android:id="@+id/testnamepayfulllab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:layout_width="323dp"
+        android:layout_height="34dp"
+        android:fontFamily="@font/josefin_sans_semibold"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintTop_toBottomOf="@+id/customernamepaylabfull"
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/walkinorhome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/josefin_sans_bold"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:textSize="15sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintTop_toBottomOf="@+id/testnamepayfulllab"
+        app:layout_constraintVertical_bias="0.0" />
 
     <FrameLayout
         android:id="@+id/mapLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/deliveredlab">
 
-        <fragment
-            android:id="@+id/maplab"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="412dp"
-            android:layout_height="497dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/reviews"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:text="Maps"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+            </androidx.cardview.widget.CardView>
+            <fragment
+                android:id="@+id/maplab"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+        </LinearLayout>
+
     </FrameLayout>
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/start_BT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_margin="20dp"
         android:gravity="center"
         android:onClick="drawRoute"
-        android:text="start"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957" />
+        app:layout_constraintVertical_bias="0.957"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Start"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/deliveredlab"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/walkinorhome"
+        app:layout_constraintVertical_bias="0.0"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Delivered"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/nomapslab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="They Chose Walkin"
+        android:fontFamily="@font/josefin_sans"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.651" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,16 +20,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="#65CDFB"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/datepaylab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lilita_one"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Date:"
-            android:textColor="#fff"
+            android:gravity="center"
+            android:textColor="#000"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,9 +41,10 @@
             android:id="@+id/amountpaylab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lilita_one"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:gravity="center"
             android:text="Amount:"
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

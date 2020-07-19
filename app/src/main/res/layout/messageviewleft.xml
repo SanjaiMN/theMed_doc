@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_bold"
                 android:text="Helloworld"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -43,6 +43,7 @@
                 android:textColor="#fff"
                 android:layout_marginBottom="8dp"
                 android:text="@string/app_name"
+                android:fontFamily="@font/josefin_sans"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textSize="12sp" />
             <ImageButton

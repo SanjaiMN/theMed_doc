@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:background="@drawable/v"
     tools:context=".MainActivity">
@@ -12,17 +13,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
+        android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
-        android:text="Login"
-        android:textColor="#2CB8BE"
+        android:text="Login/Sign up"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.31" />
 
     <RelativeLayout
         android:id="@+id/phoneAuth"
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301">
+        app:layout_constraintVertical_bias="0.43">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,9 +46,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:text="Phone number"
-                android:textColor="#2CB8BE"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -67,32 +67,37 @@
                     android:id="@+id/phoneText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans"
                     android:hint="phone"
                     android:inputType="phone"
                     android:singleLine="true"
                     android:textColor="#fff"
-                    android:textColorHint="#ffffff" />
+                    android:textColorHint="#fff" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/sendButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/button_custom"
         android:clickable="true"
-        android:fontFamily="@font/lilita_one"
         android:onClick="sendCode"
-        android:text="Send Code"
-        android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.59000003"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Send"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp" />
 
     <EditText
         android:id="@+id/codeText"
@@ -101,56 +106,99 @@
         android:layout_alignParentEnd="true"
         android:background="@drawable/rounded_edit_txt"
         android:ems="10"
+        android:fontFamily="@font/josefin_sans"
         android:hint="Code"
-        android:textColor="#fff"
         android:inputType="number"
+        android:textColor="#fff"
         android:textColorHint="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.76" />
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/verifyButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_alignStart="@+id/codeText"
         android:layout_alignLeft="@+id/codeText"
         android:layout_alignEnd="@+id/codeText"
         android:layout_alignRight="@+id/codeText"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/button_custom"
         android:clickable="true"
-        android:fontFamily="@font/lilita_one"
         android:onClick="verifyCode"
-        android:text="Verify Code"
-        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintVertical_bias="0.88"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_fontIconResource="&#x27A4;"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Verify Code"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp" />
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/resendButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/verifyButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/button_custom"
         android:clickable="true"
-        android:fontFamily="@font/lilita_one"
         android:onClick="resendCode"
-        android:text="Resend Code"
-        android:textColor="#ffff"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.59000003"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Resend"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:text="the-Med"
+        android:textColor="#042987"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/josefin_sans"
+        android:gravity="center"
+        android:text="For Doctors,Laboratories and Pharmacy"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.017" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

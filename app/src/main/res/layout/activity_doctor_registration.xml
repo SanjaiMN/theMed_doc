@@ -3,21 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     app:showPaths="true"
     tools:context=".doctor_registration">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="298dp"
-        android:layout_height="200dp"
+        android:layout_width="299dp"
+        android:layout_height="242dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36">
+        app:layout_constraintVertical_bias="0.35000002">
 
 
         <EditText
@@ -29,9 +30,9 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Name"
-            android:inputType="textPersonName"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:maxLength="15"
+            android:fontFamily="@font/josefin_sans_semibold"
+            android:inputType="textCapWords"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,10 +47,10 @@
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
+            android:maxLength="40"
             android:hint="Working In"
-            android:inputType="textPersonName"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:fontFamily="@font/josefin_sans_semibold"
+            android:inputType="textCapWords"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,9 +68,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Age"
-            android:inputType="textPersonName"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:inputType="number"
+            android:fontFamily="@font/josefin_sans_semibold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,10 +85,22 @@
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
             android:gravity="center"
+            android:fontFamily="@font/josefin_sans_semibold"
             android:hint="Email"
-            android:inputType="textPersonName"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/mobiledoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edit_txt"
+            android:ems="10"
+            android:maxLength="10"
+            android:gravity="center"
+            android:fontFamily="@font/josefin_sans_semibold"
+            android:hint="Mobile"
+            android:inputType="phone"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -98,7 +110,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
+        android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
         android:text="Register with your details"
         android:textColor="@color/colorPrimary"
@@ -113,8 +125,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dp"
-        android:layout_width="122dp"
-        android:layout_height="117dp"
+        android:layout_width="110dp"
+        android:layout_height="101dp"
         android:scaleType="centerCrop"
         android:src="@drawable/profile"
         app:civ_border_color="#000"
@@ -135,52 +147,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86">
+        app:layout_constraintVertical_bias="0.89">
 
         <RadioButton
             android:id="@+id/radioButton"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Male"
-            android:textColor="#fff" />
+            android:textColor="#000" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Female"
-            android:textColor="#fff" />
+            android:textColor="#000" />
     </RadioGroup>
 
-    <ImageButton
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/labnextbt"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/next"
+        android:layout_width="120sp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.993" />
+        app:layout_constraintVertical_bias="0.992"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Register"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFontRes="@font/josefin_sans_bold"
+        fancy:fb_textSize="20sp"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-        android:layout_width="51dp"
-        android:layout_height="38dp"
+        android:layout_width="39dp"
+        android:layout_height="22dp"
         android:backgroundTint="#fff"
         android:src="@drawable/camera"
         android:tintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <ImageButton
         android:id="@+id/addlocationlab"
@@ -189,10 +209,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622"
+        app:layout_constraintVertical_bias="0.67"
         app:srcCompat="@drawable/ic_baseline_add_location_24" />
 
     <TextView
@@ -200,12 +220,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add your current Location"
+        android:fontFamily="@font/josefin_sans_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.606" />
 
     <ImageButton
         android:id="@+id/ibinfolab"
@@ -214,10 +235,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572"
+        app:layout_constraintVertical_bias="0.613"
         app:srcCompat="@drawable/ic_baseline_info_24" />
 
     <RadioGroup
@@ -230,31 +251,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76">
+        app:layout_constraintVertical_bias="0.81">
 
         <RadioButton
             android:id="@+id/morning"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Morning"
-            android:textColor="#fff" />
+            android:textColor="#000" />
 
         <RadioButton
             android:id="@+id/afternoon"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Afternoon"
-            android:textColor="#fff" />
+            android:textColor="#000" />
 
         <RadioButton
             android:id="@+id/evening"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Evening"
-            android:textColor="#fff" />
+            android:textColor="#000" />
     </RadioGroup>
 
     <TextView
@@ -262,11 +286,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Slot wish"
+        android:fontFamily="@font/josefin_sans_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.734" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

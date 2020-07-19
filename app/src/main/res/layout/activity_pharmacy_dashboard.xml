@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:gravity="center"
                 android:text="Enter Manually"
                 android:textColor="#fff"
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_keyboard_24" />
+                android:src="@drawable/iconforkeyboard" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:gravity="center"
                 android:text="Upload csv file"
                 android:textColor="#fff"
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/uploadcsv" />
+                android:src="@drawable/filesdashboard" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:gravity="center"
                 android:text="Profile"
                 android:textColor="#fff"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_account_box_24" />
+                android:src="@drawable/profileoflabtechnician" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:gravity="center"
                 android:text="Your Medicines"
                 android:textColor="#fff"
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_account_box_24" />
+                android:src="@drawable/iconforyourmed" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -169,7 +169,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lilita_one"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:gravity="center"
                 android:text="Your Bookings"
                 android:textColor="#fff"
@@ -179,14 +179,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_account_box_24" />
+                android:src="@drawable/bookingsdashboard" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lilita_one"
+        android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
         android:text="TheMed Pharmacy"
         android:textColor="@color/colorPrimary"

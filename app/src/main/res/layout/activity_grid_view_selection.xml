@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Choose your domain"
         android:textSize="30sp"
-        android:fontFamily="@font/lilita_one"
+        android:fontFamily="@font/josefin_sans_bold"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
