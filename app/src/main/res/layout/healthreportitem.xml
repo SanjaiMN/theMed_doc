@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="200dp"
     android:layout_height="200dp"
+    app:cardBackgroundColor="@color/semiTransparentColor"
+    app:cardElevation="0dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +26,7 @@
             android:id="@+id/pdfname"
             android:gravity="center"
             android:fontFamily="@font/josefin_sans_bold"
+            android:textColor="#fff"
             android:layout_gravity="center"
             android:layout_width="100dp"
             android:layout_height="50dp"/>

@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.TextView;
+
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class GridViewSelection extends AppCompatActivity
 {
     GridView gridView;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,7 +27,14 @@ public class GridViewSelection extends AppCompatActivity
                 R.drawable.ayurveda,R.drawable.sidhha,R.drawable.homeopathy,R.drawable.yoga,R.drawable.accupuncture,R.drawable.psychology
                 ,R.drawable.dietician,R.drawable.cosmetology,R.drawable.dentist};
         Grid_base_adapter grid_base_adapter=new Grid_base_adapter(GridViewSelection.this,category_prob,image);
+        textView=findViewById(R.id.chooseurdomain);
         gridView=(GridView)findViewById(R.id.grid);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(GridViewSelection.this, "GridViewSelection");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(textView,"Doctor!!! select your expertise", "GOT IT");
+        sequence.start();
         gridView.setAdapter(grid_base_adapter);
         gridView.setOnItemClickListener((parent, view, position, id) -> {
             SharedPreferences sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);

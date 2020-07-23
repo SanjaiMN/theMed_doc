@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".ShowPrescription">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/prescriptionrecycler"
-        android:layout_width="404dp"
-        android:layout_height="683dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.492"/>
+        app:layout_constraintVertical_bias="0.492" />
 
     <TextView
         android:id="@+id/tvnoprescription"
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="No Prescriptions yet"
         android:visibility="gone"
+        android:textColor="#fff"
         android:fontFamily="@font/josefin_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/prescriptionrecycler"

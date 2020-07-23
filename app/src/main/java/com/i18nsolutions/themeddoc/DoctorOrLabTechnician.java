@@ -18,6 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class DoctorOrLabTechnician extends AppCompatActivity
 {
     String uid="",uidcheck="";
@@ -62,6 +65,14 @@ public class DoctorOrLabTechnician extends AppCompatActivity
         doctorlogin=findViewById(R.id.doctorlogin);
         lablogin=findViewById(R.id.lablogin);
         pharmacylogin=findViewById(R.id.pharmacylogin);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(DoctorOrLabTechnician.this, "DoctorOrLabTechnician");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(doctorlogin,"This is for doctors to register for the first time...", "GOT IT");
+        sequence.addSequenceItem(lablogin, "This is for laboratory login...", "GOT IT");
+        sequence.addSequenceItem(pharmacylogin,"Don't worry Pharmacy is also here...", "GOT IT");
+        sequence.start();
         doctorlogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,GridViewSelection.class)));
         lablogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,LabRegistration.class)));
         pharmacylogin.setOnClickListener(view -> startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyRegistration.class)));

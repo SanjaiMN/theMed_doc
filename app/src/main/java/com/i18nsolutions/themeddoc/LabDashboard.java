@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class LabDashboard extends AppCompatActivity
 {
     CardView yourtests,profile,entermanually,uploadascsvlab,yourbookings;
@@ -21,6 +24,16 @@ public class LabDashboard extends AppCompatActivity
         entermanually=findViewById(R.id.manuallab);
         uploadascsvlab=findViewById(R.id.uploadascsvlab);
         yourbookings=findViewById(R.id.yourbookingslab);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabDashboard.this, "LabDashboard");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(yourtests,"Check which tests are in your concern", "GOT IT");
+        sequence.addSequenceItem(profile, "Want to see your profile hit here", "GOT IT");
+        sequence.addSequenceItem(entermanually,"To enter the lab tests details manually for minor corrections", "GOT IT");
+        sequence.addSequenceItem(uploadascsvlab,"To upload the lab test details in csv format", "GOT IT");
+        sequence.addSequenceItem(yourbookings,"Check who booked your lab for taking tests", "GOT IT");
+        sequence.start();
         yourbookings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

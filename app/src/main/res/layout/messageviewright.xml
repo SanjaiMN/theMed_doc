@@ -15,7 +15,7 @@
         app:cmv_arrowGravity="end"
         app:cmv_arrowMargin="3dp"
         app:cmv_arrowPosition="right"
-        app:cmv_backgroundColor="#ddd"
+        app:cmv_backgroundColor="@color/semiTransparentColor"
         app:cmv_backgroundColorPressed="#ddd"
         app:cmv_contentPadding="3dp"
         app:cmv_cornerRadius="10dp"

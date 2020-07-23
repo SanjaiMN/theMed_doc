@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".PharmacyFullDetails">
 
 
@@ -13,13 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:textColor="#000"
-        android:textSize="20sp"
         android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/testnamepayfulllab"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/testnamepayfulllab"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
@@ -29,6 +30,7 @@
         android:layout_height="34dp"
         android:fontFamily="@font/josefin_sans_semibold"
         android:gravity="center"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,13 +43,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans_bold"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15sp"
         android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/testnamepayfulllab"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/testnamepayfulllab"
         app:layout_constraintTop_toBottomOf="@+id/testnamepayfulllab"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -69,7 +71,7 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="#4000"
                 app:layout_constraintBottom_toTopOf="@+id/reviews"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -128,8 +130,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/testnamepayfulllab"
+        app:layout_constraintStart_toStartOf="@+id/testnamepayfulllab"
         app:layout_constraintTop_toBottomOf="@+id/walkinorhome"
         app:layout_constraintVertical_bias="0.0"
         fancy:fb_defaultColor="@color/colorPrimary"
@@ -138,7 +140,7 @@
         fancy:fb_text="Delivered"
         fancy:fb_textColor="#FFFFFF"
         fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp"/>
+        fancy:fb_textSize="20sp" />
 
     <TextView
         android:id="@+id/nomapslab"

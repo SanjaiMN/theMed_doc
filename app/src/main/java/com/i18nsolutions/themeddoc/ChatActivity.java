@@ -69,6 +69,7 @@ public class ChatActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Chat With Patient");
         setContentView(R.layout.activity_chat);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewmessage);
         messagesend=findViewById(R.id.messagesend);

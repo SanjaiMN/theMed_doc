@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".profile">
 
     <androidx.cardview.widget.CardView
@@ -11,17 +12,19 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.110000014">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@color/semiTransparentColor"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -40,7 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:foregroundGravity="center"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/bookingsdashboard" />
 
         </LinearLayout>
@@ -51,18 +53,19 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81">
+        app:layout_constraintEnd_toEndOf="@+id/slotcard"
+        app:layout_constraintStart_toStartOf="@+id/slotcard"
+        app:layout_constraintTop_toBottomOf="@+id/slotcard"
+        app:layout_constraintVertical_bias="0.25">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@color/semiTransparentColor"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -80,7 +83,6 @@
                 android:id="@+id/animationView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/doctoravatar" />
 
         </LinearLayout>
@@ -91,11 +93,12 @@
         android:id="@+id/imageView"
         android:layout_width="167dp"
         android:layout_height="190dp"
+        android:layout_marginTop="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155"
+        app:layout_constraintEnd_toEndOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logodoc" />
 
     <TextView

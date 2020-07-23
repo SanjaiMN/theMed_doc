@@ -39,6 +39,7 @@ public class MedicineLists extends AppCompatActivity implements SearchView.OnQue
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Your Medicines");
         setContentView(R.layout.activity_medicine_lists);
         progressBar=findViewById(R.id.progressBar2);
         textView=findViewById(R.id.notvmedicinelist);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".HealthReports">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans"
         android:text="No Health reports yet"
+        android:textColor="#fff"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recyclerviewreports"
         app:layout_constraintStart_toStartOf="parent"

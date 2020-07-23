@@ -18,11 +18,12 @@
         android:text="Login/Sign up"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintBottom_toTopOf="@+id/phoneAuth"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.544" />
 
     <RelativeLayout
         android:id="@+id/phoneAuth"
@@ -30,13 +31,13 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/rounded_edit_txt"
+        android:background="@drawable/forradiobuttons"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43">
+        app:layout_constraintVertical_bias="0.41000003">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,11 +69,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefin_sans"
-                    android:hint="phone"
+                    android:hint="Phone"
                     android:inputType="phone"
                     android:singleLine="true"
                     android:textColor="#fff"
-                    android:textColorHint="#fff" />
+                    android:textColorHint="#80ffffff" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -86,10 +87,10 @@
         android:onClick="sendCode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59000003"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phoneAuth"
+        app:layout_constraintTop_toBottomOf="@+id/phoneAuth"
+        app:layout_constraintVertical_bias="0.111"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -110,13 +111,12 @@
         android:hint="Code"
         android:inputType="number"
         android:textColor="#fff"
-        android:textColorHint="#ffffff"
+        android:textColorHint="#80ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintEnd_toEndOf="@+id/resendButton"
+        app:layout_constraintStart_toStartOf="@+id/sendButton"
+        app:layout_constraintTop_toBottomOf="@+id/phoneAuth"
+        app:layout_constraintVertical_bias="0.487" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/verifyButton"
@@ -127,14 +127,15 @@
         android:layout_alignEnd="@+id/codeText"
         android:layout_alignRight="@+id/codeText"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="34dp"
         android:clickable="true"
         android:onClick="verifyCode"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88"
+        app:layout_constraintEnd_toEndOf="@+id/codeText"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="@+id/codeText"
+        app:layout_constraintTop_toBottomOf="@+id/codeText"
+        app:layout_constraintVertical_bias="0.061"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_fontIconResource="&#x27A4;"
@@ -150,6 +151,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="35dp"
         android:clickable="true"
         android:onClick="resendCode"
         android:paddingLeft="20dp"
@@ -157,11 +159,11 @@
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintEnd_toEndOf="@+id/phoneAuth"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59000003"
+        app:layout_constraintTop_toBottomOf="@+id/phoneAuth"
+        app:layout_constraintVertical_bias="0.0"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -179,12 +181,12 @@
         android:text="the-Med"
         android:textColor="#042987"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <TextView
         android:id="@+id/textView11"
@@ -194,11 +196,11 @@
         android:gravity="center"
         android:text="For Doctors,Laboratories and Pharmacy"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/phoneAuth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

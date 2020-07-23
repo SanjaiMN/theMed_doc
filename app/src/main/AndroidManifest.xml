@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/logofinalfinal"
@@ -20,9 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.i18nsolutions.themeddoc.PharmacyFullDetails" />
+        <activity android:name="com.i18nsolutions.themeddoc.PharmacyFullDetails"
+            android:parentActivityName=".PharmacyBookings"/>
         <activity android:name="com.i18nsolutions.themeddoc.PharmacyBookings" />
-        <activity android:name="com.i18nsolutions.themeddoc.CheckingyourProfile" />
         <activity android:name="com.i18nsolutions.themeddoc.ShowPrescription" />
         <activity android:name="com.i18nsolutions.themeddoc.ChatActivity" />
 
@@ -30,30 +31,52 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="com.i18nsolutions.themeddoc.LabPaymentFullDetails" />
-        <activity android:name="com.i18nsolutions.themeddoc.LabBookings" />
+        <activity android:name="com.i18nsolutions.themeddoc.LabPaymentFullDetails"
+            android:parentActivityName=".LabBookings"/>
+        <activity android:name="com.i18nsolutions.themeddoc.LabBookings"
+            android:parentActivityName=".LabDashboard"/>
         <activity android:name="com.i18nsolutions.themeddoc.HealthReports" />
-        <activity android:name="com.i18nsolutions.themeddoc.LabUploadCsv" />
+        <activity android:name="com.i18nsolutions.themeddoc.LabUploadCsv"
+            android:parentActivityName=".LabDashboard"/>
         <activity
             android:name="com.i18nsolutions.themeddoc.LabDashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.i18nsolutions.themeddoc.PharamacyManual" />
+        <activity android:name="com.i18nsolutions.themeddoc.PharamacyManual"
+            android:parentActivityName=".PharmacyDashboard"/>
+        <receiver
+            android:name="com.i18nsolutions.themeddoc.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="com.i18nsolutions.themeddoc.PharmacyDashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.i18nsolutions.themeddoc.MedicineLists" />
-        <activity android:name="com.i18nsolutions.themeddoc.LabTests" />
-        <activity android:name="com.i18nsolutions.themeddoc.PharmacyProfile" />
-        <activity android:name="com.i18nsolutions.themeddoc.PharmacyInside" />
+        <activity android:name="com.i18nsolutions.themeddoc.MedicineLists"
+            android:parentActivityName=".PharmacyDashboard"/>
+        <activity android:name="com.i18nsolutions.themeddoc.LabTests"
+            android:parentActivityName=".LabDashboard"/>
+        <activity android:name="com.i18nsolutions.themeddoc.PharmacyProfile"
+            android:parentActivityName=".PharmacyDashboard"/>
+        <activity android:name="com.i18nsolutions.themeddoc.PharmacyInside"
+            android:parentActivityName=".PharmacyDashboard"/>
         <activity
             android:name="com.i18nsolutions.themeddoc.PharmacyRegistration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.i18nsolutions.themeddoc.LabProfile" />
-        <activity android:name="com.i18nsolutions.themeddoc.DoctorProfile" />
+        <activity android:name="com.i18nsolutions.themeddoc.LabProfile"
+            android:parentActivityName=".LabDashboard"/>
+        <activity android:name="com.i18nsolutions.themeddoc.DoctorProfile"
+            android:parentActivityName=".profile"/>
         <activity
             android:name="com.i18nsolutions.themeddoc.GridViewSelection"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.i18nsolutions.themeddoc.SlotFullDetails" />
+        <activity android:name="com.i18nsolutions.themeddoc.SlotFullDetails"
+            android:parentActivityName=".Slot_Details"/>
         <activity
             android:name="com.i18nsolutions.themeddoc.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -69,8 +92,10 @@
         <activity
             android:name="com.i18nsolutions.themeddoc.DoctorOrLabTechnician"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.i18nsolutions.themeddoc.LabTestInfo" />
-        <activity android:name="com.i18nsolutions.themeddoc.Slot_Details" />
+        <activity android:name="com.i18nsolutions.themeddoc.LabTestInfo"
+            android:parentActivityName=".LabDashboard"/>
+        <activity android:name="com.i18nsolutions.themeddoc.Slot_Details"
+            android:parentActivityName=".profile"/>
         <activity
             android:name="com.i18nsolutions.themeddoc.profile"
             android:theme="@style/AppTheme.NoActionBar" />

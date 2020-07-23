@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -66,8 +68,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class PharmacyFullDetails extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private GoogleMap mMap;
@@ -139,6 +144,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Booking details");
         setContentView(R.layout.activity_lab_payment_full_details);
         Intent intent = getIntent();
         LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
@@ -148,6 +154,12 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         walkinorhome1 = labPaymentDetails.walkinorhome;
         startBT = findViewById(R.id.start_BT);
         nomapspharm=findViewById(R.id.nomapslab);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(PharmacyFullDetails.this, "PharmacyFullDetails");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
+        sequence.start();
         mGoogleApiClient2 = new GoogleApiClient.Builder(PharmacyFullDetails.this)
                 .addApi(Places.GEO_DATA_API)
                 .enableAutoManage(this, GOOGLE_API_CLIENT_ID, this)
@@ -206,22 +218,16 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         testname = findViewById(R.id.testnamepayfulllab);
         walkinorhome = findViewById(R.id.walkinorhome);
         delivered=findViewById(R.id.deliveredlab);
+        Geocoder geocoder = new Geocoder(PharmacyFullDetails.this, Locale.getDefault());
+        List<Address> addresses  = null;
+        try {
+            addresses = geocoder.getFromLocation(destLat,destLong, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String city = addresses.get(0).getSubAdminArea().toLowerCase();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference2=FirebaseDatabase.getInstance().getReference().child("PharmacyRegistrations").child(uid).child("location");
-        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot5)
-            {
-                city=dataSnapshot5.getValue().toString();
-//                pharmacyname=dataSnapshot.child("pharmname").getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
         serialno = labPaymentDetails.serialno;
         count=labPaymentDetails.count;
         DatabaseReference databaseReference2=FirebaseDatabase.getInstance().getReference();
@@ -240,7 +246,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         testname.setText("Orders:");
         for(int i=1;i<serialarr.length;i++)
         {
-            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child("salem").child(uid).child(serialarr[i]);
+            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child(city).child(uid).child(serialarr[i]);
             String count =countarray[i];
             System.out.println(databaseReference1);
             databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);

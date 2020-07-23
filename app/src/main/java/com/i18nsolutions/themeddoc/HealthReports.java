@@ -32,6 +32,7 @@ public class HealthReports extends AppCompatActivity implements RecyclerInterfac
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Health Reports");
         setContentView(R.layout.activity_health_reports);
         progressBar=findViewById(R.id.progressBarhealthreport);
         progressBar.setVisibility(View.VISIBLE);
@@ -48,7 +49,6 @@ public class HealthReports extends AppCompatActivity implements RecyclerInterfac
     {
         DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
         databaseReference=databaseReference.child("Patient Database").child(uid).child("healthreports");
-        DatabaseReference finalDatabaseReference = databaseReference;
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             @Override

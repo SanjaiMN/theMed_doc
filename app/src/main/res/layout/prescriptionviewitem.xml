@@ -9,6 +9,8 @@
     app:cardCornerRadius="7dp"
     android:paddingEnd="5dp"
     android:paddingStart="5dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/semiTransparentColor"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -23,9 +25,10 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/pdfimageview"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="150dp"/>
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -43,7 +46,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:layout_marginEnd="57dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/josefin_sans"

@@ -46,6 +46,7 @@ public class LabUploadCsv extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Upload tests");
         setContentView(R.layout.activity_lab_upload_csv);
         attachfiles=findViewById(R.id.attachfileslab);
         upload = findViewById(R.id.submitlab);
@@ -53,13 +54,13 @@ public class LabUploadCsv extends AppCompatActivity
         webpage=findViewById(R.id.webview);
         uidlab=FirebaseAuth.getInstance().getCurrentUser().getUid();
         filename.setText("choose a csv file");
-        databaseReference2=FirebaseDatabase.getInstance().getReference().child("PharmacyRegistrations").child(uidlab);
+        databaseReference2=FirebaseDatabase.getInstance().getReference().child("LaboratoryRegistrations").child(uidlab);
         databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 city=dataSnapshot.child("location").getValue().toString();
-                labname=dataSnapshot.child("pharmname").getValue().toString();
+                labname=dataSnapshot.child("Laboratoryname").getValue().toString();
             }
 
             @Override

@@ -48,6 +48,7 @@ public class PharmacyProfile extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Pharmacy Profile");
         setContentView(R.layout.activity_pharmacy_profile);
         pharmacyname=findViewById(R.id.namepharm);
         recyclerView=findViewById(R.id.reviewpharmacy);
@@ -89,11 +90,11 @@ public class PharmacyProfile extends AppCompatActivity
                     Glide.with(PharmacyProfile.this)
                             .load("" + pharmacyDetails.profile_pic)
                             .into(profilepic);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 catch (Exception e)
                 {}
                 progressDialog.dismiss();
-                progressBar.setVisibility(View.INVISIBLE);
                 databaseReference.child("Reviews").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1)

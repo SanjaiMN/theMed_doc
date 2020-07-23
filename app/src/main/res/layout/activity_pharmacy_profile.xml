@@ -4,113 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".PharmacyProfile">
 
     <TextView
         android:id="@+id/namepharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:gravity="center|top"
-        android:textSize="20sp"
+        android:textColor="#fff"
+        android:gravity="start"
         android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profilepicpharm"
+        app:layout_constraintTop_toBottomOf="@+id/profilepicpharm"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
         android:id="@+id/Locationpharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_semibold"
-        android:foregroundGravity="center"
-        android:gravity="center|top"
+        android:textColor="#fff"
+        android:gravity="start"
         android:text="Location:"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/proprietornamepharm"
+        app:layout_constraintTop_toBottomOf="@+id/proprietornamepharm"
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/proprietornamepharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_semibold"
-        android:foregroundGravity="center"
-        android:gravity="center|top"
+        android:textColor="#fff"
+        android:gravity="start"
         android:text="Proprietor name:"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/namepharm"
+        app:layout_constraintTop_toBottomOf="@+id/namepharm"
+        app:layout_constraintVertical_bias="0.050000012" />
 
 
     <TextView
         android:id="@+id/licpharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_semibold"
-        android:gravity="center|top"
+        android:textColor="#fff"
+        android:gravity="start"
         android:text="Iso Number:"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Locationpharm"
+        app:layout_constraintTop_toBottomOf="@+id/Locationpharm"
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/addresspharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:fontFamily="@font/josefin_sans"
-        android:gravity="center|top"
+        android:textColor="#fff"
+        android:gravity="start"
         android:text="Address:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/mailpharm"
+        app:layout_constraintTop_toBottomOf="@+id/mailpharm"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <TextView
         android:id="@+id/phonepharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:gravity="center|top"
+        android:gravity="start"
         android:text="Phone:"
+        android:textColor="#fff"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/addresspharm"
+        app:layout_constraintTop_toBottomOf="@+id/addresspharm"
+        app:layout_constraintVertical_bias="0.06999999" />
 
     <TextView
         android:id="@+id/mailpharm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:gravity="center|top"
+        android:textColor="#fff"
+        android:gravity="start"
         android:text="Mail:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/licpharm"
+        app:layout_constraintTop_toBottomOf="@+id/licpharm"
+        app:layout_constraintVertical_bias="0.078" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepicpharm"
@@ -120,32 +127,34 @@
         android:src="@drawable/profileoflabtechnician"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.041" />
 
     <ProgressBar
         android:id="@+id/progressBarpharmprofile"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintBottom_toBottomOf="@+id/profilepicpharm"
+        app:layout_constraintEnd_toEndOf="@+id/profilepicpharm"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="@+id/profilepicpharm"
+        app:layout_constraintTop_toTopOf="@+id/profilepicpharm"
+        app:layout_constraintVertical_bias="0.535" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="#4000"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonepharm"
         app:layout_constraintVertical_bias="0.704">
 
         <TextView
@@ -182,10 +191,11 @@
         android:theme="@style/RatingBar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toEndOf="@+id/profilepicpharm"
+        app:layout_constraintTop_toTopOf="@+id/profilepicpharm"
+        app:layout_constraintVertical_bias="0.043" />
+
     <TextView
         android:id="@+id/noofreviewspharm"
         android:layout_width="wrap_content"
@@ -194,10 +204,10 @@
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ratingBarPharm"
-        app:layout_constraintHorizontal_bias="0.628"
-        app:layout_constraintStart_toEndOf="@+id/profilepicpharm"
+        app:layout_constraintStart_toStartOf="@+id/ratingBarPharm"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.121" />
+
     <TextView
         android:id="@+id/noreviewspp"
         android:layout_width="wrap_content"
@@ -205,6 +215,7 @@
         android:fontFamily="@font/josefin_sans"
         android:text="No reviews yet"
         android:visibility="gone"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"

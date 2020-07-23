@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundfinal"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     app:showPaths="true"
@@ -12,13 +13,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="299dp"
         android:layout_height="242dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002">
+        app:layout_constraintEnd_toEndOf="@+id/dp"
+        app:layout_constraintStart_toStartOf="@+id/dp"
+        app:layout_constraintTop_toBottomOf="@+id/dp">
 
 
         <EditText
@@ -28,11 +28,13 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
+            android:fontFamily="@font/josefin_sans_semibold"
             android:gravity="center"
             android:hint="Name"
-            android:maxLength="15"
-            android:fontFamily="@font/josefin_sans_semibold"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:inputType="textCapWords"
+            android:maxLength="15"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +48,13 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:gravity="center"
-            android:maxLength="40"
-            android:hint="Working In"
             android:fontFamily="@font/josefin_sans_semibold"
+            android:gravity="center"
+            android:hint="Working In"
             android:inputType="textCapWords"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
+            android:maxLength="40"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,10 +70,12 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
+            android:fontFamily="@font/josefin_sans_semibold"
             android:gravity="center"
             android:hint="Age"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:inputType="number"
-            android:fontFamily="@font/josefin_sans_semibold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,8 +90,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:gravity="center"
             android:fontFamily="@font/josefin_sans_semibold"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textSize="20sp" />
@@ -96,11 +104,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:maxLength="10"
-            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans_semibold"
+            android:gravity="center"
             android:hint="Mobile"
             android:inputType="phone"
+            android:maxLength="10"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -118,7 +128,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
@@ -127,27 +136,25 @@
         android:id="@+id/dp"
         android:layout_width="110dp"
         android:layout_height="101dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/profile"
         app:civ_border_color="#000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <RadioGroup
         android:id="@+id/radiogroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edit_txt"
+        android:background="@drawable/forradiobuttons"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89">
+        app:layout_constraintEnd_toEndOf="@+id/slotmae"
+        app:layout_constraintStart_toStartOf="@+id/slotmae"
+        app:layout_constraintTop_toBottomOf="@+id/slotmae"
+        app:layout_constraintVertical_bias="0.060000002">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -156,7 +163,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Male"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -165,7 +172,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Female"
-            android:textColor="#000" />
+            android:textColor="#fff" />
     </RadioGroup>
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -173,11 +180,11 @@
         android:layout_width="120sp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.992"
+        app:layout_constraintEnd_toEndOf="@+id/radiogroup"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/radiogroup"
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup"
+        app:layout_constraintVertical_bias="0.384"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -185,7 +192,7 @@
         fancy:fb_text="Register"
         fancy:fb_textColor="#FFFFFF"
         fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp"/>
+        fancy:fb_textSize="20sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
@@ -195,63 +202,53 @@
         android:backgroundTint="#fff"
         android:src="@drawable/camera"
         android:tintMode="add"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/addlocationlab"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_add_location_24" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add your current Location"
+        android:layout_marginTop="14dp"
         android:fontFamily="@font/josefin_sans_bold"
+        android:text="Add your current Location"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.606" />
-
-    <ImageButton
-        android:id="@+id/ibinfolab"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
         android:id="@+id/slotmae"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edit_txt"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/forradiobuttons"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81">
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
             android:id="@+id/morning"
@@ -260,7 +257,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Morning"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <RadioButton
             android:id="@+id/afternoon"
@@ -269,7 +266,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Afternoon"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <RadioButton
             android:id="@+id/evening"
@@ -278,20 +275,21 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Evening"
-            android:textColor="#000" />
+            android:textColor="#fff" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Slot wish"
+        android:layout_marginTop="14dp"
         android:fontFamily="@font/josefin_sans_semibold"
+        android:text="Your Slot wish"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintEnd_toEndOf="@+id/addlocationlab"
+        app:layout_constraintStart_toStartOf="@+id/addlocationlab"
+        app:layout_constraintTop_toBottomOf="@+id/addlocationlab"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

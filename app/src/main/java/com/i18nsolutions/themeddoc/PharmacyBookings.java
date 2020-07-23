@@ -33,6 +33,7 @@ public class PharmacyBookings extends AppCompatActivity implements RecyclerInter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Your Bookings");
         setContentView(R.layout.activity_pharmacy_bookings);
         recyclerView=findViewById(R.id.pharmacybookingsrecyclerview);
         progressBar=findViewById(R.id.progressBarpharmacybookings);

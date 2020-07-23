@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".PharmacyInside">
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -15,8 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917"
+        app:layout_constraintTop_toBottomOf="@+id/webview"
+        app:layout_constraintVertical_bias="0.226"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -31,12 +32,12 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="69dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/submitmed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toEndOf="@+id/submitmed"
+        app:layout_constraintTop_toTopOf="@+id/submitmed"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_baseline_attach_file_24" />
 
     <TextView
@@ -48,8 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintTop_toBottomOf="@+id/submitmed"
+        app:layout_constraintVertical_bias="0.37" />
 
 
     <TextView
@@ -59,34 +60,36 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:fontFamily="@font/josefin_sans"
+        android:textColor="#fff"
         android:text="CSV file:A CSV (comma-separated values) file is a text file that has a specific format which allows data to be saved in a table structured format."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.099" />
 
     <TextView
         android:id="@+id/webview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
         android:autoLink="web"
         android:clickable="true"
         android:fontFamily="@font/josefin_sans_bold"
-        android:textColor="@color/colorAccent"
         android:text="Online excel to csv converter"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.06" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="331dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="40dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:text="Inside Excel Go to File -> Save As -> Change the extension to csv and upload it by attaching the files"
@@ -94,21 +97,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="348dp"
-        android:layout_height="207dp"
+        android:layout_width="314dp"
+        android:layout_height="202dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.06"
         fancy:srcCompat="@drawable/pharmacydemocsv" />
 
     <TextView
@@ -122,9 +125,9 @@
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.094" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

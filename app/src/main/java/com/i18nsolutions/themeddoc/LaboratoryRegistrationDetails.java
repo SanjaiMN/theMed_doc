@@ -1,6 +1,9 @@
 package com.i18nsolutions.themeddoc;
-public class LaboratoryRegistrationDetails
-{
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class LaboratoryRegistrationDetails implements Parcelable {
     public String Laboratoryname,mail,location,proprietorname,isonumber,doctororlab,profile_pic,address,phonenumber,workinghours,uidlabreg;
     public double lats,longs;
     public float ratings;
@@ -27,5 +30,61 @@ public class LaboratoryRegistrationDetails
     }
     public LaboratoryRegistrationDetails()
     {
+    }
+
+    protected LaboratoryRegistrationDetails(Parcel in) {
+        Laboratoryname = in.readString();
+        mail = in.readString();
+        location = in.readString();
+        proprietorname = in.readString();
+        isonumber = in.readString();
+        doctororlab = in.readString();
+        profile_pic = in.readString();
+        address = in.readString();
+        phonenumber = in.readString();
+        workinghours = in.readString();
+        uidlabreg = in.readString();
+        lats = in.readDouble();
+        longs = in.readDouble();
+        ratings = in.readFloat();
+        count = in.readInt();
+        isverified = in.readByte() != 0;
+    }
+
+    public static final Creator<LaboratoryRegistrationDetails> CREATOR = new Creator<LaboratoryRegistrationDetails>() {
+        @Override
+        public LaboratoryRegistrationDetails createFromParcel(Parcel in) {
+            return new LaboratoryRegistrationDetails(in);
+        }
+
+        @Override
+        public LaboratoryRegistrationDetails[] newArray(int size) {
+            return new LaboratoryRegistrationDetails[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(Laboratoryname);
+        parcel.writeString(mail);
+        parcel.writeString(location);
+        parcel.writeString(proprietorname);
+        parcel.writeString(isonumber);
+        parcel.writeString(doctororlab);
+        parcel.writeString(profile_pic);
+        parcel.writeString(address);
+        parcel.writeString(phonenumber);
+        parcel.writeString(workinghours);
+        parcel.writeString(uidlabreg);
+        parcel.writeDouble(lats);
+        parcel.writeDouble(longs);
+        parcel.writeFloat(ratings);
+        parcel.writeInt(count);
+        parcel.writeByte((byte) (isverified ? 1 : 0));
     }
 }

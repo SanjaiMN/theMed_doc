@@ -24,6 +24,7 @@ public class PharamacyManual extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Enter Manually");
         setContentView(R.layout.activity_pharamacy_manual);
         serialno=findViewById(R.id.serialnopharmacy);
         medicinename = findViewById(R.id.medicinename);

@@ -46,6 +46,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class doctor_registration extends AppCompatActivity
 {
@@ -61,7 +63,6 @@ public class doctor_registration extends AppCompatActivity
     int id,id2;
     double lats,longs;
     String name, age, working_in, mail,slotname1,mobile1;
-    ImageButton info;
     ProgressDialog pd;
     StorageReference imageref;
     private UploadTask uploadtask;
@@ -85,8 +86,14 @@ public class doctor_registration extends AppCompatActivity
         nextbt = findViewById(R.id.labnextbt);
         rg = findViewById(R.id.radiogroup);
         addlocation = findViewById(R.id.addlocationlab);
-        info=findViewById(R.id.ibinfolab);
         rg2=findViewById(R.id.slotmae);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(doctor_registration.this, "doctor_registration");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(dp,"Register as doctor,add your profile too", "GOT IT");
+        sequence.addSequenceItem(addlocation, "Add your location and you should be in your hospital location for first time of registration", "GOT IT");
+        sequence.start();
         name = nameet.getText().toString();
         age = ageet.getText().toString();
         working_in = workinget.getText().toString();
@@ -131,23 +138,6 @@ public class doctor_registration extends AppCompatActivity
             }
         });
         user = fbAuth.getCurrentUser();
-        info.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                new AlertDialog.Builder(doctor_registration.this)
-                        .setTitle("Important")
-                        .setMessage("You must be in your hospital location")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface arg0, int arg1)
-                            {
-                                arg0.cancel();
-                            }
-                        }).create().show();
-            }
-        });
     }
 
     public void selectimage() {
@@ -157,27 +147,32 @@ public class doctor_registration extends AppCompatActivity
         startActivityForResult(intent, 1);
     }
 
-    public void sendtodatabase() {
+    public void sendtodatabase()
+    {
         id = rg.getCheckedRadioButtonId();
         gender = findViewById(id);
         id2=rg2.getCheckedRadioButtonId();
         slotime=findViewById(id2);
         final String androiid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        if (valid()) {
-            if (name.length() > 1 && Integer.parseInt(age) > 22 && working_in.length() > 1) {
+        if (valid())
+        {
+            if (name.length() > 1 && Integer.parseInt(age) > 22 && working_in.length() > 1)
+            {
                 StorageReference ref = imageref.child(androiid).child(getextension(imageuri) + "#");
-                if (imageuri == null) {
-                    imageuri = Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
+                if (imageuri == null)
+                {
+                    imageuri = Uri.parse("android.resource://com.i18nsolutions.themeddoc/drawable/noimg");
                 }
                 uploadtask = ref.putFile(imageuri);
-                uploadtask.addOnFailureListener(new OnFailureListener() {
+                uploadtask.addOnFailureListener(new OnFailureListener()
+                {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(doctor_registration.this, "failed", Toast.LENGTH_LONG).show();
-
+                    public void onFailure(@NonNull Exception e)
+                    {
+                        Toast.makeText(doctor_registration.this, "failed", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(taskSnapshot -> {
-                    Toast.makeText(doctor_registration.this, "success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(doctor_registration.this, "success", Toast.LENGTH_SHORT).show();
                     imageref.child(androiid).child(getextension(imageuri) + "#").getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
@@ -189,7 +184,7 @@ public class doctor_registration extends AppCompatActivity
                             working_in = workinget.getText().toString();
                             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                            String uid = sharedPreferences.getString("uid", "");
+                            String uid1 = sharedPreferences.getString("uid", "");
                             SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             specalization = sharedPreferences5.getString("category_selected", "");
                             sharedPreferences = getSharedPreferences("labordoc", Context.MODE_PRIVATE);
@@ -197,7 +192,7 @@ public class doctor_registration extends AppCompatActivity
                             editor1.putString("prefs", "");
                             editor1.putString("prefs", "doctor");
                             editor1.commit();
-                            doctor_details doctor_details = new doctor_details(name,mail,mobile1,gender1,specalization,working_in,age,profile_pic,uid,false,"doctor",slotname1,0f,lats,longs,0,"0");
+                            doctor_details doctor_details = new doctor_details(name,mail,mobile1,gender1,specalization,working_in,age,profile_pic,uid,false,"doctor",slotname1,1f,lats,longs,0,"0");
                             databaseReference.child(uid).setValue(doctor_details);
                             pd.dismiss();
                             startActivity(new Intent(getApplicationContext(), profile.class));
@@ -306,7 +301,7 @@ public class doctor_registration extends AppCompatActivity
                             {
 
                                 addlocation.setBackgroundColor(Color.GREEN);
-                                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
                                 arg0.cancel();
                             }
                         }).create().show();

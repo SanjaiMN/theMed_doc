@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class PharmacyDashboard extends AppCompatActivity
 {
     CardView yourmedicines,profile,entermanually,uploadascsv,yourbookings;
@@ -22,6 +25,16 @@ public class PharmacyDashboard extends AppCompatActivity
         entermanually=findViewById(R.id.manualpharmacy);
         uploadascsv=findViewById(R.id.uploadascsv);
         yourbookings=findViewById(R.id.yourbookingspharm);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(PharmacyDashboard.this, "PharmacyDashboard");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(yourmedicines,"Check which medicines are in your concern", "GOT IT");
+        sequence.addSequenceItem(profile, "Want to see your profile hit here", "GOT IT");
+        sequence.addSequenceItem(entermanually,"To enter the Medicine details manually for minor corrections", "GOT IT");
+        sequence.addSequenceItem(uploadascsv,"To upload the Medicine details in csv format", "GOT IT");
+        sequence.addSequenceItem(yourbookings,"Check who booked your pharmacy for medicines", "GOT IT");
+        sequence.start();
         yourbookings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

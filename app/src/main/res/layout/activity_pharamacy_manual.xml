@@ -5,6 +5,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".PharamacyManual">
 
     <EditText
@@ -13,15 +14,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edit_txt"
         android:ems="10"
-        android:hint="Medicine name"
         android:fontFamily="@font/josefin_sans_semibold"
+        android:hint="Medicine name"
+        android:textColor="#fff"
+        android:textColorHint="#80ffffff"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintEnd_toEndOf="@+id/serialnopharmacy"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/serialnopharmacy"
+        app:layout_constraintTop_toBottomOf="@+id/serialnopharmacy"
+        app:layout_constraintVertical_bias="0.082" />
 
     <EditText
         android:id="@+id/category"
@@ -29,31 +32,35 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edit_txt"
         android:ems="10"
+        android:textColor="#fff"
+        android:textColorHint="#80ffffff"
         android:fontFamily="@font/josefin_sans_semibold"
         android:hint="Category(tablets,tonics,creams,etc.)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintEnd_toEndOf="@+id/medicinename"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/medicinename"
+        app:layout_constraintTop_toBottomOf="@+id/medicinename"
+        app:layout_constraintVertical_bias="0.083" />
 
     <EditText
         android:id="@+id/medicinecat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edit_txt"
-        android:fontFamily="@font/josefin_sans_semibold"
         android:ems="10"
+        android:textColor="#fff"
+        android:textColorHint="#80ffffff"
+        android:fontFamily="@font/josefin_sans_semibold"
         android:hint="Medicinecategory(Fever,headache etc,)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintEnd_toEndOf="@+id/category"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/category"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintVertical_bias="0.109" />
 
     <EditText
         android:id="@+id/amountmed"
@@ -61,26 +68,28 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edit_txt"
         android:ems="10"
-        android:hint="amount in rupees"
         android:fontFamily="@font/josefin_sans_semibold"
+        android:hint="amount in rupees"
         android:inputType="textPersonName"
+        android:textColor="#fff"
+        android:textColorHint="#80ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintEnd_toEndOf="@+id/medicinecat"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/medicinecat"
+        app:layout_constraintTop_toBottomOf="@+id/medicinecat"
+        app:layout_constraintVertical_bias="0.126" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/submitmedmanual"
         android:layout_width="120dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/amountmed"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871"
+        app:layout_constraintStart_toStartOf="@+id/amountmed"
+        app:layout_constraintTop_toBottomOf="@+id/amountmed"
+        app:layout_constraintVertical_bias="0.222"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -88,22 +97,24 @@
         fancy:fb_text="Submit"
         fancy:fb_textColor="#FFFFFF"
         fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp"/>
+        fancy:fb_textSize="20sp" />
 
     <EditText
         android:id="@+id/serialnopharmacy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/josefin_sans_semibold"
-        android:inputType="number"
         android:background="@drawable/rounded_edit_txt"
+        android:ems="10"
+        android:textColor="#fff"
+        android:textColorHint="#80ffffff"
+        android:fontFamily="@font/josefin_sans_semibold"
         android:hint="Serial number(unique value..)"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.168" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

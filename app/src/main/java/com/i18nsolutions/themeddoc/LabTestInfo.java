@@ -24,6 +24,7 @@ public class LabTestInfo extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Enter Test Manually");
         setContentView(R.layout.activity_lab_test_info);
         labtestname = findViewById(R.id.labtestname);
         serialno=findViewById(R.id.serialnumberlab);

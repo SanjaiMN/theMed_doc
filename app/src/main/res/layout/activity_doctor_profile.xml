@@ -4,67 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".DoctorProfile">
 
 
     <TextView
         android:id="@+id/namee"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:gravity="start"
+        android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="@+id/profilepiclab"
+        app:layout_constraintTop_toBottomOf="@+id/profilepiclab" />
 
     <TextView
         android:id="@+id/agee"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/josefin_sans_semibold"
         android:foregroundGravity="center"
         android:gravity="start"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="@+id/profilepiclab"
+        app:layout_constraintTop_toBottomOf="@+id/namee" />
 
     <TextView
         android:id="@+id/working_inn"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/josefin_sans_semibold"
         android:gravity="start"
+        android:textColor="#fff"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="@+id/profilepiclab"
+        app:layout_constraintTop_toBottomOf="@+id/agee" />
 
     <TextView
         android:id="@+id/specalizationn"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/josefin_sans_semibold"
         android:foregroundGravity="center"
         android:gravity="start"
+        android:textColor="#fff"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="@+id/profilepiclab"
+        app:layout_constraintTop_toBottomOf="@+id/working_inn" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepiclab"
@@ -72,38 +73,37 @@
         android:layout_height="129dp"
         android:scaleType="centerCrop"
         android:src="@drawable/noimg"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <ProgressBar
         android:id="@+id/doctorprofilepb"
         style="?android:attr/progressBarStyle"
         android:layout_width="30dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintBottom_toBottomOf="@+id/profilepiclab"
+        app:layout_constraintEnd_toEndOf="@+id/profilepiclab"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="@+id/profilepiclab"
+        app:layout_constraintTop_toTopOf="@+id/profilepiclab"
+        app:layout_constraintVertical_bias="0.536" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviews"
         android:layout_width="match_parent"
-        android:layout_height="265dp"
-        android:background="#ddd"
+        android:layout_height="250dp"
         android:padding="2dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBarLab"
@@ -114,23 +114,24 @@
         android:numStars="5"
         android:stepSize="0.1"
         android:theme="@style/RatingBar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/profilepiclab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toEndOf="@+id/profilepiclab"
+        app:layout_constraintTop_toTopOf="@+id/profilepiclab"
+        app:layout_constraintVertical_bias="0.23" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="#5000"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/reviews"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specalizationn"
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
@@ -148,15 +149,14 @@
         android:id="@+id/reviewcountdoctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
         android:fontFamily="@font/josefin_sans"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBarLab"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="@+id/ratingBarLab"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/patientseen"
@@ -164,20 +164,22 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBarLab"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="@+id/ratingBarLab"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintVertical_bias="0.163" />
 
     <TextView
         android:id="@+id/noreviewsdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No reviews yet"
+        android:gravity="center"
         android:fontFamily="@font/josefin_sans"
+        android:textColor="#fff"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

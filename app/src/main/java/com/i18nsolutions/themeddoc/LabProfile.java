@@ -51,6 +51,7 @@ public class LabProfile extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Laboratory Profile");
         setContentView(R.layout.activity_lab_profile);
         labname=findViewById(R.id.namelab);
         progressDialog=new ProgressDialog(LabProfile.this);

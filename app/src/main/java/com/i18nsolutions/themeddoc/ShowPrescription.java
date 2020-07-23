@@ -31,6 +31,7 @@ public class ShowPrescription extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Patient's Prescription");
         setContentView(R.layout.activity_show_prescription);
         prescriptionrecycler=findViewById(R.id.prescriptionrecycler);
         list=new ArrayList<>();
@@ -58,6 +59,7 @@ public class ShowPrescription extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
+                progressBar.setVisibility(View.INVISIBLE);
                 for (DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
                     String key=dataSnapshot.getKey();
@@ -71,7 +73,17 @@ public class ShowPrescription extends AppCompatActivity
                             prescriptionrecycler.setHasFixedSize(true);
                             prescriptionAdapter = new PrescriptionAdapter(list,ShowPrescription.this);
                             prescriptionrecycler.setAdapter(prescriptionAdapter);
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                            prescriptionAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                                @Override
+                                public void onChanged() {
+                                    super.onChanged();
+                                    if(prescriptionAdapter.getItemCount()==0)
+                                        textView.setVisibility(View.VISIBLE);
+                                    else
+                                        textView.setVisibility(View.INVISIBLE);
+                                }
+                            });
                             prescriptionAdapter.notifyDataSetChanged();
                         }
 

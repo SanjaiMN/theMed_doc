@@ -48,6 +48,8 @@ import java.util.List;
 import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class PharmacyRegistration extends AppCompatActivity
 {
@@ -62,7 +64,7 @@ public class PharmacyRegistration extends AppCompatActivity
     ProgressDialog pd;
     double lats,longs;
     String pharmname1,mail1,propreitorname1,licnumber1,phonenumber1;
-    ImageButton addlocationpharm,infopharm;
+    ImageButton addlocationpharm;
     FancyButton pharmnext;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -79,7 +81,13 @@ public class PharmacyRegistration extends AppCompatActivity
         pharmnext=findViewById(R.id.pharmnextbt);
         mail=findViewById(R.id.mailmed);
         addlocationpharm=findViewById(R.id.addlocationpharm);
-        infopharm=findViewById(R.id.ibinfopharm);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(PharmacyRegistration.this, "PharmacyRegistration");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(pharmprofile,"Register as Pharmacy,add your profile too", "GOT IT");
+        sequence.addSequenceItem(addlocationpharm, "Add your location and you should be in your Pharmacy location for first time of registration", "GOT IT");
+        sequence.start();
         pd=new ProgressDialog(PharmacyRegistration.this);
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
@@ -120,7 +128,7 @@ public class PharmacyRegistration extends AppCompatActivity
                     StorageReference ref = imageref.child(androiid).child(getextension(imageuri)+"#");
                     if(imageuri==null)
                     {
-                        imageuri= Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
+                        imageuri= Uri.parse("android.resource://com.i18nsolutions.themeddoc/drawable/noimg");
                     }
                     uploadtask = ref.putFile(imageuri);
                     uploadtask.addOnFailureListener(new OnFailureListener() {
@@ -148,7 +156,7 @@ public class PharmacyRegistration extends AppCompatActivity
                                     e.printStackTrace();
                                 }
                                 String address = addresses.get(0).getAddressLine(0);
-                                String city = addresses.get(0).getLocality();
+                                String city = addresses.get(0).getSubAdminArea();
 //                                String state = addresses.get(0).getAdminArea();
 //                                String zip = addresses.get(0).getPostalCode();
 //                                String country = addresses.get(0).getCountryName();
@@ -175,24 +183,6 @@ public class PharmacyRegistration extends AppCompatActivity
                 }
             }
         });
-        infopharm.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                new AlertDialog.Builder(PharmacyRegistration.this)
-                        .setTitle("Important")
-                        .setMessage("You must be in your Pharmacy location")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface arg0, int arg1)
-                            {
-                                arg0.cancel();
-                            }
-                        }).create().show();
-            }
-        });
-
     }
     public void selectimage()
     {

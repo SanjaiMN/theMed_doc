@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
     public void onBindViewHolder(@NonNull recyclerAdapter_slot.ViewHolder holder, int position)
     {
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        holder.progressBar.setVisibility(View.VISIBLE);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference1=FirebaseDatabase.getInstance().getReference().child("Patient Database").child(list.get(position).puid);
         databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -58,6 +60,7 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
                 Glide.with(context)
                         .load(profileurl)
                         .into(holder.profile);
+                holder.progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -78,6 +81,7 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name,date,time;
+        ProgressBar progressBar;
         de.hdodenhof.circleimageview.CircleImageView profile;
         Context context;
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +90,7 @@ public class recyclerAdapter_slot extends RecyclerView.Adapter<recyclerAdapter_s
             name = itemView.findViewById(R.id.name);
             date = itemView.findViewById(R.id.date);
             time = itemView.findViewById(R.id.time);
+            progressBar=itemView.findViewById(R.id.progressBarslot);
             profile=itemView.findViewById(R.id.profileinslot);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

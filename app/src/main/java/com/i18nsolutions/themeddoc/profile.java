@@ -10,6 +10,9 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class profile extends AppCompatActivity {
     FirebaseAuth fbAuth;
     CardView slots,profile;
@@ -18,8 +21,15 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         fbAuth = FirebaseAuth.getInstance();
-            slots=findViewById(R.id.slotcard);
-            profile=findViewById(R.id.profilecarddoctor);
+        slots=findViewById(R.id.slotcard);
+        profile=findViewById(R.id.profilecarddoctor);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(profile.this, "profile");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(slots,"Check your Patient bookings here", "GOT IT");
+        sequence.addSequenceItem(profile, "See your professional profile ", "GOT IT");
+        sequence.start();
             slots.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

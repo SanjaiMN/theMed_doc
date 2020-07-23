@@ -3,24 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundfinal"
     android:layout_height="match_parent"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     app:showPaths="true"
-    tools:context=".doctor_registration">
+    tools:context=".PharmacyRegistration">
 
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewpharm"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51">
+        app:layout_constraintStart_toStartOf="@+id/textViewpharm"
+        app:layout_constraintTop_toBottomOf="@+id/profilepharm"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <EditText
@@ -30,11 +32,13 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:maxLength="30"
-            android:gravity="center"
             android:fontFamily="@font/josefin_sans"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:hint="Pharmacy Name"
             android:inputType="textCapWords"
+            android:maxLength="30"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +52,8 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Email"
@@ -65,11 +71,13 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:maxLength="20"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Proprietor Name"
             android:inputType="textCapWords"
+            android:maxLength="20"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +93,10 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:gravity="center"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
+            android:gravity="center"
             android:hint="License number"
             android:inputType="textPersonName"
             android:textSize="20sp"
@@ -103,12 +113,14 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:maxLength="10"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Phone number"
             android:inputType="phone"
             android:maxEms="10"
+            android:maxLength="10"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -124,10 +136,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepharm"
@@ -135,12 +146,12 @@
         android:layout_width="129dp"
         android:layout_height="114dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/iconforpharmacy"
+        android:src="@drawable/pharmprofilefinal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewpharm"
+        app:layout_constraintStart_toStartOf="@+id/textViewpharm"
+        app:layout_constraintTop_toBottomOf="@+id/textViewpharm"
+        app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/smallpharmcam"
@@ -150,23 +161,22 @@
         android:backgroundTint="#fff"
         android:src="@drawable/camera"
         android:tintMode="add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintBottom_toBottomOf="@+id/profilepharm"
+        app:layout_constraintEnd_toEndOf="@+id/profilepharm"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintTop_toTopOf="@+id/profilepharm"
+        app:layout_constraintVertical_bias="1.0" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/pharmnextbt"
         android:layout_width="120dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/addlocationpharm"
+        app:layout_constraintVertical_bias="0.157"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -177,27 +187,16 @@
         fancy:fb_textSize="20sp" />
 
     <ImageButton
-        android:id="@+id/ibinfopharm"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
-    <ImageButton
         android:id="@+id/addlocationpharm"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="57dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.133"
         app:srcCompat="@drawable/ic_baseline_add_location_24" />
 
     <TextView
@@ -206,11 +205,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans"
         android:text="Add your current Location"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.773" />
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.060000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

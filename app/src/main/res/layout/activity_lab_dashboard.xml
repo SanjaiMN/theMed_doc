@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfinal"
     tools:context=".LabDashboard">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/manuallab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.07999998">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -36,7 +39,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/iconforkeyboard" />
 
         </LinearLayout>
@@ -46,17 +48,19 @@
         android:id="@+id/uploadascsvlab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26">
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.07999998">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -72,7 +76,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/filesdashboard" />
 
         </LinearLayout>
@@ -82,17 +85,19 @@
         android:id="@+id/profilecardlab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="@+id/uploadascsvlab"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintTop_toBottomOf="@+id/uploadascsvlab"
+        app:layout_constraintVertical_bias="0.13">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -104,10 +109,10 @@
                 android:text="Profile"
                 android:textColor="#fff"
                 android:textSize="25sp" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/profileoflabtechnician" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -116,17 +121,20 @@
         android:id="@+id/yourtestlab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="44dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/manuallab"
+        app:layout_constraintTop_toBottomOf="@+id/manuallab"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -142,7 +150,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/testsdashboard" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -151,17 +158,19 @@
         android:id="@+id/yourbookingslab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        app:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/yourtestlab"
+        app:layout_constraintTop_toBottomOf="@+id/yourtestlab"
+        app:layout_constraintVertical_bias="0.25">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -177,10 +186,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:src="@drawable/bookingsdashboard" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
@@ -192,9 +201,8 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.132" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

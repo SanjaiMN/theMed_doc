@@ -2,15 +2,18 @@ package com.i18nsolutions.themeddoc;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -35,8 +38,11 @@ import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class SlotFullDetails extends AppCompatActivity
 {
@@ -52,6 +58,7 @@ public class SlotFullDetails extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Interact Patients");
         setContentView(R.layout.activity_slot_full_details);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -66,6 +73,17 @@ public class SlotFullDetails extends AppCompatActivity
         reports=findViewById(R.id.healthreports);
         videocall=findViewById(R.id.videocall);
         prescription=findViewById(R.id.prescription);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(SlotFullDetails.this, "SlotFullDetails");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(letschat,"Here you can see chat button when slot amount is paid by the patient", "GOT IT");
+        sequence.addSequenceItem(videocall, "Here you can see video call button when slot amount is paid by the patient", "GOT IT");
+        sequence.addSequenceItem(prescription,"Here you can send the prescription after interaction", "GOT IT");
+        sequence.addSequenceItem(showprescription, "Here you can see the prescription history of patient", "GOT IT");
+        sequence.addSequenceItem(reports, "Here you can see the reports history of patient", "GOT IT");
+        sequence.addSequenceItem(confirmation, "Here you can confirm the slot by allowing the patient to pay for it", "GOT IT");
+        sequence.start();
         Intent intent=getIntent();
         SlotDetails slotDetails = intent.getParcelableExtra("slotconfirm");
         name.append(slotDetails.name);

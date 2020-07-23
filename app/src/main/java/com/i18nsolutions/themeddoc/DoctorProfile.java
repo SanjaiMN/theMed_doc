@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class DoctorProfile extends AppCompatActivity
 {
     String uid,profile_pic;
@@ -53,6 +57,7 @@ public class DoctorProfile extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Doctor Profile");
         setContentView(R.layout.activity_doctor_profile);
         progressDialog=new ProgressDialog(DoctorProfile.this);
         progressDialog.setMessage("Loading...");
@@ -92,7 +97,6 @@ public class DoctorProfile extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                progressBar.setVisibility(View.VISIBLE);
                 doctor_details doctor_details=dataSnapshot.getValue(doctor_details.class);
                 namee.setText("Dr ."+doctor_details.name);
                 agee.setText(doctor_details.age+" years old");
@@ -105,6 +109,7 @@ public class DoctorProfile extends AppCompatActivity
                     Glide.with(DoctorProfile.this)
                             .load(""+profile_pic)
                             .into(profilepic);
+                    progressBar.setVisibility(View.VISIBLE);
                 }
                 catch (Exception e){}
                 progressDialog.dismiss();
@@ -157,6 +162,7 @@ public class DoctorProfile extends AppCompatActivity
             }
         });
     }
+    @SuppressLint("ResourceType")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();

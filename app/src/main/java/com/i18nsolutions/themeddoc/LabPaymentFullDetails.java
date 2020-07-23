@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -64,8 +66,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class LabPaymentFullDetails extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private GoogleMap mMap;
@@ -135,6 +140,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Booking details");
         setContentView(R.layout.activity_lab_payment_full_details);
         mGoogleApiClient2 = new GoogleApiClient.Builder(LabPaymentFullDetails.this)
                 .addApi(Places.GEO_DATA_API)
@@ -160,6 +166,12 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         walkinorhome = findViewById(R.id.walkinorhome);
         delivered=findViewById(R.id.deliveredlab);
         nomapslab=findViewById(R.id.nomapslab);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabPaymentFullDetails.this, "LabPaymentFullDetails");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
+        sequence.start();
         Intent intent = getIntent();
         LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
         puid = labPaymentDetails.puid;
@@ -173,6 +185,15 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
             nomapslab.setVisibility(View.VISIBLE);
 
         }
+        Geocoder geocoder = new Geocoder(LabPaymentFullDetails.this, Locale.getDefault());
+
+        List<Address> addresses  = null;
+        try {
+            addresses = geocoder.getFromLocation(destLat,destLong, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String city = addresses.get(0).getSubAdminArea().toLowerCase();
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.maplab);
         mapFragment.getMapAsync(this);
@@ -208,25 +229,13 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
                 databaseReference2.child("Payment Report").child("LabTest").child(labPaymentDetails.duid).child(labPaymentDetails.payid).child("isdelivered").setValue(true);
             }
         });
-        databaseReference3=FirebaseDatabase.getInstance().getReference().child("LaboratoryRegistrations").child(uid).child("location");
-        databaseReference3.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot5)
-            {
-                city=dataSnapshot5.getValue().toString();
-//                pharmacyname=dataSnapshot.child("pharmname").getValue().toString();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
         serialno = labPaymentDetails.serialno;
         String[] arr =serialno.split(",");
         testname.setText("Tests:");
         for(int i=1;i<arr.length;i++)
         {
-            databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city).child(uid).child("" +arr[i]);
+            System.out.println(city);
+            databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city.toLowerCase()).child(uid).child("" +arr[i]);
             System.out.println(databaseReference1);
             databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
             databaseReference1.addValueEventListener(new ValueEventListener() {

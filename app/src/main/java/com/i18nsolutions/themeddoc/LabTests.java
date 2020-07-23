@@ -36,6 +36,7 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle("Your Tests");
         setContentView(R.layout.activity_lab_tests);
         progressBar=findViewById(R.id.progressBarlab);
         textView=findViewById(R.id.tvnotuploadlab);

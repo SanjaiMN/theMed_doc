@@ -3,7 +3,8 @@ package com.i18nsolutions.themeddoc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class SlotDetails implements Parcelable {
+public class SlotDetails implements Parcelable
+{
     public String date;
     public String time;
     public String name;

@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class LabRegistration extends AppCompatActivity
 {
@@ -61,7 +63,7 @@ public class LabRegistration extends AppCompatActivity
     double lats,longs;
     ProgressDialog pd;
     String labname1,mail,location1,propreitorname1,isonumber1,address1,workinghours1,phonenumber1;
-    ImageButton addlocationlab,infolab;
+    ImageButton addlocationlab;
     LocationManager locationManager;
     FancyButton labnext;
     @Override
@@ -79,7 +81,13 @@ public class LabRegistration extends AppCompatActivity
         phonenumber=findViewById(R.id.phonereg);
         email=findViewById(R.id.maillab);
         addlocationlab=findViewById(R.id.addlocationlab);
-        infolab=findViewById(R.id.ibinfolab);
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabRegistration.this, "LabRegistration");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(Profile,"Register as laboratory,add your profile too", "GOT IT");
+        sequence.addSequenceItem(addlocationlab, "Add your location and you should be in your lab location for first time of registration", "GOT IT");
+        sequence.start();
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
         imageref= FirebaseStorage.getInstance().getReference("lab_profile");
@@ -102,23 +110,6 @@ public class LabRegistration extends AppCompatActivity
             lats=location.getLatitude();
             longs=location.getLongitude();
         }
-        infolab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                new AlertDialog.Builder(LabRegistration.this)
-                        .setTitle("Important")
-                        .setMessage("You must be in your Laboratory location")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface arg0, int arg1)
-                            {
-                                arg0.cancel();
-                            }
-                        }).create().show();
-            }
-        });
         dp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +127,7 @@ public class LabRegistration extends AppCompatActivity
                     StorageReference ref = imageref.child(androiid).child(getextension(imageuri)+"#");
                     if(imageuri==null)
                     {
-                        imageuri= Uri.parse("android.resource://com.example.ehospital/drawable/noimg");
+                        imageuri= Uri.parse("android.resource://com.i18nsolutions.themeddoc/drawable/noimg");
                     }
                     uploadtask = ref.putFile(imageuri);
                     uploadtask.addOnFailureListener(new OnFailureListener() {
@@ -164,10 +155,7 @@ public class LabRegistration extends AppCompatActivity
                                     e.printStackTrace();
                                 }
                                 String address = addresses.get(0).getAddressLine(0);
-                                String city = addresses.get(0).getLocality();
-//                                String state = addresses.get(0).getAdminArea();
-//                                String zip = addresses.get(0).getPostalCode();
-//                                String country = addresses.get(0).getCountryName();
+                                String city = addresses.get(0).getSubAdminArea();
                                 LaboratoryRegistrationDetails laboratoryRegistrationDetails=new LaboratoryRegistrationDetails(labname1,mail,city.toLowerCase(),propreitorname1,isonumber1,"lab",profile_pic,address.toLowerCase(),phonenumber1,workinghours1,uid,1f,lats,longs,0,false);
                                 databaseReference.child(uid).setValue(laboratoryRegistrationDetails);
                                 SharedPreferences.Editor editor2=sharedPreferences.edit();

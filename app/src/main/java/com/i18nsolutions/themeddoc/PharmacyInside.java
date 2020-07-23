@@ -44,6 +44,7 @@ public class PharmacyInside extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Upload Medicines");
         setContentView(R.layout.activity_pharmacy_inside);
         attachfiles=findViewById(R.id.attachfiles);
         upload = findViewById(R.id.submitmed);

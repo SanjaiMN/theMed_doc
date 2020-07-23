@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/semiTransparentColor"
+    app:cardElevation="0dp"
     app:cardCornerRadius="5dp"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:id="@+id/reviewername"
             android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
             android:fontFamily="@font/josefin_sans_bold"
             android:gravity="start"
             android:text="Zzzzz"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#fff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
             android:numStars="5"
             android:stepSize="0.1"
             android:theme="@style/RatingBar"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/reviewername"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.951"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,14 +55,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:ellipsize="marquee"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/josefin_sans_semibold"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/josefin_sans"
             android:text="YYYYy"
+            android:gravity="start"
+            android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/reviewername"
             app:layout_constraintTop_toBottomOf="@+id/reviewername"
             app:layout_constraintVertical_bias="0.0" />
 
