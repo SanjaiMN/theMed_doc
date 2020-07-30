@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class GridViewSelection extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_grid_view_selection);
         String[] category_prob={"General Medicine","Family Medicine","Consultant Physician","Cardiology","Diabetology","Pediatrics","ENT","Eye care"
                 ,"Siddha","Ayurveda","Homeopathy","Naturopathy&Yoga"," Acupuncture","Psychology","Dietician","Cosmetology","Dentist"};

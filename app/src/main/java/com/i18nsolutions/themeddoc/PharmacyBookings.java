@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -34,6 +35,7 @@ public class PharmacyBookings extends AppCompatActivity implements RecyclerInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Your Bookings");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_pharmacy_bookings);
         recyclerView=findViewById(R.id.pharmacybookingsrecyclerview);
         progressBar=findViewById(R.id.progressBarpharmacybookings);

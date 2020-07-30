@@ -1,12 +1,22 @@
 package com.i18nsolutions.themeddoc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -17,8 +27,10 @@ public class profile extends AppCompatActivity {
     FirebaseAuth fbAuth;
     CardView slots,profile;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_profile);
         fbAuth = FirebaseAuth.getInstance();
         slots=findViewById(R.id.slotcard);
@@ -43,6 +55,25 @@ public class profile extends AppCompatActivity {
                     startActivity(new Intent(profile.this,DoctorProfile.class));
                 }
             });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater layoutInflater = getMenuInflater();
+        layoutInflater.inflate(R.menu.aboutmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.about:
+                startActivity(new Intent(profile.this,About.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

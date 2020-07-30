@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -14,18 +15,21 @@ import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +95,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
     static GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     TextView nomapspharm;
+    CardView cardView;
     Marker mCurrLocationMarker;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final int PERMISSION_REQUEST_GPS_CODE = 1234;
@@ -135,16 +140,18 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
     String walkinorhome1;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference, databaseReference1,databaseReference2;
-    String puid, uid,city="";
-    String serialno,count;
+    String puid, uid,city;
+    String serialno,count,mobilenumber;
     FancyButton delivered;
     Fragment map;
+    ImageView call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setTitle("Booking details");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_payment_full_details);
         Intent intent = getIntent();
         LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
@@ -154,12 +161,14 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         walkinorhome1 = labPaymentDetails.walkinorhome;
         startBT = findViewById(R.id.start_BT);
         nomapspharm=findViewById(R.id.nomapslab);
-        ShowcaseConfig config = new ShowcaseConfig();
-        config.setDelay(500); // half second between each showcase view
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(PharmacyFullDetails.this, "PharmacyFullDetails");
-        sequence.setConfig(config);
-        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
-        sequence.start();
+        cardView=findViewById(R.id.cardView);
+        call=findViewById(R.id.calllab);
+//        ShowcaseConfig config = new ShowcaseConfig();
+//        config.setDelay(500); // half second between each showcase view
+//        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(PharmacyFullDetails.this, "PharmacyFullDetails");
+//        sequence.setConfig(config);
+//        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
+//        sequence.start();
         mGoogleApiClient2 = new GoogleApiClient.Builder(PharmacyFullDetails.this)
                 .addApi(Places.GEO_DATA_API)
                 .enableAutoManage(this, GOOGLE_API_CLIENT_ID, this)
@@ -181,6 +190,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         if (walkinorhome1.equals("Walkin"))
         {
             maplab.setVisibility(View.INVISIBLE);
+            cardView.setVisibility(View.INVISIBLE);
             startBT.setVisibility(View.INVISIBLE);
             nomapspharm.setVisibility(View.VISIBLE);
         }
@@ -246,26 +256,30 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         testname.setText("Orders:");
         for(int i=1;i<serialarr.length;i++)
         {
-            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child(city).child(uid).child(serialarr[i]);
-            String count =countarray[i];
-            System.out.println(databaseReference1);
-            databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
-            databaseReference1.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                    String testname1 = dataSnapshot1.child("medicinename").getValue().toString();
-                    testname.append(testname1+" x "+count+",");
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            if(!serialarr[i].isEmpty() && !countarray[i].isEmpty())
+            {
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child(city).child(uid).child(serialarr[i]);
+                String count =countarray[i];
+                System.out.println(databaseReference1);
+                databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                        String testname1 = dataSnapshot1.child("medicinename").getValue().toString();
+                        testname.append(testname1+" x "+count+",");
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
+            }
         }
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PatientDetails patientDetails = dataSnapshot.getValue(PatientDetails.class);
+                mobilenumber=patientDetails.phone;
                 customername.setText("Name:" + patientDetails.name);
             }
 
@@ -275,6 +289,16 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
             }
         });
         walkinorhome.setText("Walk in/home:" + walkinorhome1);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intentphone = new Intent();
+                intentphone.setAction(Intent.ACTION_DIAL); // Action for what intent called for
+                intentphone.setData(Uri.parse("tel: " + mobilenumber)); // Data with intent respective action on intent
+                startActivity(intentphone);
+            }
+        });
     }
 
     @SuppressLint("RestrictedApi")
@@ -312,7 +336,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         LatLng sydney = new LatLng(destLat, destLong);
         if(destLat==0.0 || destLong==0.0)
             mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in selected lab"));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in selected lab"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Your Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);

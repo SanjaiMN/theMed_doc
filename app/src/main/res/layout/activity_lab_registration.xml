@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,10 @@
     android:background="@drawable/backgroundfinal"
     tools:context=".LabRegistration">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="MissingConstraints">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -17,11 +21,9 @@
         android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:scrollbarSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/profilelab"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/profilelab">
 
 
         <EditText
@@ -33,11 +35,11 @@
             android:ems="10"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:hint="Laboratory Name"
             android:inputType="textCapWords"
             android:maxLength="30"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,12 +52,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Email"
             android:inputType="textEmailAddress"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp" />
 
         <EditText
@@ -67,11 +69,11 @@
             android:ems="10"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:hint="Proprietor Name"
             android:inputType="textCapWords"
             android:maxLength="15"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,10 +91,10 @@
             android:ems="10"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:hint="NABL ISO number"
             android:inputType="textPersonName"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,29 +109,42 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Phone number"
             android:inputType="phone"
             android:maxEms="10"
             android:maxLength="10"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp" />
 
+        <EditText
+            android:id="@+id/fulladdresslab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edit_txt"
+            android:ems="10"
+            android:fontFamily="@font/josefin_sans"
+            android:gravity="center"
+            android:hint="Address"
+            android:inputType="textMultiLine"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
+            android:textSize="20sp" />
         <EditText
             android:id="@+id/workinghoursreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_txt"
             android:ems="10"
-            android:textColor="#fff"
-            android:textColorHint="#80ffffff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
             android:hint="Working hours (eg.9am-9pm)"
             android:inputType="textPersonName"
             android:maxLength="9"
+            android:textColor="#fff"
+            android:textColorHint="#80ffffff"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -137,30 +152,28 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:text="Register with your details"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilelab"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="122dp"
         android:layout_height="117dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/labtechlogo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dplab"
@@ -181,13 +194,11 @@
         android:id="@+id/labnextbt"
         android:layout_width="120sp"
         android:layout_height="50dp"
-        android:layout_marginTop="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/addlocationlab"
-        app:layout_constraintVertical_bias="0.0"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -202,27 +213,24 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="57dp"
         android:layout_height="43dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_add_location_24" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans"
         android:text="Add your current Location"
         android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.112" />
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

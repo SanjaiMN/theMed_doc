@@ -72,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:cardBackgroundColor="#4000"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/reviews"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -155,5 +156,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.651" />
+
+    <ImageView
+        android:id="@+id/callpharm"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveredlab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/deliveredlab"
+        app:layout_constraintTop_toTopOf="@+id/deliveredlab"
+        app:layout_constraintVertical_bias="1.0"
+        fancy:srcCompat="@drawable/ic_baseline_call_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

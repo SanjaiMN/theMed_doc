@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
     {
         super.onCreate(savedInstanceState);
         setTitle("Your Tests");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_tests);
         progressBar=findViewById(R.id.progressBarlab);
         textView=findViewById(R.id.tvnotuploadlab);

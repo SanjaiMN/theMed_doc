@@ -178,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:text="the-Med"
+        android:text="TheMed"
         android:textColor="#042987"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/textView11"

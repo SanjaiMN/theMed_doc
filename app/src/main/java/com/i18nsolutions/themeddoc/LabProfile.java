@@ -11,12 +11,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class LabProfile extends AppCompatActivity
     de.hdodenhof.circleimageview.CircleImageView profilepic;
     SharedPreferences sharedPreferences;
     TextView textView;
+    ProgressBar progressBar;
     FirebaseAuth firebaseAuth;
     String profileurl;
     RatingBar ratings;
@@ -52,11 +55,14 @@ public class LabProfile extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setTitle("Laboratory Profile");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_profile);
         labname=findViewById(R.id.namelab);
         progressDialog=new ProgressDialog(LabProfile.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        progressBar=findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         textView=findViewById(R.id.noreviewslp);
         count=findViewById(R.id.noofreviewslab);
         recyclerView=findViewById(R.id.reviewslab);
@@ -77,13 +83,13 @@ public class LabProfile extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 LaboratoryRegistrationDetails laboratoryRegistrationDetails=dataSnapshot.getValue(LaboratoryRegistrationDetails.class);
-                labname.setText(laboratoryRegistrationDetails.Laboratoryname);
-                location.setText("City: "+laboratoryRegistrationDetails.location);
-                propertiername.setText("Property owned by "+laboratoryRegistrationDetails.proprietorname);
-                isonumber.setText("ISO number: "+laboratoryRegistrationDetails.isonumber);
-                address.setText("Address: "+laboratoryRegistrationDetails.address);
-                phone.setText("Contact: "+laboratoryRegistrationDetails.phonenumber);
-                workinghours.setText("Working hours: "+laboratoryRegistrationDetails.workinghours);
+                labname.setText("  "+laboratoryRegistrationDetails.Laboratoryname);
+                location.setText("  "+laboratoryRegistrationDetails.location);
+                propertiername.setText("  "+laboratoryRegistrationDetails.proprietorname);
+                isonumber.setText("  "+laboratoryRegistrationDetails.isonumber);
+                address.setText("  "+laboratoryRegistrationDetails.address);
+                phone.setText("  "+laboratoryRegistrationDetails.phonenumber);
+                workinghours.setText("  "+laboratoryRegistrationDetails.workinghours);
                 ratings.setRating(laboratoryRegistrationDetails.ratings);
                 count.setText("("+laboratoryRegistrationDetails.count+" reviews)");
                 profileurl=laboratoryRegistrationDetails.profile_pic;
@@ -91,6 +97,7 @@ public class LabProfile extends AppCompatActivity
                     Glide.with(LabProfile.this)
                             .load(""+laboratoryRegistrationDetails.profile_pic)
                             .into(profilepic);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 catch (Exception e){}
                 progressDialog.dismiss();
@@ -168,6 +175,7 @@ public class LabProfile extends AppCompatActivity
                                 sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("prefs","");
+                                editor1.apply();
                                 firebaseAuth= FirebaseAuth.getInstance();
                                 firebaseAuth.signOut();
                                 finish();

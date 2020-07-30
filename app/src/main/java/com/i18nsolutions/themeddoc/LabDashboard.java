@@ -1,12 +1,17 @@
 package com.i18nsolutions.themeddoc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
@@ -18,6 +23,7 @@ public class LabDashboard extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_dashboard);
         yourtests=findViewById(R.id.yourtestlab);
         profile=findViewById(R.id.profilecardlab);
@@ -66,6 +72,25 @@ public class LabDashboard extends AppCompatActivity
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater layoutInflater = getMenuInflater();
+        layoutInflater.inflate(R.menu.aboutmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.about:
+                startActivity(new Intent(LabDashboard.this,About.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onBackPressed()
     {

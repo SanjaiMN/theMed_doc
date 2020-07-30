@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class HealthReports extends AppCompatActivity implements RecyclerInterfac
     {
         super.onCreate(savedInstanceState);
         setTitle("Health Reports");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_health_reports);
         progressBar=findViewById(R.id.progressBarhealthreport);
         progressBar.setVisibility(View.VISIBLE);

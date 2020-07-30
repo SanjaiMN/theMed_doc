@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheMed - For Doctors,Labs,Pharmacy</string>
+    <string name="app_name">Med Heal - For Doctors,Labs,Pharmacy</string>
     <string name="agora_app_id">e837eb0822ce406687745a6d96f50830</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDhtxhgD7V85U6h72aV-QUvq54y51OTKRU</string>
     <string name="word_GPS_not_enabled">gps not enabled</string>

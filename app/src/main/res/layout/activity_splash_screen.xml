@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
-        android:text="the-Med"
+        android:text="Med Heal"
         android:textStyle="bold"
         android:textColor="#1F51A8"
         android:textSize="60sp"

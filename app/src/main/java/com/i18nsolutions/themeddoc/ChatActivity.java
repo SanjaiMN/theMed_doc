@@ -2,6 +2,7 @@ package com.i18nsolutions.themeddoc;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -70,6 +71,7 @@ public class ChatActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Chat With Patient");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_chat);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewmessage);
         messagesend=findViewById(R.id.messagesend);

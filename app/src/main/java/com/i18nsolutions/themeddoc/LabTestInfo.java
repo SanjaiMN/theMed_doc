@@ -3,6 +3,7 @@ package com.i18nsolutions.themeddoc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class LabTestInfo extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setTitle("Enter Test Manually");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_test_info);
         labtestname = findViewById(R.id.labtestname);
         serialno=findViewById(R.id.serialnumberlab);

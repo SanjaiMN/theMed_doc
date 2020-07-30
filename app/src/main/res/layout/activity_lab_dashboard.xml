@@ -11,15 +11,14 @@
         android:id="@+id/manuallab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="44dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.07999998">
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,15 +47,14 @@
         android:id="@+id/uploadascsvlab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="44dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.07999998">
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,15 +83,14 @@
         android:id="@+id/profilecardlab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="44dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/uploadascsvlab"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadascsvlab"
-        app:layout_constraintVertical_bias="0.13">
+        app:layout_constraintStart_toStartOf="@+id/uploadascsvlab"
+        app:layout_constraintTop_toBottomOf="@+id/uploadascsvlab">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,12 +122,10 @@
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/manuallab"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/manuallab"
-        app:layout_constraintTop_toBottomOf="@+id/manuallab"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/manuallab">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,15 +153,14 @@
         android:id="@+id/yourbookingslab"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="44dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/yourtestlab"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/yourtestlab"
-        app:layout_constraintTop_toBottomOf="@+id/yourtestlab"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintTop_toBottomOf="@+id/yourtestlab">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -194,15 +188,17 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
-        android:text="TheMed Laboratory"
+        android:text="Med Heal Laboratory"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

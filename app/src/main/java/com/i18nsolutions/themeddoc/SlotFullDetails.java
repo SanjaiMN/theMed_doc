@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -59,6 +60,7 @@ public class SlotFullDetails extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setTitle("Interact Patients");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_slot_full_details);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -261,12 +263,14 @@ public class SlotFullDetails extends AppCompatActivity
                         DatabaseReference databaseReference1 =FirebaseDatabase.getInstance().getReference().child("Doctor database").child(uid);
                         databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
                                 doctorname=dataSnapshot.child("name").getValue().toString();
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            public void onCancelled(@NonNull DatabaseError databaseError)
+                            {
 
                             }
                         });

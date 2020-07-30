@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,6 +50,7 @@ public class PharmacyProfile extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Pharmacy Profile");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_pharmacy_profile);
         pharmacyname=findViewById(R.id.namepharm);
         recyclerView=findViewById(R.id.reviewpharmacy);
@@ -67,6 +69,7 @@ public class PharmacyProfile extends AppCompatActivity
         mail=findViewById(R.id.mailpharm);
         ratings=findViewById(R.id.ratingBarPharm);
         progressBar=findViewById(R.id.progressBarpharmprofile);
+        progressBar.setVisibility(View.VISIBLE);
         String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("PharmacyRegistrations").child(uid);
@@ -74,15 +77,14 @@ public class PharmacyProfile extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                progressBar.setVisibility(View.VISIBLE);
                 PharmacyDetails pharmacyDetails=dataSnapshot.getValue(PharmacyDetails.class);
-                pharmacyname.setText(pharmacyDetails.pharmname);
-                location.setText("Location :"+pharmacyDetails.location);
-                propertiername.setText("Property owned by "+pharmacyDetails.proprietorname);
-                licnumber.setText("License no."+pharmacyDetails.licnumber);
-                address.setText("Address: "+pharmacyDetails.address);
-                phone.setText("Contact: "+pharmacyDetails.phonenumber);
-                mail.setText("Mail: "+pharmacyDetails.mail);
+                pharmacyname.setText("  "+pharmacyDetails.pharmname);
+                location.setText("  "+pharmacyDetails.location);
+                propertiername.setText("  "+pharmacyDetails.proprietorname);
+                licnumber.setText("  "+pharmacyDetails.licnumber);
+                address.setText("  "+pharmacyDetails.address);
+                phone.setText("  "+pharmacyDetails.phonenumber);
+                mail.setText("  "+pharmacyDetails.mail);
                 ratings.setRating(pharmacyDetails.ratings);
                 count.setText("("+pharmacyDetails.count+" reviews)");
                 profileurl=pharmacyDetails.profile_pic;
@@ -170,6 +172,7 @@ public class PharmacyProfile extends AppCompatActivity
                                 sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("prefs","");
+                                editor1.apply();
                                 firebaseAuth= FirebaseAuth.getInstance();
                                 firebaseAuth.signOut();
                                 finish();

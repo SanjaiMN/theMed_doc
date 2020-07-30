@@ -11,15 +11,14 @@
         android:id="@+id/manualpharmacy"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="40dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.13">
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,15 +47,14 @@
         android:id="@+id/uploadascsv"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="40dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.13">
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,12 +87,10 @@
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/uploadascsv"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadascsv"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toStartOf="@+id/uploadascsv"
+        app:layout_constraintTop_toBottomOf="@+id/uploadascsv">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,12 +122,10 @@
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/manualpharmacy"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/manualpharmacy"
-        app:layout_constraintTop_toBottomOf="@+id/manualpharmacy"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/manualpharmacy">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,15 +153,14 @@
         android:id="@+id/yourbookingspharm"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="43dp"
         app:cardBackgroundColor="@color/semiTransparentColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/yourmedicines"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/yourmedicines"
-        app:layout_constraintTop_toBottomOf="@+id/yourmedicines"
-        app:layout_constraintVertical_bias="0.23000002">
+        app:layout_constraintTop_toBottomOf="@+id/yourmedicines">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,15 +188,16 @@
         android:id="@+id/textView13"
         android:layout_width="279dp"
         android:layout_height="52dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
-        android:text="TheMed Pharmacy"
+        android:text="Med Heal Pharmacy"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

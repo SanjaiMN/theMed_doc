@@ -9,8 +9,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,21 +30,39 @@ public class DoctorOrLabTechnician extends AppCompatActivity
     CardView doctorlogin,lablogin,pharmacylogin;
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
+    LottieAnimationView doctor,lab,pharmacy;
     DatabaseReference databaseReference,refdoc,reflab,refpharm;
     @Override
     protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_doctor_or_lab_technician);
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        doctor=findViewById(R.id.animationView);
+        lab=findViewById(R.id.animationView1);
+        pharmacy=findViewById(R.id.animationView3);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
+        if(Build.MANUFACTURER.toLowerCase().equals("xiaomi"))
+        {
+            doctor.loop(false);
+            lab.loop(false);
+            pharmacy.loop(false);
+        }
+        if(Build.VERSION.SDK_INT<26)
+        {
+            doctor.loop(false);
+            lab.loop(false);
+            pharmacy.loop(false);
+        }
         SharedPreferences sharedPreferences1 = getSharedPreferences("labordoc",MODE_PRIVATE);
         String checker = sharedPreferences1.getString("prefs","");
         sharedPreferences=getSharedPreferences("MyPrefs",MODE_PRIVATE);
         String checkeruid = sharedPreferences.getString("uid","");
         if(uid.equals(checkeruid))
         {
-            if(checker.equals("lab")){
+            if(checker.equals("lab"))
+            {
                 startActivity(new Intent(DoctorOrLabTechnician.this,LabDashboard.class));
             }
             else if(checker.equals("doctor"))
@@ -50,16 +71,20 @@ public class DoctorOrLabTechnician extends AppCompatActivity
             }
             else if(checker.equals("pharmacy"))
                 startActivity(new Intent(DoctorOrLabTechnician.this,PharmacyDashboard.class));
+            else {
+                checkdatabase();
+            }
         }
-        else {
+        else
+            {
             sharedPreferences = getSharedPreferences("labordoc", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor1 = sharedPreferences.edit();
             editor1.putString("prefs", "");
-            editor1.commit();
+            editor1.apply();
             sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor2 = sharedPreferences.edit();
             editor2.putString("uid", uid);
-            editor2.commit();
+            editor2.apply();
             checkdatabase();
         }
         doctorlogin=findViewById(R.id.doctorlogin);
@@ -106,7 +131,7 @@ public class DoctorOrLabTechnician extends AppCompatActivity
                     SharedPreferences.Editor editor1 = sharedPreferences10.edit();
                     //editor1.putString("prefs", "");
                     editor1.putString("prefs", "doctor");
-                    editor1.commit();
+                    editor1.apply();
                     startActivity(new Intent(DoctorOrLabTechnician.this, profile.class));
                 }
             }
@@ -124,7 +149,7 @@ public class DoctorOrLabTechnician extends AppCompatActivity
                     SharedPreferences.Editor editor1 = sharedPreferences10.edit();
                     //editor1.putString("prefs", "");
                     editor1.putString("prefs", "lab");
-                    editor1.commit();
+                    editor1.apply();
                     startActivity(new Intent(DoctorOrLabTechnician.this, LabDashboard.class));
                 }
             }
@@ -144,7 +169,7 @@ public class DoctorOrLabTechnician extends AppCompatActivity
                     SharedPreferences.Editor editor=sharedPreferences10.edit();
                     //editor.putString("prefs","");
                     editor.putString("prefs","pharmacy");
-                    editor.commit();
+                    editor.apply();
                     startActivity(new Intent(DoctorOrLabTechnician.this, PharmacyDashboard.class));
                 }
             }

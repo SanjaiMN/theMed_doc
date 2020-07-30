@@ -3,6 +3,7 @@ package com.i18nsolutions.themeddoc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class PharamacyManual extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Enter Manually");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_pharamacy_manual);
         serialno=findViewById(R.id.serialnopharmacy);
         medicinename = findViewById(R.id.medicinename);

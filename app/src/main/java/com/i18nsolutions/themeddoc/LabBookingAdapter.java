@@ -34,8 +34,8 @@ public class LabBookingAdapter extends RecyclerView.Adapter<LabBookingAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        holder.date.setText("date:"+list.get(position).date);
-        holder.amount.setText("Amount:"+list.get(position).amount);
+        holder.date.setText("Date:"+list.get(position).date);
+        holder.amount.setText("₹"+list.get(position).amount);
         if(list.get(position).isdelivered) {
             holder.date.append("\nDelivered Successfully");
             holder.date.setTextColor(Color.GREEN);

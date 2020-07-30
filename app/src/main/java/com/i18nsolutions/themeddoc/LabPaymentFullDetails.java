@@ -12,18 +12,21 @@ import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -129,11 +132,12 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
     // boolean flag to toggle the ui
     private Boolean mRequestingLocationUpdates;
     TextView customername, testname, walkinorhome,nomapslab;
-    String walkinorhome1;
+    String walkinorhome1,mobilenumber;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference, databaseReference1,databaseReference3;
     String puid, uid,city;
     String serialno;
+    ImageView call;
     FancyButton delivered;
 
     @Override
@@ -141,6 +145,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
     {
         super.onCreate(savedInstanceState);
         setTitle("Booking details");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_lab_payment_full_details);
         mGoogleApiClient2 = new GoogleApiClient.Builder(LabPaymentFullDetails.this)
                 .addApi(Places.GEO_DATA_API)
@@ -166,12 +171,13 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         walkinorhome = findViewById(R.id.walkinorhome);
         delivered=findViewById(R.id.deliveredlab);
         nomapslab=findViewById(R.id.nomapslab);
-        ShowcaseConfig config = new ShowcaseConfig();
-        config.setDelay(500); // half second between each showcase view
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabPaymentFullDetails.this, "LabPaymentFullDetails");
-        sequence.setConfig(config);
-        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
-        sequence.start();
+        call=findViewById(R.id.calllab);
+//        ShowcaseConfig config = new ShowcaseConfig();
+//        config.setDelay(500); // half second between each showcase view
+//        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabPaymentFullDetails.this, "LabPaymentFullDetails");
+//        sequence.setConfig(config);
+//        sequence.addSequenceItem(delivered,"Hit,when you delivered the product successfully", "GOT IT");
+//        sequence.start();
         Intent intent = getIntent();
         LabPaymentDetails labPaymentDetails = intent.getParcelableExtra("serialno");
         puid = labPaymentDetails.puid;
@@ -234,28 +240,31 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         testname.setText("Tests:");
         for(int i=1;i<arr.length;i++)
         {
-            System.out.println(city);
-            databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city.toLowerCase()).child(uid).child("" +arr[i]);
-            System.out.println(databaseReference1);
-            databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
-            databaseReference1.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                    System.out.println(dataSnapshot1.getKey());
-                    String labname = dataSnapshot1.child("testname").getValue().toString();
-                    testname.append(labname+",");
-                }
+            if(!arr[i].isEmpty()) {
+                System.out.println(city);
+                databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city.toLowerCase()).child(uid).child("" + arr[i]);
+                System.out.println(databaseReference1);
+                databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                        System.out.println(dataSnapshot1.getKey());
+                        String labname = dataSnapshot1.child("testname").getValue().toString();
+                        testname.append(labname + ",");
+                    }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
+            }
         }
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PatientDetails patientDetails = dataSnapshot.getValue(PatientDetails.class);
+                mobilenumber=patientDetails.phone;
                 customername.setText("Name:" + patientDetails.name);
             }
 
@@ -265,6 +274,16 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
             }
         });
         walkinorhome.setText("Walk in/home:" + walkinorhome1);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intentphone = new Intent();
+                intentphone.setAction(Intent.ACTION_DIAL); // Action for what intent called for
+                intentphone.setData(Uri.parse("tel: " + mobilenumber)); // Data with intent respective action on intent
+                startActivity(intentphone);
+            }
+        });
     }
 
     @SuppressLint("RestrictedApi")
@@ -304,7 +323,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         LatLng sydney = new LatLng(destLat, destLong);
         if(destLat==0.0 || destLong==0.0)
             mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in selected lab"));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in selected lab"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Your Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -505,9 +524,9 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         //  String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters + "&key=" + MY_API_KEY
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-        Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
+        //Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-        Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
+        //Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
 
 
 

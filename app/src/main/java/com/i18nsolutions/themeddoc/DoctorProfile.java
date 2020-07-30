@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,7 +48,6 @@ public class DoctorProfile extends AppCompatActivity
     DatabaseReference databaseReference,databaseReference1;
     ProgressDialog progressDialog;
     ProgressBar progressBar;
-    ImageButton editprofile;
     RatingBar ratings;
     SharedPreferences sharedPreferences;
     List<ReviewDetails> list=new ArrayList<>();
@@ -58,12 +58,14 @@ public class DoctorProfile extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setTitle("Doctor Profile");
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_doctor_profile);
         progressDialog=new ProgressDialog(DoctorProfile.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
         recyclerView=findViewById(R.id.reviews);
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.HORIZONTAL));
+        recyclerView.setHasFixedSize(true);
         profilepic=findViewById(R.id.profilepiclab);
         namee=findViewById(R.id.namee);
         agee=findViewById(R.id.agee);
@@ -75,17 +77,17 @@ public class DoctorProfile extends AppCompatActivity
         profilepic=findViewById(R.id.profilepiclab);
         ratings=findViewById(R.id.ratingBarLab);
         progressBar=findViewById(R.id.doctorprofilepb);
-       // editprofile=findViewById(R.id.editprofile);
+        progressBar.setVisibility(View.VISIBLE);
         firebaseDatabase=FirebaseDatabase.getInstance();
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference1=FirebaseDatabase.getInstance().getReference().child("Payment Report").child("doctor booking").child(uid);
-        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 patientscount.setText(dataSnapshot.getChildrenCount()+" patients seen");
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
@@ -98,10 +100,10 @@ public class DoctorProfile extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 doctor_details doctor_details=dataSnapshot.getValue(doctor_details.class);
-                namee.setText("Dr ."+doctor_details.name);
-                agee.setText(doctor_details.age+" years old");
-                working_inn.setText("Working in "+doctor_details.working_in);
-                specalizationn.setText("Current domain "+doctor_details.specalization);
+                namee.setText("  Dr ."+doctor_details.name);
+                agee.setText("  "+doctor_details.age+" years old");
+                working_inn.setText("  Working in "+doctor_details.working_in);
+                specalizationn.setText("  Current domain "+doctor_details.specalization);
                 ratings.setRating(doctor_details.ratings);
                 reviewcount.setText("("+doctor_details.count+" reviews)");
                 profile_pic=doctor_details.profile_pic;
@@ -109,11 +111,10 @@ public class DoctorProfile extends AppCompatActivity
                     Glide.with(DoctorProfile.this)
                             .load(""+profile_pic)
                             .into(profilepic);
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 catch (Exception e){}
                 progressDialog.dismiss();
-                progressBar.setVisibility(View.INVISIBLE);
                 databaseReference.child("Reviews").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1)
@@ -186,6 +187,7 @@ public class DoctorProfile extends AppCompatActivity
                                 sharedPreferences=getSharedPreferences("labordoc", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor1=sharedPreferences.edit();
                                 editor1.putString("prefs","");
+                                editor1.apply();
                                 FirebaseAuth.getInstance().signOut();
                                 finish();
                                 Toast.makeText(DoctorProfile.this,"Logout successful",Toast.LENGTH_SHORT).show();

@@ -1,12 +1,17 @@
 package com.i18nsolutions.themeddoc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
@@ -19,6 +24,7 @@ public class PharmacyDashboard extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_pharmacy_dashboard);
         yourmedicines=findViewById(R.id.yourmedicines);
         profile=findViewById(R.id.profilecardpharm);
@@ -67,6 +73,25 @@ public class PharmacyDashboard extends AppCompatActivity
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater layoutInflater = getMenuInflater();
+        layoutInflater.inflate(R.menu.aboutmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.about:
+                startActivity(new Intent(PharmacyDashboard.this,About.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onBackPressed()
     {

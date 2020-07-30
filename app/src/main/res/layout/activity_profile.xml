@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
-        android:text="TheMed-Doctor"
+        android:text="Med Heal-Doctor"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

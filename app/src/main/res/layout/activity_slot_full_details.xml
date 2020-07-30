@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,94 +8,96 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:context=".SlotFullDetails">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
     <TextView
         android:id="@+id/namefd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/josefin_sans_bold"
         android:gravity="center"
         android:text="Name:"
         android:textColor="#fff"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/datefd"
-        app:layout_constraintEnd_toEndOf="@+id/shortdescription"
-        app:layout_constraintStart_toStartOf="@+id/shortdescription" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/datefd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans"
         android:text="Date:"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/timefd"
-        app:layout_constraintEnd_toEndOf="@+id/shortdescription"
-        app:layout_constraintStart_toStartOf="@+id/shortdescription"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/namefd"
+        app:layout_constraintStart_toStartOf="@+id/namefd"
+        app:layout_constraintTop_toBottomOf="@+id/namefd" />
 
     <TextView
         android:id="@+id/timefd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans"
         android:text="Time:"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/shortdescription"
-        app:layout_constraintEnd_toEndOf="@+id/shortdescription"
+        app:layout_constraintEnd_toEndOf="@+id/datefd"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@+id/shortdescription"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintStart_toStartOf="@+id/datefd"
+        app:layout_constraintTop_toBottomOf="@+id/datefd" />
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/confirmbuttonfd"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/healthreports"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthreports"
-        app:layout_constraintVertical_bias="0.472"
-        fancy:fb_defaultColor="@color/colorPrimary"
-        fancy:fb_focusColor="#07F811"
-        fancy:fb_iconPosition="right"
-        fancy:fb_radius="30dp"
-        fancy:fb_text="Confirm"
-        fancy:fb_textColor="#FFFFFF"
-        fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/confirmbuttonfd"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/healthreports"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/healthreports"
+            fancy:fb_defaultColor="@color/colorPrimary"
+            fancy:fb_focusColor="#07F811"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Confirm"
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textFontRes="@font/josefin_sans_bold"
+            fancy:fb_textSize="20sp" />
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/cancelbutton"
-        android:layout_width="120sp"
-        android:layout_height="50dp"
-        android:layout_marginTop="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/healthreports"
-        app:layout_constraintTop_toBottomOf="@+id/healthreports"
-        app:layout_constraintVertical_bias="0.472"
-        fancy:fb_defaultColor="@color/colorPrimary"
-        fancy:fb_focusColor="#FB1403"
-        fancy:fb_iconPosition="right"
-        fancy:fb_radius="30dp"
-        fancy:fb_text="Cancel"
-        fancy:fb_textColor="#FFFFFF"
-        fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/cancelbutton"
+            android:layout_width="120sp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/healthreports"
+            app:layout_constraintTop_toBottomOf="@+id/healthreports"
+            fancy:fb_defaultColor="@color/colorPrimary"
+            fancy:fb_focusColor="#FB1403"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Cancel"
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textFontRes="@font/josefin_sans_bold"
+            fancy:fb_textSize="20sp" />
 
     <TextView
         android:id="@+id/shortdescription"
         android:layout_width="346dp"
-        android:layout_height="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:ems="10"
         android:fontFamily="@font/josefin_sans_semibold"
         android:gravity="center|top"
@@ -106,20 +108,20 @@
         android:textColor="#fff"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425" />
+        app:layout_constraintEnd_toEndOf="@+id/timefd"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/timefd"
+        app:layout_constraintTop_toBottomOf="@+id/timefd"
+        app:layout_constraintVertical_bias="0.05" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/healthreports"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@+id/showprescription"
         app:layout_constraintStart_toStartOf="@+id/showprescription"
         app:layout_constraintTop_toBottomOf="@+id/showprescription"
-        app:layout_constraintVertical_bias="0.13"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -134,12 +136,11 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/namefd"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007"
         app:srcCompat="@drawable/ic_baseline_chat_24" />
 
     <ImageButton
@@ -147,23 +148,21 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/namefd"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_videocam_24" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/prescription"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@+id/shortdescription"
         app:layout_constraintStart_toStartOf="@+id/shortdescription"
         app:layout_constraintTop_toBottomOf="@+id/shortdescription"
-        app:layout_constraintVertical_bias="0.060000002"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -177,11 +176,10 @@
         android:id="@+id/showprescription"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@+id/prescription"
         app:layout_constraintStart_toStartOf="@+id/prescription"
         app:layout_constraintTop_toBottomOf="@+id/prescription"
-        app:layout_constraintVertical_bias="0.108"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPosition="right"
@@ -190,5 +188,5 @@
         fancy:fb_textColor="#FFFFFF"
         fancy:fb_textFontRes="@font/josefin_sans_bold"
         fancy:fb_textSize="20sp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

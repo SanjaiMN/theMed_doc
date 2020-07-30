@@ -13,29 +13,27 @@
         android:id="@+id/customernamepaylabfull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans_bold"
+        android:gravity="center"
         android:textColor="#fff"
         android:textSize="20sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/testnamepayfulllab"
         android:layout_width="323dp"
         android:layout_height="34dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/josefin_sans_semibold"
         android:gravity="center"
         android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customernamepaylabfull"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintEnd_toEndOf="@+id/customernamepaylabfull"
+        app:layout_constraintStart_toStartOf="@+id/customernamepaylabfull"
+        app:layout_constraintTop_toBottomOf="@+id/customernamepaylabfull" />
 
     <TextView
         android:id="@+id/walkinorhome"
@@ -46,20 +44,18 @@
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/testnamepayfulllab"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/testnamepayfulllab"
-        app:layout_constraintTop_toBottomOf="@+id/testnamepayfulllab"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/testnamepayfulllab" />
 
     <FrameLayout
         android:id="@+id/mapLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/deliveredlab"
+        app:layout_constraintStart_toStartOf="@+id/deliveredlab"
         app:layout_constraintTop_toBottomOf="@+id/deliveredlab">
 
         <LinearLayout
@@ -72,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:cardBackgroundColor="#4000"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/reviews"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -89,6 +86,7 @@
                     android:textColor="#fff"
                     android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
+
             <fragment
                 android:id="@+id/maplab"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -103,6 +101,7 @@
         </LinearLayout>
 
     </FrameLayout>
+
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/start_BT"
         android:layout_width="120dp"
@@ -115,25 +114,24 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957"
+        app:layout_constraintVertical_bias="0.924"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_radius="30dp"
         fancy:fb_text="Start"
         fancy:fb_textColor="#FFFFFF"
         fancy:fb_textFontRes="@font/josefin_sans_bold"
-        fancy:fb_textSize="20sp"/>
+        fancy:fb_textSize="20sp" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/deliveredlab"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/testnamepayfulllab"
-        app:layout_constraintStart_toStartOf="@+id/testnamepayfulllab"
+        app:layout_constraintEnd_toEndOf="@+id/walkinorhome"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/walkinorhome"
         app:layout_constraintTop_toBottomOf="@+id/walkinorhome"
-        app:layout_constraintVertical_bias="0.0"
         fancy:fb_defaultColor="@color/colorPrimary"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_radius="30dp"
@@ -146,15 +144,26 @@
         android:id="@+id/nomapslab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="They Chose Walkin"
         android:fontFamily="@font/josefin_sans"
-        android:visibility="gone"
+        android:text="They Chose Walkin"
         android:textColor="#fff"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintTop_toBottomOf="@+id/deliveredlab"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <ImageView
+        android:id="@+id/calllab"
+        android:layout_width="49dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveredlab"
+        app:layout_constraintStart_toEndOf="@+id/deliveredlab"
+        app:layout_constraintTop_toTopOf="@+id/deliveredlab"
+        app:layout_constraintVertical_bias="1.0"
+        fancy:srcCompat="@drawable/ic_baseline_call_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
