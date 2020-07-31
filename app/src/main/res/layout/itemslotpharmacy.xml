@@ -44,6 +44,7 @@
             android:layout_width="332dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/josefin_sans"
@@ -53,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/drugname"
-            app:layout_constraintVertical_bias="0.288" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/medicinecategoryitem"
@@ -62,9 +63,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="32dp"
             android:layout_marginRight="20dp"
-            android:textColor="#fff"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
+            android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categoryitem" />
@@ -74,16 +75,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
             android:fontFamily="@font/josefin_sans_bold"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
             android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/medicinecategoryitem"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/medicinecategoryitem" />
+
+        <Button
+            android:id="@+id/outofstock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="out of stock"
+            android:background="#03F80D"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/amountmedicinelist"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@+id/amountmedicinelist"
+            app:layout_constraintTop_toBottomOf="@+id/amountmedicinelist" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

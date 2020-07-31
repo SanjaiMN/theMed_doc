@@ -5,14 +5,23 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
@@ -20,6 +29,9 @@ import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 public class LabDashboard extends AppCompatActivity
 {
     CardView yourtests,profile,entermanually,uploadascsvlab,yourbookings;
+    DatabaseReference databaseReference;
+    String uid,city;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +42,63 @@ public class LabDashboard extends AppCompatActivity
         entermanually=findViewById(R.id.manuallab);
         uploadascsvlab=findViewById(R.id.uploadascsvlab);
         yourbookings=findViewById(R.id.yourbookingslab);
+        progressDialog= new ProgressDialog(LabDashboard.this);
+        progressDialog.setMessage("Gathering your contents...");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("LaboratoryRegistrations").child(uid).child("location");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                city=dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run()
+            {
+                yourbookings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(),LabBookings.class));
+                    }
+                });
+                uploadascsvlab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(),LabUploadCsv.class));
+                    }
+                });
+                entermanually.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(),LabTestInfo.class));
+                    }
+                });
+                profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        startActivity(new Intent(getApplicationContext(),LabProfile.class));
+                    }
+                });
+                yourtests.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getApplicationContext(),LabTests.class);
+                        intent.putExtra("citynamelab",city);
+                    }
+                });
+                progressDialog.dismiss();
+            }
+        }, 3000);
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(500); // half second between each showcase view
         MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(LabDashboard.this, "LabDashboard");
@@ -40,37 +109,7 @@ public class LabDashboard extends AppCompatActivity
         sequence.addSequenceItem(uploadascsvlab,"To upload the lab test details in csv format", "GOT IT");
         sequence.addSequenceItem(yourbookings,"Check who booked your lab for taking tests", "GOT IT");
         sequence.start();
-        yourbookings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LabBookings.class));
-            }
-        });
-        uploadascsvlab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LabUploadCsv.class));
-            }
-        });
-        entermanually.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LabTestInfo.class));
-            }
-        });
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                startActivity(new Intent(getApplicationContext(),LabProfile.class));
-            }
-        });
-        yourtests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),LabTests.class));
-            }
-        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

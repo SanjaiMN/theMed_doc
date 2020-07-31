@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,12 +29,12 @@ import static android.view.View.VISIBLE;
 
 public class MedicineLists extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2;
     FirebaseDatabase firebaseDatabase;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     List<MedicineDetails> list,refreshlist;
-    String uid;
+    String uid,city1;
     TextView textView;
     RecyclerAdaptorPharmacy recycleradapter;
     @Override
@@ -46,6 +47,8 @@ public class MedicineLists extends AppCompatActivity implements SearchView.OnQue
         progressBar=findViewById(R.id.progressBar2);
         textView=findViewById(R.id.notvmedicinelist);
         recyclerView=findViewById(R.id.recyclerviewpharmacy);
+        Intent intent = getIntent();
+        city1=intent.getStringExtra("cityname");
         list=new ArrayList<>();
         refreshlist=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
@@ -53,7 +56,8 @@ public class MedicineLists extends AppCompatActivity implements SearchView.OnQue
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.searchmenu,menu);
         MenuItem item=menu.findItem(R.id.search);
         SearchView searchView = (SearchView) item.getActionView();
@@ -66,7 +70,7 @@ public class MedicineLists extends AppCompatActivity implements SearchView.OnQue
         progressBar.setVisibility(VISIBLE);
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("MedicineDetails").child("salem").child(uid);
+        databaseReference=firebaseDatabase.getReference().child("MedicineDetails").child(city1.toLowerCase()).child(uid);
         databaseReference.addValueEventListener(new ValueEventListener()
         {
             @Override

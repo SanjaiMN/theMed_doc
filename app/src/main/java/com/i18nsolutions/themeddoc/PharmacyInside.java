@@ -140,6 +140,7 @@ public class PharmacyInside extends AppCompatActivity
                 medicineDetails.location=city1;
                 medicineDetails.pharmacyname=pharmacyname;
                 medicineDetails.uidmed=uidmed;
+                medicineDetails.outofstock=false;
                 list.add(medicineDetails);
                 databaseReference1.child(tokens[0]+"").setValue(medicineDetails);
             }

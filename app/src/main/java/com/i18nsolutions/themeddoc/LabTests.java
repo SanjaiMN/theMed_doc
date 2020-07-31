@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +32,7 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
     ProgressBar progressBar;
     TextView textView;
     List<LabDetails> list,refreshlist;
-    String uid;
+    String uid,city1;
     private RecyclerAdaptorLabTests recycleradapter;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,6 +43,8 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
         setContentView(R.layout.activity_lab_tests);
         progressBar=findViewById(R.id.progressBarlab);
         textView=findViewById(R.id.tvnotuploadlab);
+        Intent intent = getIntent();
+        city1=intent.getStringExtra("citynamelab");
         recyclerView=findViewById(R.id.recyclerviewlabtests);
         list=new ArrayList<>();
         refreshlist=new ArrayList<>();
@@ -61,7 +64,7 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
         progressBar.setVisibility(View.VISIBLE);
         uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("Labtests").child("salem").child(uid);
+        databaseReference=firebaseDatabase.getReference().child("Labtests").child(city1).child(uid);
         databaseReference.addValueEventListener(new ValueEventListener()
         {
             @Override

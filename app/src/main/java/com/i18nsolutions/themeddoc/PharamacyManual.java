@@ -40,7 +40,7 @@ public class PharamacyManual extends AppCompatActivity
         upload.setOnClickListener(v -> {
             if(isValid())
             {
-                MedicineDetails medicineDetails=new MedicineDetails(Integer.parseInt(serialno1),medicinename1,category1,medicinecategory1,pharmacyname,city1,money1,uidmed);
+                MedicineDetails medicineDetails=new MedicineDetails(Integer.parseInt(serialno1),medicinename1,category1,medicinecategory1,pharmacyname,city1,money1,uidmed,false);
                 databaseReference.child("MedicineDetails").child(city1.toLowerCase()).child(uidmed).child(serialno1).setValue(medicineDetails);
                 Toast.makeText(PharamacyManual.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 clearedtext();
