@@ -8,7 +8,6 @@
     android:background="@drawable/backgroundfinal"
     tools:context=".LabPaymentFullDetails">
 
-
     <TextView
         android:id="@+id/customernamepaylabfull"
         android:layout_width="wrap_content"
@@ -165,5 +164,17 @@
         app:layout_constraintTop_toTopOf="@+id/deliveredlab"
         app:layout_constraintVertical_bias="1.0"
         fancy:srcCompat="@drawable/ic_baseline_call_24" />
+
+    <TextView
+        android:id="@+id/estimateddeliverycharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/josefin_sans"
+        android:text="0 km"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveredlab"
+        app:layout_constraintEnd_toStartOf="@+id/deliveredlab"
+        app:layout_constraintTop_toTopOf="@+id/deliveredlab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

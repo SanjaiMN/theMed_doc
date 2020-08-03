@@ -60,6 +60,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONObject;
 
@@ -69,6 +70,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +96,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
     LocationRequest mLocationRequest;
     static GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    TextView nomapspharm;
+    TextView nomapspharm,kilometer;
     CardView cardView;
     Marker mCurrLocationMarker;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -160,6 +162,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         destLong=Double.parseDouble(labPaymentDetails.longs);
         walkinorhome1 = labPaymentDetails.walkinorhome;
         startBT = findViewById(R.id.start_BT);
+        kilometer=findViewById(R.id.estimateddeliverycharge);
         nomapspharm=findViewById(R.id.nomapslab);
         cardView=findViewById(R.id.cardView);
         call=findViewById(R.id.calllab);
@@ -192,6 +195,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
             maplab.setVisibility(View.INVISIBLE);
             cardView.setVisibility(View.INVISIBLE);
             startBT.setVisibility(View.INVISIBLE);
+            kilometer.setVisibility(View.INVISIBLE);
             nomapspharm.setVisibility(View.VISIBLE);
         }
         else {
@@ -339,7 +343,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         mMap.addMarker(new MarkerOptions().position(sydney).title("Your Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -619,9 +623,9 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         //Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         //Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
-
-
-
+        DecimalFormat df = new DecimalFormat("0.00");
+        double kilometer1=(SphericalUtil.computeDistanceBetween(origin, dest)/1000);
+        kilometer.setText(df.format(kilometer1)+" KM");
         // Sensor enabled
         String sensor = "sensor=false";
 
@@ -633,7 +637,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
 
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters
-                + "&key=" + "AIzaSyDhtxhgD7V85U6h72aV-QUvq54y51OTKRU";
+                + "&key=" + R.string.google_api_key;
         return url;
     }
 

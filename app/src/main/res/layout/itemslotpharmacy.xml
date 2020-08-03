@@ -28,6 +28,7 @@
             android:layout_width="332dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:fontFamily="@font/josefin_sans_bold"
             android:gravity="center"
@@ -37,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.185" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/categoryitem"
@@ -61,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/josefin_sans"
             android:gravity="center"
@@ -75,27 +76,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/josefin_sans_bold"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
             android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/medicinecategoryitem" />
 
-        <Button
-            android:id="@+id/outofstock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="out of stock"
-            android:background="#03F80D"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/amountmedicinelist"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="@+id/amountmedicinelist"
-            app:layout_constraintTop_toBottomOf="@+id/amountmedicinelist" />
+        <ImageButton
+            android:id="@+id/deleteslot"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="39dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_close_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

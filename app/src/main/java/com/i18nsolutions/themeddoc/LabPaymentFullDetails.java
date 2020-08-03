@@ -57,6 +57,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONObject;
 
@@ -66,6 +67,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +133,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
     android.location.LocationListener locationListener;
     // boolean flag to toggle the ui
     private Boolean mRequestingLocationUpdates;
-    TextView customername, testname, walkinorhome,nomapslab;
+    TextView customername, testname, walkinorhome,nomapslab,kilometer;
     String walkinorhome1,mobilenumber;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference, databaseReference1,databaseReference3;
@@ -171,6 +173,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         walkinorhome = findViewById(R.id.walkinorhome);
         delivered=findViewById(R.id.deliveredlab);
         nomapslab=findViewById(R.id.nomapslab);
+        kilometer=findViewById(R.id.estimateddeliverycharge);
         call=findViewById(R.id.calllab);
 //        ShowcaseConfig config = new ShowcaseConfig();
 //        config.setDelay(500); // half second between each showcase view
@@ -189,7 +192,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
             maplab.setVisibility(View.INVISIBLE);
             startBT.setVisibility(View.INVISIBLE);
             nomapslab.setVisibility(View.VISIBLE);
-
+            kilometer.setVisibility(View.INVISIBLE);
         }
         Geocoder geocoder = new Geocoder(LabPaymentFullDetails.this, Locale.getDefault());
 
@@ -326,7 +329,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         mMap.addMarker(new MarkerOptions().position(sydney).title("Your Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -527,8 +530,9 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         //Toast.makeText(LabPaymentFullDetails.this,str_origin,Toast.LENGTH_LONG).show();
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         //Toast.makeText(LabPaymentFullDetails.this,str_dest,Toast.LENGTH_LONG).show();
-
-
+        DecimalFormat df = new DecimalFormat("0.00");
+        double kilometer1=(SphericalUtil.computeDistanceBetween(origin, dest)/1000);
+        kilometer.setText(df.format(kilometer1)+" KM");
 
         // Sensor enabled
         String sensor = "sensor=false";
@@ -541,7 +545,7 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
 
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters
-                + "&key=" + "AIzaSyDhtxhgD7V85U6h72aV-QUvq54y51OTKRU";
+                + "&key=" +  R.string.google_api_key;
         return url;
     }
 

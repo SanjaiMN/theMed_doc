@@ -1,10 +1,12 @@
 package com.i18nsolutions.themeddoc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -55,9 +57,34 @@ public class LabTests extends AppCompatActivity implements  SearchView.OnQueryTe
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.searchmenu,menu);
         MenuItem item=menu.findItem(R.id.search);
+        getMenuInflater().inflate(R.menu.cleardata,menu);
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(this);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.clearall:
+            {
+                new AlertDialog.Builder(this)
+                        .setTitle("Really Delete?")
+                        .setMessage("Are you sure you want to delete?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
+                                DatabaseReference databaseReference1 =FirebaseDatabase.getInstance().getReference().child("Labtests").child(city1.toLowerCase()).child(uid);
+                                databaseReference1.removeValue();
+                            }
+                        }).create().show();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void getfromdatabase()
     {

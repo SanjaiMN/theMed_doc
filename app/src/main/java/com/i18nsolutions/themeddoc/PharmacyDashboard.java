@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -94,8 +95,16 @@ public class PharmacyDashboard extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
                         Intent intent=new Intent(getApplicationContext(),MedicineLists.class);
-                        intent.putExtra("cityname",city);
-                        startActivity(intent);
+                        try {
+                            if (!city.isEmpty()){
+                                intent.putExtra("cityname", city);
+                                startActivity(intent);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(PharmacyDashboard.this,"Wait for a moment",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 progressDialog.dismiss();

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -52,7 +53,7 @@ public class LabDashboard extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                city=dataSnapshot.getValue().toString();
+                    city = dataSnapshot.getValue().toString();
             }
 
             @Override
@@ -93,7 +94,16 @@ public class LabDashboard extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
                         Intent intent=new Intent(getApplicationContext(),LabTests.class);
-                        intent.putExtra("citynamelab",city);
+                        try {
+                            if (!city.isEmpty()){
+                                intent.putExtra("citynamelab", city);
+                                startActivity(intent);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(LabDashboard.this,"Wait for a moment",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 progressDialog.dismiss();
