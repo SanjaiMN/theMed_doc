@@ -152,7 +152,7 @@ public class MedicineLists extends AppCompatActivity implements SearchView.OnQue
             String userinput = newText.toLowerCase().trim();
             List<MedicineDetails> newList = new ArrayList<>();
             for (MedicineDetails string : list) {
-                if (string.medicinename.toLowerCase().contains(userinput)|| string.category.toLowerCase().contains(userinput) || String.valueOf(string.serialno).contains(userinput) || string.medicinecategory.toLowerCase().contains(userinput) || string.money.contains(userinput))
+                if (string.medicinename.toLowerCase().contains(userinput)|| string.category.toLowerCase().contains(userinput) || String.valueOf(string.serialno).contains(userinput) || string.medicinecategory.toLowerCase().contains(userinput) || string.money.contains(userinput) || (string.outofstock+"").contains(userinput))
                 {
                     newList.add(string);
                 }

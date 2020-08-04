@@ -243,7 +243,8 @@ public class LabPaymentFullDetails extends AppCompatActivity implements OnMapRea
         testname.setText("Tests:");
         for(int i=1;i<arr.length;i++)
         {
-            if(!arr[i].isEmpty()) {
+            if(!arr[i].isEmpty())
+            {
                 System.out.println(city);
                 databaseReference1 = firebaseDatabase.getReference().child("Labtests").child(city.toLowerCase()).child(uid).child("" + arr[i]);
                 System.out.println(databaseReference1);

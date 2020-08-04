@@ -268,7 +268,8 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
                 databaseReference = firebaseDatabase.getReference().child("Patient Database").child(puid);
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot1)
+                    {
                         String testname1 = dataSnapshot1.child("medicinename").getValue().toString();
                         testname.append(testname1+" x "+count+",");
                     }
