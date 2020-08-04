@@ -343,7 +343,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
         mMap.addMarker(new MarkerOptions().position(sydney).title("Your Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -637,7 +637,7 @@ public class PharmacyFullDetails extends AppCompatActivity implements OnMapReady
 
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters
-                + "&key=" + R.string.google_api_key;
+                + "&key=" + getResources().getString(R.string.map_api_id);
         return url;
     }
 

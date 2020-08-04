@@ -61,10 +61,16 @@ public class RecyclerAdaptorPharmacy  extends RecyclerView.Adapter<RecyclerAdapt
                         {
                             public void onClick(DialogInterface arg0, int arg1)
                             {
-                                DatabaseReference databaseReference1 =FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child(list.get(position).location).child(list.get(position).uidmed).child(list.get(position).serialno+"");
-                                databaseReference1.removeValue();
-                                Toast.makeText(context,"Removed from Stock",Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
+                                try
+                                {
+                                    DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("MedicineDetails").child(list.get(position).location).child(list.get(position).uidmed).child(list.get(position).serialno + "");
+                                    databaseReference1.removeValue();
+                                    Toast.makeText(context, "Removed from Stock", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                }
+                                catch (Exception e)
+                                {
+                                }
                             }
                         }).create().show();
             }

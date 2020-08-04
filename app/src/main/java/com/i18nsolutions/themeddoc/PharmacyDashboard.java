@@ -66,7 +66,8 @@ public class PharmacyDashboard extends AppCompatActivity
             @Override
             public void run()
             {
-                yourbookings.setOnClickListener(new View.OnClickListener() {
+                yourbookings.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(),PharmacyBookings.class));
@@ -78,13 +79,15 @@ public class PharmacyDashboard extends AppCompatActivity
                         startActivity(new Intent(getApplicationContext(),PharmacyInside.class));
                     }
                 });
-                entermanually.setOnClickListener(new View.OnClickListener() {
+                entermanually.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(),PharamacyManual.class));
                     }
                 });
-                profile.setOnClickListener(new View.OnClickListener() {
+                profile.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
                     public void onClick(View v)
                     {
@@ -95,8 +98,10 @@ public class PharmacyDashboard extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
                         Intent intent=new Intent(getApplicationContext(),MedicineLists.class);
-                        try {
-                            if (!city.isEmpty()){
+                        try
+                        {
+                            if (!city.isEmpty())
+                            {
                                 intent.putExtra("cityname", city);
                                 startActivity(intent);
                             }
